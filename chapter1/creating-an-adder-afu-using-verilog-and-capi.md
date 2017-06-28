@@ -1,8 +1,6 @@
 # Creating an Adder-AFU using Verilog
 
-* Similar example using VHDL: https://github.com/ibm-capi/afu-walkthrough
-
-
+* Similar example using VHDL: [https://github.com/ibm-capi/afu-walkthrough](https://github.com/ibm-capi/afu-walkthrough)
 
 * Define job structure for AFU in consumer code
 * Initialize project
