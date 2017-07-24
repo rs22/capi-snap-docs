@@ -1,6 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
+  * [Terms and Concepts](terms-and-concepts.md)
 * [Introduction to Hardware Development](chapter1.md)
   * [Installing Xilinx Vivado](chapter1/installing-xilinx-vivado.md)
   * [Verilog and VHDL](chapter1/verilog-and-vhdl.md)
