@@ -1,21 +1,40 @@
 ## What is SNAP?
 
-CAPI is nice, several reasons why it may be hard to get into:  
-VHDL hardware code, state instead of procedural thinking  
-Lot of different parts  
-Manual memory management \(waiting for reads and writes, ...\)
+As much as CAPI builds the technical foundations for effectively using accelerators, it can be hard to adopt due to various reasons:
 
-Therefore CAPI SNAP, which aims to make it as easy as possible to use FPGA-based hardware acceleration. It does that by providing two things: a unified, automated build process and a simpler API on top of CAPI.
+* Having to write **hardware code** \(Verilog / VHDL\) and switching from **procedural to state-based thinking** may be hard for software engineers
+* Many different **components** that have to be **managed individually** are part of the build, simulation and execution process
+* The **API leaves **a lot of** responsibility** for the user - for example **waiting for** the completion of **memory** reads and writes
+
+Therefore SNAP, which is build on top of CAPI, aims to make it as easy as possible to use FPGA-based hardware acceleration. It does that by providing two things: a unified, automated build process and a simpler API on top of CAPI.
 
 ### Build parts
 
-HLS
+The SNAP framework defines a unified build process for building, simulation and execution on hardware.
+
+#### Combining Xilinx Vivado and various other tools
+
+TODO
+
+#### High Level Synthesis support
+
+The build process includes the possibility to use Vivado HLS to convert C++ code to hardware code. This way developers do not have to learn VHDL or Verilog.
+
+#### Support for multiple FPGA cards
+
+SNAP can build for different FPGA cards 
 
 Support for different FPGA cards
 
-Power Service Layer
+PSL checkpoint file
+
+
 
 ### Framework part
+
+Simpler API
+
+Memory access
 
 
 
