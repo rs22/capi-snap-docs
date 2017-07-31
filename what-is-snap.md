@@ -36,7 +36,7 @@ Simpler API
 
 Memory access
 
-<img src="/assets/brain.png" width="20" height="100" />
+<img src="/assets/brain.png" width="20" />
 
 
 
