@@ -14,17 +14,7 @@ The SNAP framework defines a unified build process for building, simulation and 
 
 #### Combining Xilinx Vivado and various other tools
 
----
-
-#### something
-
-asdasdssssssssssss
-This could be a background box.
-sadasd
-
-It could look like this... Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-
----
+TODO
 
 #### High Level Synthesis support
 
@@ -32,15 +22,19 @@ The build process includes the possibility to use Vivado HLS to convert C++ code
 
 #### Support for multiple FPGA cards
 
-SNAP can build for different FPGA cards
+SNAP can build for different FPGA cards 
 
 Support for different FPGA cards
 
 PSL checkpoint file
+
+
 
 ### Framework part
 
 Simpler API
 
 Memory access
+
+
 
