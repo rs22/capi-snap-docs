@@ -9,8 +9,11 @@
   * [todo](setup-and-build-preparation/test.md)
 * [Simulating an action](simulating-an-action.md)
   * [todo](simulating-an-action/test.md)
-* [Run on FPGA-hardware](run-on-real-fpga-hardware.md)
+* [Runing on actual hardware](run-on-real-fpga-hardware.md)
   * todo
+  * [Installing the FPGA in the OpenPower machine](deploying-to-hardware/installing-the-fpga-in-the-openpower-machine.md)
+  * [Initializing the FPGA using a JTAG Programmer](deploying-to-hardware/initializing-the-fpga-using-a-jtag-programmer.md)
+  * [Programming the FPGA directly from the OpenPower Host](deploying-to-hardware/programming-the-fpga-directly-from-the-openpower-host.md)
 * [Creating your own action](creating-your-own-action.md)
   * [Software part and action parameters](creating-your-own-action/test.md)
   * [Hardware development](run-on-real-fpga-hardware/hardware-development.md)
@@ -23,8 +26,4 @@
   * [Creating an Adder-AFU using Verilog and CAPI](chapter1/creating-an-adder-afu-using-verilog-and-capi.md)
 * [Creating an AFU with SNAP](installing-xilinx-vivado.md)
   * [Set up the Development Environment](installing-xilinx-vivado/set-up-the-development-environment.md)
-* [Deploying to Hardware](deploying-to-hardware.md)
-  * Installing the FPGA in the OpenPower machine
-  * Initializing the FPGA using a JTAG Programmer
-  * Programming the FPGA directly from the OpenPower Host
 
