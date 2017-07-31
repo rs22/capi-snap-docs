@@ -5,7 +5,7 @@
   * [Terms and Concepts](terms-and-concepts.md)
   * [What is CAPI?](what-is-capi.md)
   * [What is SNAP?](what-is-snap.md)
-* Editing and running a simple AFU
+* [Editing and running a simple AFU](editing-and-running-a-simple-afu.md)
   * [Setup and build preparation](setup-and-build-preparation.md)
     * [todo](setup-and-build-preparation/test.md)
   * [Simulating an action](simulating-an-action.md)
