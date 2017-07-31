@@ -6,4 +6,7 @@ To do that -- assuming you've executed `make config` before -- just run `make im
 
 So get yourself a coffee. Then take some time to [legitimately slack off](https://xkcd.com/303/). Then go home and come back tomorrow.
 
-If you find out that the model synthesis failed due to a timing problem, set the `TIMING_LABLIMIT` environment variable to a large negative value ([default](https://github.com/open-power/snap/blob/master/hardware/setup/snap_build.tcl#L29): -250 ps). Repeat.
+If you find out that the model synthesis failed due to a timing problem, set the `TIMING_LABLIMIT` environment variable to a large negative value \([default](https://github.com/open-power/snap/blob/master/hardware/setup/snap_build.tcl#L29): -250 ps\). Repeat.
+
+Once the process has successfully completed, you can find the resulting bitstream files in the build/Image folder under the hardware directory. The version ending in \*.bit can be flashed using the JTAG programmer; the \*.bin file is meant for the capi-flash-script \(see the following sections\).
+
