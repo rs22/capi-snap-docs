@@ -3,8 +3,8 @@
 * [Introduction](README.md)
   * [Motivation and use cases](motivation-and-use-cases.md)
   * [Terms and Concepts](terms-and-concepts.md)
-  * What is CAPI?
-  * What is SNAP?
+  * [What is CAPI?](what-is-capi.md)
+  * [What is SNAP?](what-is-snap.md)
 * [Setup and build preparation](setup-and-build-preparation.md)
   * [todo](setup-and-build-preparation/test.md)
 * [Simulating an action](simulating-an-action.md)
