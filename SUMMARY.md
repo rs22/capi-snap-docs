@@ -10,6 +10,7 @@
 * [Simulating an action](simulating-an-action.md)
   * [todo](simulating-an-action/test.md)
 * [Running on actual hardware](run-on-real-fpga-hardware.md)
+  * [Creating an FPGA image](deploying-to-hardware/creating-an-fpga-image.md)
   * [Installing the FPGA in the OpenPower machine](deploying-to-hardware/installing-the-fpga-in-the-openpower-machine.md)
   * [Initializing the FPGA using a JTAG Programmer](deploying-to-hardware/initializing-the-fpga-using-a-jtag-programmer.md)
   * [Programming the FPGA directly from the OpenPower Host](deploying-to-hardware/programming-the-fpga-directly-from-the-openpower-host.md)
