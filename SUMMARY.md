@@ -3,6 +3,14 @@
 * [Introduction](README.md)
   * [Motivation and use cases](motivation-and-use-cases.md)
   * [Terms and Concepts](terms-and-concepts.md)
+  * What is CAPI?
+  * What is SNAP?
+* [Setup and build preparation](setup-and-build-preparation.md)
+  * [todo](setup-and-build-preparation/test.md)
+* [Simulating an action](simulating-an-action.md)
+  * [todo](simulating-an-action/test.md)
+* [Run on FPGA-hardware](run-on-real-fpga-hardware.md)
+* [Creating your own action](creating-your-own-action.md)
 * [Introduction to Hardware Development](chapter1.md)
   * [Installing Xilinx Vivado](chapter1/installing-xilinx-vivado.md)
   * [Verilog and VHDL](chapter1/verilog-and-vhdl.md)
