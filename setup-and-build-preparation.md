@@ -8,7 +8,7 @@ Let's first download, install and configure the software and repositories we nee
 
 #### 1. Xilinx Vivado 
 
-Xilinx Vivado is used to synthesize and layout our actions for the FPGA and contains HLS to convert C++ to hardware code as well as xsim (Vivado Simulator) for simulating without an FPGA. Currently version 2016.4 is the latest supported release of Vivado. As the HL WebPACK Edition may not include support for you FPGA-chip we recommend the HL Design Edition. The free 30-day evaluation should work as well ([Comparison of different Vivado Editions](https://www.xilinx.com/products/design-tools/vivado.html#buy)). You can find the downloads [here](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/2016-4.html).
+Xilinx Vivado is used to synthesize and layout our actions for the FPGA and contains HLS to convert C++ to hardware code as well as xsim (Vivado Simulator) for simulating without an FPGA. Currently version 2016.4 is the latest supported release of Vivado. As the HL WebPACK Edition may not include support for your FPGA-chip we recommend the HL Design Edition. The free 30-day evaluation should work as well ([Comparison of different Vivado Editions](https://www.xilinx.com/products/design-tools/vivado.html#buy)). You can find the downloads [here](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/2016-4.html).
 
 1. Download and install Xilinx Vivado
 2. If not using the evaluation version, obtain a Vivado license-file (.lic)
@@ -45,6 +45,7 @@ git clone https://github.com/ibm-capi/pslse
 
 #### 4. SNAP
 
+TODO
 
 You will need the following components for development \(we've tested this setup on Ubuntu 16.04\):
 
