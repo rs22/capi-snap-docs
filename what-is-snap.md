@@ -14,25 +14,25 @@ The SNAP framework defines a unified build process for building, simulation and 
 
 #### Combining Xilinx Vivado with various other tools and components
 
-While Xilinx Vivado is used to synthesize and layout the action for the FPGA or simulation, a lot of external components are needed for building as well. For example the information which action to build and the PSL layouted for the target FPGA. SNAP bundles all neccessary files and settings and contains a structure of Makefiles to automate building based on them.
+While Xilinx Vivado is used to synthesize and layout the action for the FPGA or simulation, there are also many external components that are needed for building. This includes the information which action to build and the PSL layouted for the target FPGA. SNAP bundles all neccessary files and settings while providing a structure of Makefiles to automate building based on them.
 
 #### High Level Synthesis support
 
-By incorporating Vivado HLS into the build process,
-By incorporating Vivado HLS into the build process, the action behaviour can also be specified in C or C++ and gets automatically converted to hardware code. Even though it is not possible to completely abstract from thinking about pipelining and parrallelization, it removes the need for developers to learn VHDL or Verilog.
+Incorporating Vivado HLS into the build process allows the action behaviour to also be specified in C or C++ which automatically gets converted to hardware code. Even though it is not possible to completely abstract from thinking about pipelining and parrallelization, it removes the need for developers to learn VHDL or Verilog.
 
-#### Support for multiple FPGA cards
+#### Ready-to-run examples
 
-
-SNAP can build for different FPGA cards 
-
-Support for different FPGA cards
-
-PSL checkpoint file
+SNAP contains various examples with test data that can be simulated or run on a real device. They help to learn the build flow and act as a stepping stone to creating own actions. A list of the available example actions can be found [in the repo](https://github.com/open-power/snap/tree/master/actions).
 
 ### Framework part
 
-Simpler API
+SNAP also tries to abstract from the low level view of CAPI where it is possible without performance impacts.
+
+#### Simpler API
+
+This includes providing a simpler API for the interaction with the FPGA. When calling an action 
+
+#### Unified memory access
 
 Memory access
 
