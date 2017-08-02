@@ -50,5 +50,5 @@ If it is run without the `-app` parameter, it opens a new terminal session with 
    ../../../../actions/hls_bfs/sw/snap_bfs -v
    ```
 
-
+5. If you're done testing, close the simulation terminal window to shut down the simulator (otherwise it will waste CPU cycles waiting for new requests).
 
