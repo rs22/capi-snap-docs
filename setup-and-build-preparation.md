@@ -103,12 +103,12 @@ export FPGACARD=<your chip identifier>
 While `xsim` is the default Simulator and  `SNAP_ROOT` is set automatically, `ACTION_ROOT` and the SNAP function Variables have to be choosen based on the action you want to build.
 
 
-### Preparing to build the breadth-first search action
+### Selecting the action to build
 
-Now, in order to tell SNAP that you would like to build the breadth-first search action (called `hls_bfs` because it's implemented using the C-like Vivado HLS language), set `ACTION_ROOT` to the absolute path of the `actions/hls_bfs` directory inside your local SNAP repository:
+As an example, let us built one of the provided actions. In order to tell SNAP that you would like to build the breadth-first search action (called `hls_bfs` because it's implemented using the C-like Vivado HLS language), set `ACTION_ROOT` to the absolute path of the `actions/hls_bfs` directory inside your local SNAP repository:
 
 ```
-export ACTION_ROOT=/home/balthasar/repos/snap/actions/hls_bfs
+export ACTION_ROOT=<path to snap>/actions/hls_bfs
 ```
 
 Because `hls_bfs` does not use DRAM or NVMe storage (see [](https://github.com/open-power/snap/tree/master/actions/hls_bfs/doc)), we leave `SDRAM_USED` and `NVME_USED` to `FALSE`.
