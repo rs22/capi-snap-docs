@@ -109,11 +109,15 @@ Now, in order to tell SNAP that you would like to build the breadth-first search
 export ACTION_ROOT=/home/balthasar/repos/snap/actions/hls_bfs
 ```
 
-Because `hls_bfs` does not use DRAM or NVMe storage (see [https://github.com/open-power/snap/tree/master/actions/hls_bfs/doc](https://github.com/open-power/snap/tree/master/actions/hls_bfs/doc)), we leave `SDRAM_USED` and `NVME_USED` to `FALSE`.
+Because `hls_bfs` does not use DRAM or NVMe storage (see [](https://github.com/open-power/snap/tree/master/actions/hls_bfs/doc)), we leave `SDRAM_USED` and `NVME_USED` to `FALSE`.
+
+If you have not done so already, change into the `hardware` directory of your snap repository (`cd $SNAP_ROOT/hardware`).
+
+If all the settings are correct (you can check that by calling `./snap_settings`), you can generate the Vivado project files needed to build and simulate the action with:
+
+```
+make config
+```
 
 You can follow the same procedure if you want to build other examples or your own actions.
-
-You can now configure SNAP and verify all your environment variables by changing into SNAP's `hardware` directory and calling `source snap_settings`. This script will end by presenting you a summary of the current configuration. If everything looks fine, you can now generate the Vivado project files needed to simulate and build the action by executing `make config` inside the `hardware` directory.
-
-Whenever you change one of the `snap_settings` parameters, you will have to execute `make clean config` to re-generate the project files (be careful with cleaning, however! All previously built model and image files will be lost!)
-
+Whenever you change one of the `snap_settings` parameters, you will have to execute `make clean config` to re-generate the project files (be careful with cleaning, however, as all previously built model and image files will be lost!)
