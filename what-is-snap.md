@@ -30,10 +30,8 @@ SNAP also tries to abstract from the low level view of CAPI where it is possible
 
 #### Simpler API
 
-This includes providing a simpler API for the interaction with the FPGA. When calling an action 
+This includes providing a simpler API for the interaction with the FPGA. When calling an action in CAPI the waiting for return had to be implemented by the callee on the host. In SNAP, the action is prepared by creating a job with a filled parameter struct and then called via the blocking call `snap_action_sync_execute_job(action, &job, timeout);`
 
 #### Unified memory access
 
-Memory access
-
-
+The FPGA can access different kinds of memory: the host memory as well as its own DRAM and NVMe (i.e. SSD) storage. All are connected via AXI-Buses and can be accessed in the same way. In contrast to CAPI, reading or writing memory does require manually checking when the IO-task is finished.
