@@ -111,9 +111,7 @@ export ACTION_ROOT=/home/balthasar/repos/snap/actions/hls_bfs
 
 Because `hls_bfs` does not use DRAM or NVMe storage (see [](https://github.com/open-power/snap/tree/master/actions/hls_bfs/doc)), we leave `SDRAM_USED` and `NVME_USED` to `FALSE`.
 
-If you have not done so already, change into the `hardware` directory of your snap repository (`cd $SNAP_ROOT/hardware`).
-
-If all the settings are correct (you can check that by calling `./snap_settings`), you can **generate the Vivado project files needed to build and simulate the action** with:
+If you have not done so already, change into the `hardware` directory of your snap repository (`cd $SNAP_ROOT/hardware`). If all the settings are correct (you can check that by calling `./snap_settings`), you can **generate the Vivado project files needed to build and simulate the action** with:
 
 ```
 make config
