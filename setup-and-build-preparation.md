@@ -98,7 +98,9 @@ export FPGACARD=<FGT or KU3>
 export FPGACARD=<your chip identifier>
 ```
 
-While `xsim` i`SNAP_ROOT` is set automatically, 
+While `xsim` is the default Simulator and  `SNAP_ROOT` is set automatically, `ACTION_ROOT` and the SNAP function Variables have to be choosen based on the action you want to build.
+
+`ACTION_ROOT`
 
 
 You will need the following components for development \(we've tested this setup on Ubuntu 16.04\):
