@@ -14,11 +14,12 @@
     \# afu.sv is instantiated by top.v and instantiates your custom AFU with the structures defined by capi.sv instead of having all signals individually
     Replace the module name parity\_afu in afu.sv with how you want to name your module.
   * Create &lt;YOUR\_MODULE\_NAME&gt;.sv without any functionality.  
-    \# The include here is necessary, because compile order does depend on alphabetical order and the command line tool xvlog does not analyse dependencies.
+    The include here is necessary, because compile order does depend on alphabetical order and the command line tool xvlog does not analyse dependencies.
 
-    Content of the file:  
-    \`\`\`  
-    \`include "capi.sv"  
+    Content of the file:
+    
+    ```  
+    include "capi.sv"  
     import CAPI::\*;
 
     module &lt;YOUR\_MODULE\_NAME&gt; \(  
@@ -36,7 +37,7 @@
       output MMIOInterfaceOutput mmio\_out\);
 
     endmodule  
-    \`\`\`
+    ```
 
 * Implement modules for MMIO communication and job lifecycle management
 * Implement work element as state machine
@@ -78,10 +79,10 @@ Figure \[ref\] shows the progress of a write operation that uses the Read Buffer
 
 ## Compile the AFU
 
-1. \`xsc $PSLSE\_DIR/afu\_driver/src/afu\_driver.c\`
+1. `xsc $PSLSE\_DIR/afu\_driver/src/afu\_driver.c`
 2. `cp $PSLSE_DIR/afu_driver/src/libdpi.so .`
 3. Or: `ln -s $PSLSE_DIR/afu_driver/src/libdpi.so .`
-4. \`xvlog --sv \*.sv \*.v\`
+4. `xvlog --sv \*.sv \*.v`
 5. `xelab -timescale 1ns/1ps -svlog $PSLSE_DIR/afu_driver/verilog/top.v -sv_root . -sv_lib libdpi -debug all`
 6. Open XSim using `xsim -g work.top`
 
