@@ -6,9 +6,9 @@ In order to work with SNAP and CAPI, the most important requirement is to instal
 
 Let's first download, install and configure the software and repositories we need.
 
-#### Xilinx Vivado 
+#### 1. Xilinx Vivado 
 
-Xilinx Vivado is used to synthesize and layout our actions for the FPGA and contains HLS to convert C++ to hardware code. Currently version 2016.4 is the latest supported release of Vivado. As the HL WebPACK Edition may not include support for you FPGA-chip we recommend the HL Design Edition. The free 30-day evaluation should work as well ([Comparison of different Vivado Editions](https://www.xilinx.com/products/design-tools/vivado.html#buy)). You can find the downloads [here](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/2016-4.html).
+Xilinx Vivado is used to synthesize and layout our actions for the FPGA and contains HLS to convert C++ to hardware code as well as xsim (Vivado Simulator) for simulating without an FPGA. Currently version 2016.4 is the latest supported release of Vivado. As the HL WebPACK Edition may not include support for you FPGA-chip we recommend the HL Design Edition. The free 30-day evaluation should work as well ([Comparison of different Vivado Editions](https://www.xilinx.com/products/design-tools/vivado.html#buy)). You can find the downloads [here](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/2016-4.html).
 
 1. Download and install Xilinx Vivado
 2. If not using the evaluation version, obtain a Vivado license-file (.lic)
@@ -21,7 +21,7 @@ If you do not want to repeat this after every reboot, do it automatically on sta
 echo "source /opt/Xilinx/Vivado/2016.4/settings64.sh" >> ~/.bashrc
 ```
 
-#### Libcxl and PSL checkpoint
+#### 2. Libcxl and PSL checkpoint
 
 The libcxl is the library that is used by the host communicate with PSL devices. You can install it using the package manager:
 
@@ -33,7 +33,7 @@ On the FPGA the Power Service Layer (PSL) manages the communication with the hos
 
 Please download the PSL checkpoint for your card [here](https://www-355.ibm.com/systems/power/openpower/tgcmDocumentRepository.xhtml?aliasId=CAPI). 
 
-#### Power Service Layer Simulation Engine
+#### 3. Power Service Layer Simulation Engine
 
 While building for hardware takes a lot of time, building for simulation is comparably fast. Therefore, even if you have a real chip, you want to use simulation of an FPGA in development as well.
 Because simulation of hardware is computationally intense, only the actions and not the PSL should be simulated. The PSLSE implements the PSL in software and connects to the (locally hosted) simulation server with the desired action. The host application then communicates to the (locally hosted) PSLSE server instead of an FPGA. 
@@ -42,6 +42,10 @@ Clone the PSLSE with
 ```
 git clone https://github.com/ibm-capi/pslse
 ```
+
+#### 4. SNAP
+
+
 You will need the following components for development \(we've tested this setup on Ubuntu 16.04\):
 
 1. Xilinx Vivado in your PATH variable  
