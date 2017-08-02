@@ -24,18 +24,58 @@ The official documentation on this topic can be found [here](https://github.com/
 
 After the FPGA was installed, usually the Linux OS on the OpenPower-machine will not detect it as a CAPI-enabled device. This is because the image that comes pre-installed on the _factory_ partition of the FPGA doesn't support CAPI; instead a suitable image needs to be flashed onto the _user_ partition by using the external USB programmer.
 
-Once this procedure is completed and the FPGA is available under `/dev/cxl`, new images can be flashed directly from the OpenPower host using the CAPI tooling provided by IBM. This is described in the next chapter.
+Once this procedure is completed and the FPGA is listed under `/dev/cxl`, new images can be flashed directly from the OpenPower host using the CAPI tooling provided by IBM. This is described in the next section.
 
 If you would like to set up a headless Vivado installation on the Intel machine connected to the JTAG programmer, you can instead choose to install a lighter weight version of Vivado that includes the hardware server tool `hw_server`.
 
-In any case, the process accessing the programmer \(either Vivado or `hw_server`\) might need to run with root privileges: Open Vivado's Hardware Manager and 'open' the target device either on the local server or remotely. Once it has successfully connected to the FPGA, the programmer's activity LED should come on.  
-You will now need a device image \(\*.bit\) that includes at least the PSL component -- one way to obtain such an image is to run `make image` for one of the SNAP examples or your own action \(it is not necessary to enable the `FACTORY_IMAGE` switch\).
+In any case, the process accessing the programmer \(either Vivado or `hw_server`\) might need to run with root privileges. Open Vivado's Hardware Manager and 'open' the target device either on the local server or remotely. Once it has successfully connected to the FPGA, the programmer's activity LED should come on.  
+You will now need a device image \(\*.bit\) that includes at least the PSL component -- one way to obtain such an image is to run `make image` for one of the SNAP examples or your own action \(it is not necessary to enable SNAP's `FACTORY_IMAGE` switch\).
 
 Because the user partition's contents will be cleared on each power cycle of the OpenPower machine if the card was not yet detected as a CAPI device, a certain procedure is required to initialize it: The image needs to be flashed _after_ the system was powered on, but _before_ the OS performs the PCI Express walk.
 
-Therefore, set up a ping to the host OS and trigger a reboot \(a normal OS reboot should suffice, although sometimes an ipmi power cycle is necessary\). Once you lose the ping, start the programming process in Vivado. There should be enough time to fully program the card before the host OS has completed booting.
+Therefore, set up a ping to the host OS and trigger a reboot \(a normal OS reboot should suffice, although sometimes an ipmi power cycle is necessary\). Once the ping is lost, start the programming process in Vivado. There should be enough time to fully program the card before the host OS has completed booting.
 
 ### Programming the FPGA directly from the OpenPower Host
 
-todo.
+Once the FPGA is detected as a CAPI-device it is a lot easier and faster to flash new images onto it. The tool necessary can be obtained from GitHub:
+```
+git clone https://github.com/ibm-capi/capi-utils
+cd capi-utils
+make
+make install
+```
 
+Afterwards, start the tool like this and follow the instructions:
+
+```
+capi-flash-script my_image.bin
+
+```
+
+### Testing the breadth-first search action on hardware
+
+Assuming you have built the bitstream (using `make image`) and set up the FPGA as described above, the `hls_bfs` action should by now be programmed onto the card.
+
+You will now need a version of SNAP on the Power8 server:
+1. Because you will now need the 'real' version of libcxl (compared to the 'mock' version used earlier by the PSL Simulation Engine), install it (e.g. on Ubuntu):
+   ```
+   apt install libcxl-dev
+   ```
+2. Clone SNAP and build the actions and tooling
+   ```
+   git clone https://github.com/open-power/snap
+   cd snap/software
+   make
+   cd ../actions
+   make
+   ```   
+3. Before you can use the action for the first time, it needs to be detected by SNAP. Use the `snap_maint` tool to trigger this:
+   ```
+   cd ${SNAP_ROOT}/software/tools
+   ./snap_maint -v
+   ```
+4. Now you can execute the breadth-first search on hardware!
+   ```
+   cd ${SNAP_ROOT}/actions/hls_bfs/sw
+   ./snap_bfs -v
+   ```
