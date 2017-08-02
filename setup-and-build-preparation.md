@@ -53,6 +53,8 @@ Now you still need to clone SNAP itself:
 git clone https://github.com/open-power/snap
 ```
 
+The repository is split into three folders. The `software` and `hardware` folder contain the structures neccessary for building software and hardware, while the `actions` folder contains various examples that are ready to be built. Each action is either prefixed by `hdl_` or `hls_`, indicating whether it is definded in a hardware description language or high level HLS code. Inside each action, the hardware specifcation and the host application are divided into the folders `hw` and `sw`.
+
 ### Preparing the build environment
 
 Before you can use SNAP for building you have to specify where the components you just installed are. Add Vivado to the path by sourcing the Vivado settings script, point environment variables to the components you just downloaded (PSLSE is optional here). Then source the hardware settings script in the SNAP repository:
