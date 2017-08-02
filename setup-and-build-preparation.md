@@ -20,7 +20,7 @@ You will need the following components for development \(we've tested this setup
 
 ### Preparing to build the breadth-first search action
 
-Now, in order to tell SNAP that you would like to build the breadth-first search action (called `hls_bfs` because it's implemented using the C-like Vivado HLS language), set another environment variable called `ACTION_ROOT` to the `actions/hls_bfs` directory inside your local SNAP repository. Follow the same procedure if you want to build other examples or your own actions.
+Now, in order to tell SNAP that you would like to build the breadth-first search action (called `hls_bfs` because it's implemented using the C-like Vivado HLS language), set another environment variable called `ACTION_ROOT` to the absolute path of the `actions/hls_bfs` directory inside your local SNAP repository. Follow the same procedure if you want to build other examples or your own actions.
 
 You can now configure SNAP and verify all your environment variables by changing into SNAP's `hardware` directory and calling `source snap_settings`. This script will end by presenting you a summary of the current configuration. If everything looks fine, you can now generate the Vivado project files needed to simulate and build the action by executing `make config` inside the `hardware` directory.
 
