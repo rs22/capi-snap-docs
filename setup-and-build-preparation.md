@@ -53,14 +53,52 @@ git clone https://github.com/open-power/snap
 
 ### Preparing the build environment
 
-Before you can use SNAP for building you have to specify where the components you just installed are. Add Vivado to the path by sourcing the Vivado settings script and point environment variables to your license and PSL checkpoint file:
+Before you can use SNAP for building you have to specify where the components you just installed are. Add Vivado to the path by sourcing the Vivado settings script, point environment variables to the components you just downloaded (PSLSE is optional here). Then source the hardware settings script in the SNAP repository:
 
 ```
 source /opt/Xilinx/Vivado/2016.4/settings64.sh
-export XILINXD_LICENSE_FILE=<pa to Xilinx license>
-export PSL_DCP=<CAPI PSL Checkpoint file (b_route_design.dcp)> 
+export XILINXD_LICENSE_FILE=<pointer to Xilinx license>
+export PSL_DCP=<CAPI PSL Checkpoint file (b_route_design.dcp)>
+export PSLSE_ROOT=<path to PSLSE>
+source <path to snap>/hardware/snap_settings
 ```
 
+As you have to do this everytime you open a new terminal window in which you want to use SNAP, we recommend writing it into a script. You may also call that script in your `~/.bashrc` which gets executed every time you open a new terminal window. 
+
+When executed (or sourced), `snap_settings` displays the settings for your build:
+
+```
+=======================================================
+== SNAP SETUP                                        ==
+=======================================================
+=====Checking Xilinx Vivado:===========================
+Path to vivado          is set to: /opt/Xilinx/Vivado/2016.4/bin/vivado
+Vivado version          is set to: Vivado v2016.4 (64-bit)
+=====CARD variables====================================
+FPGACARD                is set to: "FGT"
+FPGACHIP                is set to: "xcku060-ffva1156-2-e"
+PSL_DCP                 is set to: "/home/balthasar/cards/FGT/portal_20170413/b_route_design.dcp"
+=====SNAP PATH variables===============================
+SNAP_ROOT               is set to: "/home/balthasar/repos/snap"
+ACTION_ROOT             is set to: "/home/balthasar/repos/snap/actions/hdl_example"
+=====SNAP simulation variables=========================
+SIMULATOR               is set to: "xsim"
+=====SNAP function variables===========================
+NUM_OF_ACTIONS          is set to: "1"
+SDRAM_USED              is set to: "FALSE"
+NVME_USED               is set to: "FALSE"
+ILA_DEBUG               is set to: "FALSE"
+FACTORY_IMAGE           is set to: "FALSE"
+```
+
+Depending on which card you use you may have to change `$FPGACARD` and `$FPGACHIP`:
+
+```
+export FPGACARD=<FGT or KU3>
+export FPGACARD=<your chip identifier>
+```
+
+While `xsim` i`SNAP_ROOT` is set automatically, 
 
 
 You will need the following components for development \(we've tested this setup on Ubuntu 16.04\):
