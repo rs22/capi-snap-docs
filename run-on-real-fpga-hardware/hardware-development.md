@@ -28,10 +28,26 @@ The specific code that implements this behavior can be seen below and - as it is
 
 [!CODE action discovery]
 
-To separate this mechanism from the actual logic, the Blowfish AFU calls `process_action()` if the `hls_action()` invocation was not a configuration request. This function is the first AFU specific part and the right place to extract all necessary parameters and commands from the job structure. The Blowfish AFU provides three separate operations: Encryption, Decryption and Key Initialization.
+To separate this mechanism from the actual logic, the Blowfish AFU calls `process_action()` if the `hls_action()` invocation was not a configuration request. This function is the first AFU specific part and the right place to extract all necessary parameters and commands from the job structure. The Blowfish AFU provides three separate operations: Encryption, decryption and key initialization. They are distinguished by specific values of the `mode` field and use the input and output buffers if applicable. To maintain a clear structure, the operations are implemented in separate functions: `action_setkey()` performs the key initialization, whereas `action_endecrypt()` handles both en- and decryption as they are very similar. These functions contain the required memory access logic to execute the Blowfish algorithm as comprised of the `bf_*()` functions efficiently.
+
+### Using the SNAP Environment
+
+With the memory and register pointers passed to `hls_action()` SNAP already provides everything to access the resouces available to an AFU. By dereferencing and using pointer arithmetic different memory areas can be read and written. After the job structure pointer, that translates to an interface to a job management module provided by SNAP, the most interesting resource to any AFU will be host memory.
+
+When interacting with host memory, there arises a slight incongruity: While a regular bus interface can be expected to be bidirectional, SNAP provides two separate interfaces for host memory access, one for read and one for write operations. This is due to the way Vivado HLS translates bus interfaces, which is not quite compatible with SNAPs PSL interface module.
+
+```
+snap\_membus\_t result = din\_gmem\[address >> ADDR\_RIGHT\_SHIFT\];
+```
+
+The statement above performs a single read operation from host memory. The result is a `snap\_membus\_t` which represents one word with the native bus width of the underlying PSL interface. The [!?current] width is 512 bit, so that only 64 byte aligned accesses to 64 byte blocks of data are possible. The addresses specified by the host software will generally be byte addresses, while the host memory pointer is indexed in multiples of 64 bytes. That necessitates the right shift of the byte address. Care should be taken if the lower bits of the byte address are not 0. In that case the desired part must be extracted from the result according to those lower bits.
+
+Every time a host memory pointer is dereferenced, a transaction on the PSL interface ensues. If large amounts of data need to be transferred, it is more efficient to issue a block operation. The library function 
+[!!! hls_memcopy replaced memcopy() call by manual implementation, mention here?]
 
 
-The Blowfish AFU provides three operations: , that share the buffer addresses and are distinguished by specific values of the mode field. [!REF: process_action()]
+[!? introduce BRAM, local arrays?]
+[!! resolve confusion with job structure location: CAPI = hostmem; SNAP = obscure part of MMIO space?!]
 
 [! arguments of hls_action, Control regs and AXI busses (2Host!, 0-1 DRAM, 0-1 NVMe)]
 

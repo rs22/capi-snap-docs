@@ -1,4 +1,4 @@
-## Running on actual hardware
+C## Running on actual hardware
 
 ### Creating a SNAP FPGA image
 
