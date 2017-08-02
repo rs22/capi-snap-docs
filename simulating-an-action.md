@@ -30,19 +30,25 @@ If it is run without the `-app` parameter, it opens a new terminal session with 
 
 ### Simulating the breadth-first search AFU
 
-1. Given that you've already run `make config` as described in the previous section, you can build a simulation image with `make model`.
-2. Before you can test the model you will also need to build the consumer application (that will communicate with the simulator through PSLSE):
+1. Given that you've already run `make config` as described in the previous section, you can build a simulation image with 
+  ```
+  make model
+  ```
+2. Before you can test the model you will also need to build the consumer application \(that will communicate with the simulator through PSLSE\):
    ```
    cd ${SNAP_ROOT}/actions
    make
    ```
 3. As described above, start the test application and the simulation itself:
-  ```
-  cd ${SNAP_ROOT}/hardware/sim
-  ./run_sim -explore
-  ```
-4. A new terminal window will open -- you can start the test application in there (please do not change the working directory):
+   ```
+   cd ${SNAP_ROOT}/hardware/sim
+   ./run_sim -explore
+   ```
+4. A new terminal window will open -- you can start the test application in there \(please do not change the working directory\):
 
-```
-../../../../actions/hls\_bfs/sw/snap\_bfs -v
-```
+   ```
+   ../../../../actions/hls_bfs/sw/snap_bfs -v
+   ```
+
+
+
