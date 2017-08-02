@@ -29,7 +29,8 @@ The libcxl is the library that is used by the host communicate with PSL devices.
 sudo apt-get install libcxl-dev
 ```
 
-
+On the FPGA the Power Service Layer (PSL) manages the communication with the host. This includes translating memory addresses, handling interrupts and virtualizing AFUs if needed. You need to download the PSL, synthesised and layouted for your specific FPGA, as a Vivado checkpoint (.dcp) file. This file contains a snapshot at a certain build step and can be integrated when building your action.
+Download it [here](https://www-355.ibm.com/systems/power/openpower/tgcmDocumentRepository.xhtml?aliasId=CAPI). 
 
 You will need the following components for development \(we've tested this setup on Ubuntu 16.04\):
 
