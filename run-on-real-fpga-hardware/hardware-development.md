@@ -16,9 +16,15 @@ The next step to create a Blowfish-AFU is to integrate the algorithm into the ac
 
 It is a good practice, not to place the actual action code in `hls_action()` itself, as it also has to implement the discovery mechanism that enables the host to identify the action type and hardware revision of the AFU. This functionality is multiplexed by a specific flag in the job specification.
 
-Given it is not in discovery mode, `hls_action()` can call another function implementing the action. It the AFU consists of several logical parts that can be triggered separately from the host side, each part should reside in a separate function. Those functions can be called after the user part of the job specification is decoded.
+Given it is not in discovery mode, `hls_action()` can call another function implementing the action. If the AFU consists of several logical parts that can be triggered separately from the host side, each part should reside in a separate function. Those functions can be called after the user part of the job specification is decoded.
 
 The Blowfish AFU provides three operations: Encryption, Decryption and Key Initialization, that share the buffer addresses and are distinguished by specific values of the mode field. [!REF: process_action()]
 
+[! arguments of hls_action, Control regs and AXI busses (2Host!, 0-1 DRAM, 0-1 NVMe)]
 
+[! access job struct]
+[! access host memory]
+
+[!REF io performance, 4k buffering -> Opt section]
+[!? How to integrate source code, which version?]
 
