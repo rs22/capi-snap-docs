@@ -4,7 +4,7 @@ In order to work with SNAP and CAPI, the most important requirement is to instal
 
 ### Installing Xilinx Vivado 
 
-Currently version 2016.4 is the latest supported release of Vivado. As the HL WebPACK Edition may not include support for you FPGA-chip we recommend the HL Design Edition. The free 30-day evaluation should work as well ([Comparison of different Vivado Editions](https://www.xilinx.com/products/design-tools/vivado.html#buy)).
+Currently version 2016.4 is the latest supported release of Vivado. As the HL WebPACK Edition may not include support for you FPGA-chip we recommend the HL Design Edition. The free 30-day evaluation should work as well ([Comparison of different Vivado Editions](https://www.xilinx.com/products/design-tools/vivado.html#buy)). You can download them [here](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/2016-4.html).
 
 /opt/Xilinx/Vivado/2016.4/settings64.sh 
 
