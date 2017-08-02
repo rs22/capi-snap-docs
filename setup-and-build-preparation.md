@@ -1,10 +1,12 @@
 ## Setup and build preparation
 
-In order to work with SNAP and CAPI, the most important requirement is to install Xilinx Vivado. TODO Ubuntu version!
+In order to work with SNAP and CAPI, the most important requirement is to install Xilinx Vivado. In our setup we used Ubuntu 16.04, but although not officially supported by the needed Vivado version, Ubuntu 17.04 should also be possible.
 
 ### Installing Xilinx Vivado 
 
 Currently version 2016.4 is the latest supported release of Vivado. As the HL WebPACK Edition may not include support for you FPGA-chip we recommend the HL Design Edition. The free 30-day evaluation should work as well ([Comparison of different Vivado Editions](https://www.xilinx.com/products/design-tools/vivado.html#buy)).
+
+/opt/Xilinx/Vivado/2016.4/settings64.sh 
 
 You will need the following components for development \(we've tested this setup on Ubuntu 16.04\):
 
