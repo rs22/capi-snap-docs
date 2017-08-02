@@ -9,6 +9,7 @@
   * [Setup and build preparation](setup-and-build-preparation.md)
   * [Simulating an action](simulating-an-action.md)
   * [Running on actual hardware](run-on-real-fpga-hardware.md)
+* [Blowfish acceleration from start to finish](blowfish-acceleration-from-start-to-finish.md)
 * [Creating your own action](creating-your-own-action.md)
   * [Software part and action parameters](creating-your-own-action/test.md)
   * [Hardware development](run-on-real-fpga-hardware/hardware-development.md)

@@ -58,13 +58,13 @@ Assuming you have built the bitstream \(using `make image`\) and set up the FPGA
 
 You will now need a version of SNAP on the Power8 server:
 
-1. Because you will now need the 'real' version of libcxl \(compared to the 'mock' version used earlier by the PSL Simulation Engine\), install it \(e.g. on Ubuntu\):
+1. Because now the 'real' version of libcxl is needed \(compared to the 'mock' version used earlier by the PSL Simulation Engine\), install it \(e.g. on Ubuntu\):
 
    ```
    apt install libcxl-dev
    ```
 
-2. Clone SNAP and build the actions and tooling
+2. Clone SNAP, build the actions and tooling
 
    ```
    git clone https://github.com/open-power/snap
