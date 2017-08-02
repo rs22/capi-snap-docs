@@ -2,11 +2,34 @@
 
 In order to work with SNAP and CAPI, the most important requirement is to install Xilinx Vivado. In our setup we used Ubuntu 16.04, but although not officially supported by the needed Vivado version, Ubuntu 17.04 should also be possible.
 
-### Installing Xilinx Vivado 
+### Download and installation
 
-Currently version 2016.4 is the latest supported release of Vivado. As the HL WebPACK Edition may not include support for you FPGA-chip we recommend the HL Design Edition. The free 30-day evaluation should work as well ([Comparison of different Vivado Editions](https://www.xilinx.com/products/design-tools/vivado.html#buy)). You can download them [here](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/2016-4.html).
+Let's first download, install and configure the software and repositories we need.
 
-/opt/Xilinx/Vivado/2016.4/settings64.sh 
+#### Xilinx Vivado 
+
+Xilinx Vivado is used to synthesize and layout our actions for the FPGA and contains HLS to convert C++ to hardware code. Currently version 2016.4 is the latest supported release of Vivado. As the HL WebPACK Edition may not include support for you FPGA-chip we recommend the HL Design Edition. The free 30-day evaluation should work as well ([Comparison of different Vivado Editions](https://www.xilinx.com/products/design-tools/vivado.html#buy)). You can find the downloads [here](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/2016-4.html).
+
+1. Download and install Xilinx Vivado
+2. If not using the evaluation version, obtain a Vivado license-file (.lic)
+3. Add Vivado to your path by sourcing its settings file:
+```
+source /opt/Xilinx/Vivado/2016.4/settings64.sh
+```
+If you do not want to repeat this after every reboot, do it automatically on startup by appending it to your bashrc:
+```
+echo "source /opt/Xilinx/Vivado/2016.4/settings64.sh" >> ~/.bashrc
+```
+
+#### Libcxl and PSL checkpoint
+
+The libcxl is the library that is used by the host communicate with PSL devices. You can install it using the package manager:
+
+```
+sudo apt-get install libcxl-dev
+```
+
+
 
 You will need the following components for development \(we've tested this setup on Ubuntu 16.04\):
 
