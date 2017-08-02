@@ -53,7 +53,7 @@ Now you still need to clone SNAP itself:
 git clone https://github.com/open-power/snap
 ```
 
-The repository is split into three folders. The `software` and `hardware` folder contain the structures neccessary for building software and hardware, while the `actions` folder contains various examples that are ready to be built. Each action is either prefixed by `hdl_` or `hls_`, indicating whether it is definded in a hardware description language or high level HLS code. Inside each action, the hardware specifcation and the host application are divided into the folders `hw` and `sw`.
+The repository is split into three folders. The `software` and `hardware` folder contain the structures neccessary for building software and hardware, while the `actions` folder contains various examples that are ready to be built. Each action is either prefixed by `hdl_` or `hls_`, indicating whether it is definded in a hardware description language or high level HLS code. Inside each action, the hardware specifcation lives in `hw` while the host application is implemented in `sw`.
 
 ### Preparing the build environment
 
