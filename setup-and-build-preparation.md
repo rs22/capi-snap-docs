@@ -29,9 +29,19 @@ The libcxl is the library that is used by the host communicate with PSL devices.
 sudo apt-get install libcxl-dev
 ```
 
-On the FPGA the Power Service Layer (PSL) manages the communication with the host. This includes translating memory addresses, handling interrupts and virtualizing AFUs if needed. You need to download the PSL, synthesised and layouted for your specific FPGA, as a Vivado checkpoint (.dcp) file. This file contains a snapshot at a certain build step and can be integrated when building your action.
-Download it [here](https://www-355.ibm.com/systems/power/openpower/tgcmDocumentRepository.xhtml?aliasId=CAPI). 
+On the FPGA the Power Service Layer (PSL) manages the communication with the host. This includes translating memory addresses, handling interrupts and virtualizing AFUs if needed. The PSL will be part of the circuit on the FPGA and is, synthesised and layouted for your specific FPGA, provided as a Vivado checkpoint (.dcp) file. This file contains a snapshot at a certain build step and has to be integrated when building your action. Even when you just want to simulate, you still need a checkpoint file (we recommend the one for the FlashGT card).
 
+Please download the PSL checkpoint for your card [here](https://www-355.ibm.com/systems/power/openpower/tgcmDocumentRepository.xhtml?aliasId=CAPI). 
+
+#### Power Service Layer Simulation Engine
+
+While building for hardware takes a lot of time, building for simulation is comparably fast. Therefore, even if you have a real chip, you want to use simulation of an FPGA in development as well.
+Because simulation of hardware is computationally intense, only the actions and not the PSL should be simulated. The PSLSE implements the PSL in software and connects to the (locally hosted) simulation server with the desired action. The host application then communicates to the (locally hosted) PSLSE server instead of an FPGA. 
+
+Clone the PSLSE with
+```
+git clone https://github.com/ibm-capi/pslse
+```
 You will need the following components for development \(we've tested this setup on Ubuntu 16.04\):
 
 1. Xilinx Vivado in your PATH variable  
