@@ -45,7 +45,23 @@ git clone https://github.com/ibm-capi/pslse
 
 #### 4. SNAP
 
-TODO
+Now you still need to clone SNAP itself:
+
+```
+git clone https://github.com/open-power/snap
+```
+
+### Preparing the build environment
+
+Before you can use SNAP for building you have to specify where the components you just installed are. Add Vivado to the path by sourcing the Vivado settings script and point environment variables to your license and PSL checkpoint file:
+
+```
+source /opt/Xilinx/Vivado/2016.4/settings64.sh
+export XILINXD_LICENSE_FILE=<pa to Xilinx license>
+export PSL_DCP=<CAPI PSL Checkpoint file (b_route_design.dcp)> 
+```
+
+
 
 You will need the following components for development \(we've tested this setup on Ubuntu 16.04\):
 
