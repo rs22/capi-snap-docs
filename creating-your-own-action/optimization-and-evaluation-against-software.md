@@ -8,3 +8,12 @@ Another important consideration is whether one particular parallelization (that 
 
 The best starting point for optimization can often be found by experimenting with the real hardware. Thus our first step to optimize the Blowfish AFU was to perform two series of throughput measurements. The first only read and wrote back data blocks without encrypting them but keeping the same access patterns. In the second series the AFU did not interact with host memory at all but only performed the requested number of encryptions on a dummy data block. Based on this information it could be determined that no more than 16 parallel encrypt instances can bring any performance benefit because the memory throughput was about 16 times as large as the encrypt throughput.
 
+[!IMG throughput plots]
+
+[! improve encrypt throughput]
+    [! parallel implementation of encrypt, characteristics and dependencies]
+    [! read only port duplication with multiple arrays and ARRAY_PARTITION]
+
+[! improve memory throughput, 4k buffering]
+
+[! results and conclusion, comparison to CPU solution] 
