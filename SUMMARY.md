@@ -10,7 +10,7 @@
   * [Simulating an action](simulating-an-action.md)
   * [Running on actual hardware](run-on-real-fpga-hardware.md)
 * [Creating your own action](creating-your-own-action.md)
-  * [Software part and action parameters](creating-your-own-action/test.md)
+  * [Minimal demo software](creating-your-own-action/test.md)
   * [Hardware development](run-on-real-fpga-hardware/hardware-development.md)
   * [Debugging with the Vivado test bench](run-on-real-fpga-hardware/debugging-using-the-test-bench.md)
   * [Optimization and evaluation against software](creating-your-own-action/optimization-and-evaluation-against-software.md)

@@ -23,13 +23,7 @@ If you do not want to repeat this after every reboot, do it automatically on sta
 echo "source /opt/Xilinx/Vivado/2016.4/settings64.sh" >> ~/.bashrc
 ```
 
-#### 2. Libcxl and PSL checkpoint
-
-The libcxl is the library that is used by the host communicate with PSL devices. You can install it using the package manager:
-
-```
-sudo apt-get install libcxl-dev
-```
+#### 2. PSL checkpoint
 
 On the FPGA the Power Service Layer (PSL) manages the communication with the host. This includes translating memory addresses, handling interrupts and virtualizing AFUs if needed. The PSL will be part of the circuit on the FPGA and is, synthesised and layouted for your specific FPGA, provided as a Vivado checkpoint (.dcp) file. This file contains a snapshot at a certain build step and has to be integrated when building your action. Even when you just want to simulate, you still need a checkpoint file (we recommend the one for the FlashGT card).
 
@@ -37,7 +31,7 @@ Please download the PSL checkpoint for your card [here](https://www-355.ibm.com/
 
 #### 3. Power Service Layer Simulation Engine
 
-While building for hardware takes a lot of time, building for simulation is comparably fast. Therefore, even if you have a real chip, you want to use simulation of an FPGA in development as well.
+While building for hardware takes a lot of time, building for simulation is comparably fast. Therefore - even if you have a real chip - you may want to use simulation of an FPGA in development as well.
 Because simulation of hardware is computationally intense, only the actions and not the PSL should be simulated. The PSLSE implements the PSL in software and connects to the (locally hosted) simulation server with the desired action. The host application then communicates to the (locally hosted) PSLSE server instead of an FPGA. 
 
 Clone the PSLSE with
