@@ -13,12 +13,73 @@ The first step of the AFU development is the implementation of the actual algori
 
 Blowfish however operates on blocks of a fixed size and needs only a fixed number of intermediate results, which makes the port to hardware easy. The [Wikipedia article](https://en.wikipedia.org/wiki/Blowfish_%28cipher%29) provides a compact pseudocode representation, that needs only minor adaptions to serve as a first step to the hardware implementation:
 
-\[!CODE\]
+```
+static bf_halfBlock_t bf_f(bf_halfBlock_t h)
+{
+    bf_SiE_t a = (bf_SiE_t)(h >> 24),
+             b = (bf_SiE_t)(h >> 16),
+             c = (bf_SiE_t)(h >> 8),
+             d = (bf_SiE_t) h;
+    return ((g_S[0][a] + g_S[1][b]) ^ g_S[2][c]) + g_S[3][d];
+}
+
+static void bf_encrypt(bf_halfBlock_t & left, bf_halfBlock_t & right)
+{
+    for (bf_PiE i = 0; i < 16; i += 2) {
+        left ^= g_P[i];
+        right ^= bf_f(left, iCpy);
+        right ^= g_P[i+1];
+        left ^= bf_f(right, iCpy);
+    }
+    bf_halfBlock_t tmp = left ^ g_P[16];
+    left = right ^ g_P[17];
+    right = tmp;
+}
+
+static void bf_decrypt(bf_halfBlock_t & left, bf_halfBlock_t & right, bf_SiC_t iCpy)
+{
+    for (bf_PiE i = 16; i > 0; i -= 2) {
+        left ^= g_P[i+1];
+        right ^= bf_f(left, iCpy);
+        right ^= g_P[i];
+        left ^= bf_f(right, iCpy);
+    }
+    bf_halfBlock_t tmp = left ^g_P[1];
+    left = right ^ g_P[0];
+    right = tmp;
+}
+
+
+static void bf_keyInit(bf_halfBlock_t key[18])
+{
+    for (PiE i = 0; i < 18; ++i) {
+        g_P[i] = c_initP[i] ^ key[i];
+    }
+    for (SiA n = 0; n < 4; ++n) {
+        for (SiE i = 0; i < 256; ++i) {
+            g_S[n][i] = c_initS[n][i];
+        }
+    }
+    bf_halfBlock_t left = 0, right = 0;
+    for (bf_PiE i = 0; i < 18; i += 2) {
+        bf_encrypt(left, right, 0);
+        g_P[i] = left;
+        g_P[i+1] = right;
+    }
+    for (bf_SiA n = 0; n < 4; ++n) {
+        for (bf_SiE i = 0; i < 256; i += 2) {
+            bf_encrypt(left, right, 0);
+            g_S[n][i] = left;
+            g_S[n][i+1] = right;
+        }
+    }
+}
+```
 
 When porting pseudo or existing C code to HLS, care should be taken when choosing data types: In software development it does not usually make a difference in terms of perfomance, if much wider data types than necessary are used, provided they do not exceed the underlying machine's native register width. When specifying hardware however, a data type's bit width has a significant impact on the size and performance of a design.
 The generated hardware is exactly large enough to process the specified bit count. During the translation process it is generally impossible to determine the range of values a variable might take at runtime so that the worst case must be assumed. Therefore it is advisable to specify the bit width of a variable as tightly as possible. To enable a finer control, the template types `ap\_uint` and `ap\_int` can be parameterized to represent any integral bit width.
 
-This can be seen in the code above. Instead of using the usual `int` for loop counters the `ap\_uint<5>` type was selected. That is the smallest unsigned type that can represent the number 16 and causes only a 5 bit instead of a 32 bit adder to be implemented.
+This can be seen in the code above. Instead of using the usual `int` for loop counters, specific types such as `bf_SiE` were selected, that are defined in the hardware specific header.
 
 
 ### Testbench I
@@ -73,9 +134,6 @@ snap\_membus\_t result = din\_gmem\[address >> ADDR\_RIGHT\_SHIFT\];
 ```
 
 The statement above performs a single read operation from host memory. The result is a `snap\_membus\_t` which represents one word with the native bus width of the underlying PSL interface. The [!?current] width is 512 bit, so only 64 byte aligned accesses to 64 byte blocks of data are possible. The addresses specified by the host software will generally be byte addresses, while the host memory pointer is indexed in multiples of 64 bytes. That necessitates the right shift of the byte address. Care should be taken if the lower bits of the byte address are not 0. In that case the desired part must be extracted from the result according to those lower bits.
-
-Every time a host memory pointer is dereferenced, a transaction on the PSL interface ensues. If large amounts of data need to be transferred, it is more efficient to issue a block operation. The library function 
-[!!! hls_memcopy replaced memcopy() call by manual implementation, mention here?]
 
 
 [!? introduce BRAM, local arrays?]
