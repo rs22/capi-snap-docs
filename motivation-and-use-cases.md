@@ -6,7 +6,7 @@ In comparison to other hardware accelerators that provide parallel processing ca
 
 Traditionally however, it was very time consuming and difficult for an application programmer to implement FPGA-based accelerators. The type of 'hardware programming' that is necessary is quite different from well-known programming paradigms used in imperative languages such as C or Java. Not only is a detailed knowledge of the targeted FPGA architecture needed to optimize the hardware descriptions; a lot of time is often spent to establish communication channels and management interfaces used by the consuming application.
 
-In order to overcome these issues, IBM provides the CAPI and SNAP frameworks discussed here. They allow a broader group of developers to leverage FPGAs in the following paradigms.
+In order to overcome these issues, IBM provides the CAPI and SNAP frameworks discussed here. They allow a broader group of developers to leverage FPGAs in the following ways.
 
 ## FPGA-based acceleration paradigms
 
@@ -14,13 +14,13 @@ In order to overcome these issues, IBM provides the CAPI and SNAP frameworks dis
 
 ![](/assets/offload.png)
 
-The most traditional use case for accelerators: Real-world benefits are however limited by the effective data bandwidth that the underlying bus \(e.g. PCIe\) supports. Focus on throughput instead of latency \(which the CPU is focused on, with all its caches and prefetchers\). Massively parallelizable application procedures have to be isolated to create heterogenous applications where the sequential part remains on the CPU side. In contrast to CPUs, GPUs and FPGAs are still able to significantly increase their computation power per watt over new hardware generations \(Dennard scaling\) \(actually an Nvidia marketing claim heard during TuK\).
+The most traditional use case for accelerators: Real-world benefits are however limited by the effective data bandwidth that the underlying bus \(e.g. PCIe\) supports. Application scenarios should focus on throughput instead of latency \(which the CPU is optimized for, with all its caches and prefetchers\). Massively parallelizable application procedures have to be isolated to create heterogenous applications where the sequential part remains on the CPU side. In contrast to CPUs, GPUs and FPGAs are still expected to significantly increase their computation power per watt over new hardware generations \([Dennard scaling](https://en.wikipedia.org/wiki/Dennard_scaling)\).
 
 ### Transforming data before it is sent to network or storage
 
 ![](/assets/egress.png)
 
-Depending on the hardware capabilities of the FPGA \(i.e. integrated network or storage adapters; on-chip non-volatile memory\) this paradigm can be used to reduce load on the CPU by taking over I/O operations such as communication with network devices over certain protocols \(Nvidia talk: The GPU is good at waiting for stuff because it often has lots of otherwise idling threads\). Furthermore it adds the flexibility to transform the data stream \(e.g. encryption or compression\) without incurring any additional load on the CPU.
+Depending on the hardware capabilities of the FPGA \(i.e. integrated network or storage adapters; on-chip non-volatile memory\) this paradigm can be used to reduce load on the CPU by taking over I/O operations such as communication with network devices over certain protocols. Furthermore it adds the flexibility to transform the data stream \(e.g. encryption or compression\) without incurring any additional load on the CPU.
 
 ### Transforming or filtering data received from network or storage
 
