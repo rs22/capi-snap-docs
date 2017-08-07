@@ -6,6 +6,7 @@ The translation involves tracing the dependencies between sequential statements 
 
 A basic SNAP AFU project consists of two files in the hardware (`hw`) subdirectory of the action repository: One hardware specific header file, and the C implementation. In our case these are `action_blowfish.H` and `hls_blowfish.cpp`. Note the capital `H` in the header filetype. This convention is used to distinguish the hardware specific from the common header file `action_blowfish.h`. The latter contains the definition oft the job structure and is thus included in both the hardware and software implementation.
 
+
 ### Porting the Algorithm to HLS
 
 The first step of the AFU development is the implementation of the actual algorithm in HLS. Depending on the style and complexity of an existing software implementation, it might be more or less easy to adapt it to the limitations of HLS' subset of C/C++: Dynamic memory allocation and some pointer operations are not supported and algorithms relying on dynamic data structures need to be reorganized to fit into the more static nature of a hardware implementation.
@@ -19,7 +20,8 @@ The generated hardware is exactly large enough to process the specified bit coun
 
 This can be seen in the code above. Instead of using the usual `int` for loop counters the `ap\_uint<5>` type was selected. That is the smallest unsigned type that can represent the number 16 and causes only a 5 bit instead of a 32 bit adder to be implemented.
 
-### Using the Testbench
+
+### Testbench I
 
 The hardware implementation (`hls_blowfish.cpp`) can define a `main()` function, that should be non-synthesizable. It will be the entry point when debugging and should contain a testbench for the HLS code.
 
@@ -37,8 +39,6 @@ int main()
 #endif
 ```
 
-
-
 ### Integration with the SNAP Framework
 
 The next step on the way to a working Blowfish-AFU is to adapt its structure to the SNAP framework. SNAP expects a module named `hls_action` and instantiates it as the AFU user design when composing the final design on the FPGA.
@@ -52,7 +52,15 @@ The specific code that implements this behavior can be seen below and - as it is
 
 [!CODE action discovery]
 
-To separate this mechanism from the actual logic, the Blowfish AFU calls `process_action()` if the `hls_action()` invocation was not a configuration request. This function is the first AFU specific part and the right place to extract all necessary parameters and commands from the job structure. The Blowfish AFU provides three separate operations: Encryption, decryption and key initialization. They are distinguished by specific values of the `mode` field and use the input and output buffers if applicable. To maintain a clear structure, the operations are implemented in separate functions: `action_setkey()` performs the key initialization, whereas `action_endecrypt()` handles both en- and decryption as they are very similar. These functions contain the required memory access logic to execute the Blowfish algorithm as comprised of the `bf_*()` functions efficiently.
+To separate this mechanism from the actual logic, the Blowfish AFU calls `process_action()` if the `hls_action()` invocation was not a configuration request. This function is the first AFU specific part and the right place to extract all necessary parameters and commands from the job structure. The Blowfish AFU provides three separate operations: Encryption, decryption and key initialization. They are distinguished by specific values of the `mode` field and use the input and output buffers if applicable. To maintain a clear structure, the operations are implemented in separate functions: `action_setkey()` performs the key initialization, whereas `action_endecrypt()` handles both en- and decryption as they are very similar. These functions contain the required memory access logic to execute the Blowfish algorithm consisting of the `bf_*()` functions efficiently.
+
+
+### Testbench II
+
+With the SNAP action code in place, the testbench should be changed accordingly, to call `hls_action()` with a correctly set up environment. This includes arrays of the `snap\_membus\_t` type for each bus that is connected to the action module, i.e. two busses to host memory and optionally one to the DRAM, as well as the action and config registers (`action_reg` and `act\_R0\_config\_reg`). The memory arrays must be initialized to contain the data, on which the action will operate. The action register must contain a correctly initialized job structure. The config register contains the flag to distinguish discovery from normal mode and this flag is the only part that needs to be set for testbench purposes.
+
+With all these preparations in place `hls_action()` can be called so that all parts of the action functionality are covered by the testbench. Should that produce incorrect results, breakpoints and variable inspection are effective means to find the bug.
+
 
 ### Using the SNAP Environment
 
@@ -64,7 +72,7 @@ When interacting with host memory, there arises a slight incongruity: While a re
 snap\_membus\_t result = din\_gmem\[address >> ADDR\_RIGHT\_SHIFT\];
 ```
 
-The statement above performs a single read operation from host memory. The result is a `snap\_membus\_t` which represents one word with the native bus width of the underlying PSL interface. The [!?current] width is 512 bit, so that only 64 byte aligned accesses to 64 byte blocks of data are possible. The addresses specified by the host software will generally be byte addresses, while the host memory pointer is indexed in multiples of 64 bytes. That necessitates the right shift of the byte address. Care should be taken if the lower bits of the byte address are not 0. In that case the desired part must be extracted from the result according to those lower bits.
+The statement above performs a single read operation from host memory. The result is a `snap\_membus\_t` which represents one word with the native bus width of the underlying PSL interface. The [!?current] width is 512 bit, so only 64 byte aligned accesses to 64 byte blocks of data are possible. The addresses specified by the host software will generally be byte addresses, while the host memory pointer is indexed in multiples of 64 bytes. That necessitates the right shift of the byte address. Care should be taken if the lower bits of the byte address are not 0. In that case the desired part must be extracted from the result according to those lower bits.
 
 Every time a host memory pointer is dereferenced, a transaction on the PSL interface ensues. If large amounts of data need to be transferred, it is more efficient to issue a block operation. The library function 
 [!!! hls_memcopy replaced memcopy() call by manual implementation, mention here?]
