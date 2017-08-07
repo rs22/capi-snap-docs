@@ -34,7 +34,7 @@ If it is run without the `-app` parameter, it opens a new terminal session with 
   ```
   make model
   ```
-2. Before you can test the model you will also need to build the consumer application \(that will communicate with the simulator through PSLSE\):
+2. Before you can test the model, you will also need to build the consumer application \(that will communicate with the simulator through PSLSE\):
    ```
    cd ${SNAP_ROOT}/actions
    make
@@ -50,5 +50,5 @@ If it is run without the `-app` parameter, it opens a new terminal session with 
    ../../../../actions/hls_bfs/sw/snap_bfs -v
    ```
 
-5. If you're done testing, close the simulation terminal window to shut down the simulator (otherwise it will consume CPU cycles waiting for new requests).
+5. Once you're done testing, close the simulation terminal window to shut down the simulator (otherwise it will consume CPU cycles waiting for new requests).
 
