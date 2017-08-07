@@ -111,7 +111,36 @@ All AFUs must be able to introduce themselves to the host with their action code
 If the host queries this information, `hls_action()` is entered just as if a regular job was started. To distinguish both cases, a flag in the control register is set to indicate that instead of executing a job the AFU should write the respective entries in a configuration memory space, accessible through a pointer argument to `hls_action()`.
 The specific code that implements this behavior can be seen below and - as it is not specific to a particular AFU - can be freely reused.
 
-[!CODE action discovery]
+```
+void hls_action(snap_membus_t  *din_gmem, snap_membus_t  *dout_gmem,
+                action_reg *action_reg, action_RO_config_reg *Action_Config)
+{
+    // Host Memory AXI Interface
+#pragma HLS INTERFACE m_axi port=din_gmem bundle=host_mem offset=slave depth=512
+#pragma HLS INTERFACE m_axi port=dout_gmem bundle=host_mem offset=slave depth=512
+#pragma HLS INTERFACE s_axilite port=din_gmem bundle=ctrl_reg offset=0x030
+#pragma HLS INTERFACE s_axilite port=dout_gmem bundle=ctrl_reg offset=0x040
+
+    // Host Memory AXI Lite Master Interface
+#pragma HLS DATA_PACK variable=Action_Config
+#pragma HLS INTERFACE s_axilite port=Action_Config bundle=ctrl_reg  offset=0x010
+#pragma HLS DATA_PACK variable=action_reg
+#pragma HLS INTERFACE s_axilite port=action_reg bundle=ctrl_reg offset=0x100
+#pragma HLS INTERFACE s_axilite port=return bundle=ctrl_reg
+
+    /* Required Action Type Detection */
+    switch (action_reg->Control.flags) {
+        case 0:
+            Action_Config->action_type = (snapu32_t)BLOWFISH_ACTION_TYPE;
+            Action_Config->release_level = (snapu32_t)HW_RELEASE_LEVEL;
+            action_reg->Control.Retc = (snapu32_t)0xe00f;
+            break;
+        default:
+            action_reg->Control.Retc = process_action(din_gmem, dout_gmem, action_reg);
+            break;
+    }
+}
+```
 
 To separate this mechanism from the actual logic, the Blowfish AFU calls `process_action()` if the `hls_action()` invocation was not a configuration request. This function is the first AFU specific part and the right place to extract all necessary parameters and commands from the job structure. The Blowfish AFU provides three separate operations: Encryption, decryption and key initialization. They are distinguished by specific values of the `mode` field and use the input and output buffers if applicable. To maintain a clear structure, the operations are implemented in separate functions: `action_setkey()` performs the key initialization, whereas `action_endecrypt()` handles both en- and decryption as they are very similar. These functions contain the required memory access logic to execute the Blowfish algorithm consisting of the `bf_*()` functions efficiently.
 
@@ -121,6 +150,8 @@ To separate this mechanism from the actual logic, the Blowfish AFU calls `proces
 With the SNAP action code in place, the testbench should be changed accordingly, to call `hls_action()` with a correctly set up environment. This includes arrays of the `snap\_membus\_t` type for each bus that is connected to the action module, i.e. two busses to host memory and optionally one to the DRAM, as well as the action and config registers (`action_reg` and `act\_R0\_config\_reg`). The memory arrays must be initialized to contain the data, on which the action will operate. The action register must contain a correctly initialized job structure. The config register contains the flag to distinguish discovery from normal mode and this flag is the only part that needs to be set for testbench purposes.
 
 With all these preparations in place `hls_action()` can be called so that all parts of the action functionality are covered by the testbench. Should that produce incorrect results, breakpoints and variable inspection are effective means to find the bug.
+
+
 
 
 ### Using the SNAP Environment
