@@ -21,6 +21,22 @@ This can be seen in the code above. Instead of using the usual `int` for loop co
 
 ### Using the Testbench
 
+The hardware implementation (`hls_blowfish.cpp`) can define a `main()` function, that should be non-synthesizable. It will be the entry point when debugging and should contain a testbench for the HLS code.
+
+In a later stage of the development, it will set up a complete SNAP environment to execute the AFU code in software just as if it was invoked in hardware. For now it is sufficient to write test cases for the algorithm to debug the implementation and assure its correctness before the SNAP integration can begin. The example below shows how the encrypt function could be tested.
+
+```
+#ifdef NO_SYNTH
+int main()
+{
+    bf_halfBlock_t left = 0xda7a, right = 0xb10c;
+    printf("encrypt(0x%08x, 0x%08x) -> ", left, right);
+    bf_encrypt(left, right);
+    printf("0x%08x, 0x%08x\n", left, right);
+}
+#endif
+```
+
 
 
 ### Integration with the SNAP Framework
