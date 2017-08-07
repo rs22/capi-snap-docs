@@ -4,7 +4,7 @@ When building an action there often arises the need for debugging. The classic a
 
 This is possible in the Vivado_HLS IDE that includes a C/C++ Debugger. Only a `main()` function is required, that sets up the environment expected by `hls_action()`. In a SNAP action this includes arrays of the `snap\_membus\_t` type for each bus that is connected to the action module, i.e. two busses to host memory and optionally one bus to the onboard DRAM, as well as the action and config registers (`action_reg` and `act\_R0\_config\_reg`). The memory arrays must be initialized to contain the data, on which the action will operate and the action register must contain a correctly initialized job structure. The config register contains the flag to distinguish discovery from normal mode and this is the only part that needs to be set for testbench purposes.
 
-With all these preparations in place `hls_action()` can be called once or many times so that all parts of the action functionality are covered. Should that not produce the expected results, breakpoints and variable inspection can be used to find the bug.
+With all these preparations in place `hls_action()` can be called once or many times so that all parts of the action functionality are covered. Should that not produce the expected results, breakpoints and variable inspection are effective means to find the bug.
 
 [! Details for Blowfish testbench]
 
