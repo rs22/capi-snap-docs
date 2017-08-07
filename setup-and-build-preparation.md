@@ -6,7 +6,7 @@ In order to work with SNAP and CAPI, the most important requirement is to instal
 
 ### Download and installation
 
-Let's first download, install and configure the software and repositories we need.
+Let's first download, install and configure the software and repositories we need on our devolpment machine.
 
 #### 1. Xilinx Vivado 
 
@@ -31,7 +31,7 @@ Please download the PSL checkpoint for your card [here](https://www-355.ibm.com/
 
 #### 3. Power Service Layer Simulation Engine
 
-While building for hardware takes a lot of time, building for simulation is comparably fast. Therefore - even if you have a real chip - you may want to use simulation of an FPGA in development as well.
+PSLSE is optional and only needed for simulation, but while building for hardware takes a lot of time, building for simulation is comparably fast. Therefore you may want to use simulation even if you have a real chip.
 Because simulation of hardware is computationally intense, only the actions and not the PSL should be simulated. The PSLSE implements the PSL in software and connects to the (locally hosted) simulation server with the desired action. The host application then communicates to the (locally hosted) PSLSE server instead of an FPGA. 
 
 Clone the PSLSE with
@@ -51,7 +51,7 @@ The repository is split into three folders. The `software` and `hardware` folder
 
 ### Preparing the build environment
 
-Before you can use SNAP for building you have to specify where the components you just installed are. Add Vivado to the path by sourcing the Vivado settings script, point environment variables to the components you just downloaded (PSLSE is optional here). Then source the hardware settings script in the SNAP repository:
+Before you can use SNAP for building you have to specify where the components you just installed are. Add Vivado to the path by sourcing the Vivado settings script, point environment variables to the components you just downloaded (Omit `PSLSE_ROOT` if you did not download PSLSE). Then source the hardware settings script in the SNAP repository:
 
 ```
 source /opt/Xilinx/Vivado/2016.4/settings64.sh
