@@ -2,7 +2,6 @@
 
 * [Introduction](README.md)
   * [Motivation and use cases](motivation-and-use-cases.md)
-  * [Terms and Concepts](terms-and-concepts.md)
   * [What is CAPI?](what-is-capi.md)
   * [What is SNAP?](what-is-snap.md)
 * [Editing and running a simple AFU](editing-and-running-a-simple-afu.md)
