@@ -4,11 +4,13 @@ As mentioned earlier, SNAP supports hardware development with Vivado HLS \(subse
 
 The translation involves tracing the dependencies between sequential statements and identifying parallelizable groups, resulting in the automatic generation of a state machine producing the same results as the original C code. This enables software developers to quickly port existing algorithms to a hardware implementation. For some easily parallelizable algorithms this might be enough to acheive substantial speedups, as HLS recognizes the optimization potential and generates parallel hardware. In the general case however, the formulation of an algorithm that is optimized for a sequential execution model is not a favourable candidate for automatic optimization, as HLS has hardly the same domain knowledge of a hardware developer, who knows or guesses how best to restructure the algorithm to distribute the workload well among the available resources. Therefore HLS provides a set of annotations \(`#pragma HLS ...`\) that allow a developer to direct the hardware generation process in specific ways to give a more fine grained control over the generated hardware. In some specific cases it might even be necessary to restructure the C code by hand in order to make HLS generate the intended hardware structures.
 
-A basic SNAP AFU project consists of two files in the hardware (`hw`) subdirectory.
+A basic SNAP AFU project consists of two files in the hardware (`hw`) subdirectory of the action repository: One hardware specific header file, and the C implementation. In our case these are `action_blowfish.H` and `hls_blowfish.cpp`. Note the capital `H` in the header filetype. This convention is used to distinguish the hardware specific from the common header file `action_blowfish.h`. The latter contains the definition oft the job structure and is thus included in both the hardware and software implementation.
 
-### Building a Blowfish AFU From Scratch
+### Porting the Algorithm to HLS
 
-The development process will be demonstrated with the Blowfish algorithm, which is a relatively easy to understand symmetric block cipher. The [Wikipedia article](https://en.wikipedia.org/wiki/Blowfish_%28cipher%29) provides a compact pseudocode representation, that needs only minor adaptions to serve as a first step to the hardware implementation:
+The first step of the AFU development is the implementation of the actual algorithm in HLS. Depending on the style and complexity of an existing software implementation, it might be more or less easy to adapt it to the limitations of HLS' subset of C/C++: Dynamic memory allocation and some pointer operations are not supported and algorithms relying on dynamic data structures need to be reorganized to fit into the more static nature of a hardware implementation.
+
+Blowfish however operates on blocks of a fixed size and needs only a fixed number of intermediate results, which makes the port to hardware easy. The [Wikipedia article](https://en.wikipedia.org/wiki/Blowfish_%28cipher%29) provides a compact pseudocode representation, that needs only minor adaptions to serve as a first step to the hardware implementation:
 
 \[!CODE\]
 
@@ -16,6 +18,10 @@ When porting pseudo or existing C code to HLS, care should be taken when choosin
 The generated hardware is exactly large enough to process the specified bit count. During the translation process it is generally impossible to determine the range of values a variable might take at runtime so that the worst case must be assumed. Therefore it is advisable to specify the bit width of a variable as tightly as possible. To enable a finer control, the template types `ap\_uint` and `ap\_int` can be parameterized to represent any integral bit width.
 
 This can be seen in the code above. Instead of using the usual `int` for loop counters the `ap\_uint<5>` type was selected. That is the smallest unsigned type that can represent the number 16 and causes only a 5 bit instead of a 32 bit adder to be implemented.
+
+### Using the Testbench
+
+
 
 ### Integration with the SNAP Framework
 
