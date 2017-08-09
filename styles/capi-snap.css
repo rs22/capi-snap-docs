@@ -2,8 +2,14 @@ div.brainbox {
   background: #EEF3F4;
   padding:1em;
 }
-div.brainbox:before {
-  background: url('../assets/brain.svg') no-repeat;
+div.brainbox::before {
+  content: url('../assets/brain.svg');
+  width:3em;
   float:left;
-  width: 3em; 
+  margin-right:1em;
 }
+div.brainbox > span {
+  overflow:hidden;
+  display: block;
+}
+
