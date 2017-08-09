@@ -100,6 +100,16 @@ int main()
 #endif
 ```
 
+The Vivado HLS IDE is used to run such a testbench. Once installed it should be started from a shell with all SNAP environment variables set up. The project to be opened is the directory in `${ACTION_ROOT}/hw` that contains an FPGA part number in its name. In this case it would be `${SNAP_ROOT}/actions/hls_blowfish/hw/hlsBlowfish_xcku060-ffva1156-2-e`.
+
+[!IMG Screenshot Vivado HLS: Synth View and PSettings Dialog]
+
+Before running the testbench, the hardware source file `hls_blowfish.cpp` must be added as a simulation source, by right clicking _Test Bench_ in the project explorer and selecting _Add Files..._ . Furthermore some SNAP specific CFLAGS must be set up by opening the _Project_ -> _Project Settings_ dialog and editing the CFLAGS of the `hls_blowfish.cpp` file in the _Simulation_ Tab.
+Afterwards by pressing the _Run C Simulation_ icon in the toolbar the simulation is started and the Debug view is entered, where the usual functionality of a C debugger is available.
+
+[!IMG Screenshow Vivado HLS: Debug View and Simulation in Progress]
+
+
 ### Integration with the SNAP Framework
 
 The next step on the way to a working Blowfish-AFU is to adapt its structure to the SNAP framework. SNAP expects a module named `hls_action` and instantiates it as the AFU user design when composing the final design on the FPGA.
