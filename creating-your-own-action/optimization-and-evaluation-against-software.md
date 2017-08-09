@@ -66,6 +66,8 @@ static void bf_fLine(bf_halfBlock_t res[BF_BPL], bf_halfBlock_t h[BF_BPL])
     }
 }
 ```
+<p class="figure-caption">Excerpt of <a href="https://github.com/ldurdel/hls_blowfish/blob/master/hw/hls_blowfish.cpp">hls_blowfish.cpp</a></p>
+
 
 This new function is only useful to a new set of `bf_encrypt()` and `bf_decrypt()` functions, that also operate on multiple data blocks in parallel. Besides `bf_fLine()`, these require SIMD versions of the previously used scalar exclusive or operation. The names of these should be self explanatory. The following code example contrasts the single block and multi block versions of the encrypt function:
 
@@ -109,10 +111,12 @@ static void bf_encrypt(bf_halfBlock_t & left, bf_halfBlock_t & right)
     right = tmp;
 }
 ```
+<p class="figure-caption">Excerpt of <a href="https://github.com/ldurdel/hls_blowfish/blob/master/hw/hls_blowfish.cpp">hls_blowfish.cpp</a></p>
+
 
 
 ***
-
+####TODO
 
 [! improve memory throughput, 4k buffering]
 
