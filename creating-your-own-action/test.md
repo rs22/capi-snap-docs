@@ -145,6 +145,10 @@ Again, for the complete implementation, please refer to the [code on Github](htt
 
 Now we can call `make` in `hls_blowfish/sw_minimal` to build our software part and use it like described in _Simulating an action_ or _Running on actual hardware_. If you use the default directory name (`sw`), building is done automatically when calling `make model` on your devolping machine. Please remember that, when using real hardware, you want to build the software part on the power machine to avoid cross compiling.
 
+<div class="brainbox"><span>
+Due to CAPI reading only full cache lines (128 byte), you have to allocate addresses that you want to share 128 byte alligned. Also, when choosing the size of our test data, only full 64 bytes arrived at the FPGA. When using less data, only zeros arrived.
+</span></div>
+
 ### Further comments
 
 Our minimal implementation lacks error handling and is inflexible due to hardcoded information. To bring it to the level of a SNAP example, it would need some more features, including commmand line options, file reading and debug output. You can find the code for the real example in the same repository located in the `sw` folder: [snap_blowfish.c](https://github.com/ldurdel/hls_blowfish/blob/master/sw/snap_blowfish.c).
