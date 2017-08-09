@@ -64,7 +64,7 @@ static void bf_fLine(bf_halfBlock_t res[BF_BPL], bf_halfBlock_t h[BF_BPL])
 }
 ```
 
-This new function is only useful to a new set of `bf_encrypt()` and `bf_decrypt()` functions, that also operate on multiple data blocks in parallel. These require besides `bf_fLine()` SIMD versions of the previously used scalar exclusive or operation. The names of the functions should be self explanatory. The following code example contrasts the single block and multi block versions of the encrypt function:
+This new function is only useful to a new set of `bf_encrypt()` and `bf_decrypt()` functions, that also operate on multiple data blocks in parallel. Besides `bf_fLine()`, these require SIMD versions of the previously used scalar exclusive or operation. The names of these should be self explanatory. The following code example contrasts the single block and multi block versions of the encrypt function:
 
 ```cpp
 static void bf_encryptLine(bf_halfBlock_t leftHBlocks[BF_BPL],
