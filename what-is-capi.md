@@ -3,11 +3,8 @@
 CAPI, the Coherent Accelerator Processor Interface is an interface standard introduced with IBMs POWER8 server architecture. As the name suggests, it enables Accelerators \(i.e. FPGAs\) to be part of the system's coherent cache hierarchy and memory subsystem formerly only available to CPU cores. Consequently, while former technologies mapped the accelerator to its specific IO memory area, where data had to be copied to explicitly, an accelerator connected via CAPI can access the same virtual address space as its controlling process.
 
 <!-- Brain box -->
-<div style="background:#EEF3F4;padding:1em">
-<img style="color:#375659;float:left;width:3em;height:3em;margin-right:1em" src="/assets/brain.svg"/>
-<span style="overflow:hidden;display:block">
+<div class="brainbox">
 As yet, a CAPI accelerator card is connected to the system via a PCIe slot. However CAPI itself is independent of the underlying bus system. Therefore subsequent versions of the POWER architecture might introduce different bus systems with higher bandwidths.
-</span>
 </div>
 <!-- /Brain box -->
 
