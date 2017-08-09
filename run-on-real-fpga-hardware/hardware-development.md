@@ -1,8 +1,8 @@
 ## Hardware Development
 
-As mentioned earlier, SNAP supports hardware development with Vivado HLS \(subsequently called HLS\), that translates C/C++ code to VHDL or Verilog.
+As mentioned earlier, SNAP supports hardware development with Vivado HLS (subsequently called HLS), that translates C/C++ code to VHDL or Verilog.
 
-The translation involves tracing the dependencies between sequential statements and identifying parallelizable groups, resulting in the automatic generation of a state machine producing the same results as the original C code. This enables software developers to quickly port existing algorithms to a hardware implementation. For some easily parallelizable algorithms this might be enough to achie## ve substantial speedups, as HLS recognizes the optimization potential and generates parallel hardware. In the general case however, the formulation of an algorithm that is optimized for a sequential execution model is not a favourable candidate for automatic optimization, as HLS has hardly the same domain knowledge of a hardware developer, who knows or guesses how best to restructure the algorithm to distribute the workload well among the available resources. Therefore HLS provides a set of annotations \(`#pragma HLS ...`\) that allow a developer to direct the hardware generation process in specific ways to give a more fine grained control over the generated hardware. In some specific cases it might even be necessary to restructure the C code by hand in order to make HLS generate the intended hardware structures.
+The translation involves tracing the dependencies between sequential statements and identifying parallelizable groups, resulting in the automatic generation of a state machine producing the same results as the original C code. This enables software developers to quickly port existing algorithms to a hardware implementation. For some easily parallelizable algorithms this might be enough to achie## ve substantial speedups, as HLS recognizes the optimization potential and generates parallel hardware. In the general case however, the formulation of an algorithm that is optimized for a sequential execution model is not a favourable candidate for automatic optimization, as HLS has hardly the same domain knowledge of a hardware developer, who knows or guesses how best to restructure the algorithm to distribute the workload well among the available resources. Therefore HLS provides a set of annotations (`#pragma HLS ...`) that allow a developer to direct the hardware generation process in specific ways to give a more fine grained control over the generated hardware. In some specific cases it might even be necessary to restructure the C code by hand in order to make HLS generate the intended hardware structures.
 
 A basic SNAP AFU project consists of two files in the hardware (`hw`) subdirectory of the action repository: One hardware specific header file, and the C implementation. In our case these are `action_blowfish.H` and `hls_blowfish.cpp`. Note the capital `H` in the header filetype. This convention is used to distinguish the hardware specific from the common header file `action_blowfish.h`. The latter contains the definition oft the job structure and is thus included in both the hardware and software implementation.
 
@@ -77,7 +77,7 @@ static void bf_keyInit(bf_halfBlock_t key[18])
 ```
 
 When porting pseudo or existing C code to HLS, care should be taken when choosing data types: In software development it does not usually make a difference in terms of performance, if much wider data types than necessary are used, provided they do not exceed the underlying machine's native register width. When specifying hardware however, a data type's bit width has a significant impact on the size and performance of a design.
-The generated hardware is exactly large enough to process the specified bit count. During the translation process it is generally impossible to determine the range of values a variable might take at runtime so that the worst case must be assumed. Therefore it is advisable to specify the bit width of a variable as tightly as possible. To enable a finer control, the template types `ap\_uint` and `ap\_int` can be parameterized to represent any integral bit width.
+The generated hardware is exactly large enough to process the specified bit count. During the translation process it is generally impossible to determine the range of values a variable might take at runtime so that the worst case must be assumed. Therefore it is advisable to specify the bit width of a variable as tightly as possible. To enable a finer control, the template types `ap_uint` and `ap_int` can be parameterized to represent any integral bit width.
 
 This can be seen in the code above. Instead of using the usual `int` for loop counters, specific types such as `bf_SiE` were selected, that are defined in the hardware specific header.
 
@@ -151,8 +151,40 @@ With the SNAP action code in place, the testbench should be changed accordingly,
 
 With all these preparations in place `hls_action()` can be called so that all parts of the action functionality are covered by the testbench. Should that produce incorrect results, breakpoints and variable inspection are effective means to find the bug.
 
+```
+void main()
+{
+    static snap_membus_t din_gmem[1024];
+    static snap_membus_t dout_gmem[1024];
+    action_reg act_reg;
+    action_RO_config_reg act_config;
+    static const uint8_t ptext[] = { /* ... */ };
+    static const uint8_t key[] = { /* ... */ };
 
+    // Perform Action Discovery
+    act_reg.Control.flags = 0x0;
+    hls_action(din_gmem, dout_gmem, &act_reg, &act_config);
+    
+    // Setup memory
+    memcpy((uint8_t *)(void *)&din_gmem[0], key, sizeof(key)); // key 8B @ 0x0
+    memcpy((uint8_t *)(void *)&din_gmem[2], ptext, sizeof(ptext)); // plaintext 16B @ 0x80
 
+    // Test Key Initialization
+    act_reg.Control.flags = 0x1;
+    act_reg.Data.input_data.addr = 0;
+    act_reg.Data.data_length = 8;
+    act_reg.Data.mode = MODE_SET_KEY;
+    hls_action(din_gmem, dout_gmem, &act_reg, &act_config);
+
+    // Test Encryption
+    act_reg.Control.flags = 0x1;
+    act_reg.Data.input_data.addr = 2 * sizeof(snap_membus_t);
+    act_reg.Data.output_data.addr = 4 * sizeof(snap_membus_t);
+    act_reg.Data.data_length = sizeof(ptext);
+    act_reg.Data.mode = MODE_ENCRYPT;
+    hls_action(din_gmem, dout_gmem, &act_reg, &act_config);
+}
+```
 
 ### Using the SNAP Environment
 
@@ -161,10 +193,13 @@ With the memory and register pointers passed to `hls_action()` SNAP already prov
 When interacting with host memory, there arises a slight incongruity: While a regular bus interface can be expected to be bidirectional, SNAP provides two separate interfaces for host memory access, one for read and one for write operations. This is due to the way Vivado HLS translates bus interfaces, which is not quite compatible with SNAPs PSL interface module.
 
 ```
-snap\_membus\_t result = din\_gmem\[address >> ADDR\_RIGHT\_SHIFT\];
+snap_membus_t result = din_gmem[address >> ADDR_RIGHT_SHIFT];
 ```
 
 The statement above performs a single read operation from host memory. The result is a `snap\_membus\_t` which represents one word with the native bus width of the underlying PSL interface. The [!?current] width is 512 bit, so only 64 byte aligned accesses to 64 byte blocks of data are possible. The addresses specified by the host software will generally be byte addresses, while the host memory pointer is indexed in multiples of 64 bytes. That necessitates the right shift of the byte address. Care should be taken if the lower bits of the byte address are not 0. In that case the desired part must be extracted from the result according to those lower bits.
+
+
+*****************************************************
 
 
 [!? introduce BRAM, local arrays?]
@@ -177,6 +212,6 @@ The statement above performs a single read operation from host memory. The resul
 [!REF io performance, 4k buffering -> Opt section]
 [!? How to integrate source code, which version?]
 
-### Maintaining a Redundant Software Implementation
+##### Maintaining a Redundant Software Implementation
 
 Though not necessary for the hardware implementation itself, it is often a good idea to maintain a separate implementation of the AFU functionality in software. Besides being a good reference for testing the hardware implementation correctness, is also serves as a baseline for performance analyses.
