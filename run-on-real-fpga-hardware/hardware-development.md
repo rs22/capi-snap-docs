@@ -4,14 +4,14 @@ As mentioned earlier, SNAP supports hardware development with Vivado HLS (subseq
 
 The translation involves tracing the dependencies between sequential statements and identifying parallelizable groups, resulting in the automatic generation of a state machine producing the same results as the original C code. This enables software developers to quickly port existing algorithms to a hardware implementation. For some easily parallelizable algorithms this might be enough to achieve substantial speedups, as HLS recognizes the optimization potential and generates parallel hardware. In the general case however, the formulation of an algorithm that is optimized for a sequential execution model is not a favourable candidate for automatic optimization, as HLS has hardly the same domain knowledge of a hardware developer, who knows or guesses how best to restructure the algorithm to distribute the workload well among the available resources. Therefore HLS provides a set of annotations (`#pragma HLS ...`) that allow a developer to direct the hardware generation process in specific ways to give a more fine grained control over the generated hardware. In some specific cases it might even be necessary to restructure the C code by hand in order to make HLS generate the intended hardware structures.
 
-A basic SNAP AFU project consists of two files in the hardware (`hw`) subdirectory of the action repository: One hardware specific header file, and the C implementation. In our case these are `action_blowfish.H` and `hls_blowfish.cpp`. Note the capital `H` in the header filetype. This convention is used to distinguish the hardware specific from the common header file `action_blowfish.h`. The latter contains the definition oft the job structure and is thus included in both the hardware and software implementation.
+A basic SNAP AFU project consists of two files in the hardware (`hw`) subdirectory of the action repository: One hardware specific header file, and the C implementation. In our case these are `action_blowfish.H` and `hls_blowfish.cpp`. Note the capital `H` in the header file extension. This convention is used to distinguish the hardware specific from the common header file `action_blowfish.h`. The latter contains the definition of the job structure and is thus included in both the hardware and software implementation.
 
 
 ### Porting the Algorithm to HLS
 
 The first step of the AFU development is the implementation of the actual algorithm in HLS. Depending on the style and complexity of an existing software implementation, it might be more or less easy to adapt it to the limitations of HLS' subset of C/C++: Dynamic memory allocation and some pointer operations are not supported and algorithms relying on dynamic data structures need to be reorganized to fit into the more static nature of a hardware implementation.
 
-Blowfish however operates on blocks of a fixed size and needs only a fixed number of intermediate results, which makes the port to hardware easy. The [Wikipedia article](https://en.wikipedia.org/wiki/Blowfish_%28cipher%29) provides a compact pseudocode representation, that needs only minor adaptions to serve as a first step to the hardware implementation:
+Blowfish however operates on blocks of a fixed size and needs only a fixed set of intermediate results, which makes the port to hardware easy. The [Wikipedia article](https://en.wikipedia.org/wiki/Blowfish_%28cipher%29) provides a compact pseudocode representation, that needs only minor adaptions to serve as a first step to the AFU implementation:
 
 ```
 static bf_halfBlock_t bf_f(bf_halfBlock_t h)
@@ -25,7 +25,7 @@ static bf_halfBlock_t bf_f(bf_halfBlock_t h)
 
 static void bf_encrypt(bf_halfBlock_t & left, bf_halfBlock_t & right)
 {
-    for (bf_PiE i = 0; i < 16; i += 2) {
+    for (bf_PiE_t i = 0; i < 16; i += 2) {
         left ^= g_P[i];
         right ^= bf_f(left, iCpy);
         right ^= g_P[i+1];
@@ -38,7 +38,7 @@ static void bf_encrypt(bf_halfBlock_t & left, bf_halfBlock_t & right)
 
 static void bf_decrypt(bf_halfBlock_t & left, bf_halfBlock_t & right, bf_SiC_t iCpy)
 {
-    for (bf_PiE i = 16; i > 0; i -= 2) {
+    for (bf_PiE_t i = 16; i > 0; i -= 2) {
         left ^= g_P[i+1];
         right ^= bf_f(left, iCpy);
         right ^= g_P[i];
@@ -52,22 +52,22 @@ static void bf_decrypt(bf_halfBlock_t & left, bf_halfBlock_t & right, bf_SiC_t i
 
 static void bf_keyInit(bf_halfBlock_t key[18])
 {
-    for (PiE i = 0; i < 18; ++i) {
+    for (bf_PiE_t i = 0; i < 18; ++i) {
         g_P[i] = c_initP[i] ^ key[i];
     }
-    for (SiA n = 0; n < 4; ++n) {
-        for (SiE i = 0; i < 256; ++i) {
+    for (bf_SiA_t n = 0; n < 4; ++n) {
+        for (bf_SiE_t i = 0; i < 256; ++i) {
             g_S[n][i] = c_initS[n][i];
         }
     }
     bf_halfBlock_t left = 0, right = 0;
-    for (bf_PiE i = 0; i < 18; i += 2) {
+    for (bf_PiE_t i = 0; i < 18; i += 2) {
         bf_encrypt(left, right, 0);
         g_P[i] = left;
         g_P[i+1] = right;
     }
-    for (bf_SiA n = 0; n < 4; ++n) {
-        for (bf_SiE i = 0; i < 256; i += 2) {
+    for (bf_SiA_t n = 0; n < 4; ++n) {
+        for (bf_SiE_t i = 0; i < 256; i += 2) {
             bf_encrypt(left, right, 0);
             g_S[n][i] = left;
             g_S[n][i+1] = right;
