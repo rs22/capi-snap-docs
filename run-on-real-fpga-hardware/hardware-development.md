@@ -13,7 +13,7 @@ The first step of the AFU development is the implementation of the actual algori
 
 Blowfish however operates on blocks of a fixed size and needs only a fixed set of intermediate results, which makes the port to hardware easy. The [Wikipedia article](https://en.wikipedia.org/wiki/Blowfish_%28cipher%29) provides a compact pseudocode representation, that needs only minor adaptions to serve as a first step to the AFU implementation:
 
-```
+```cpp
 static bf_halfBlock_t bf_f(bf_halfBlock_t h)
 {
     bf_SiE_t a = (bf_SiE_t)(h >> 24),
@@ -88,7 +88,7 @@ The hardware implementation (`hls_blowfish.cpp`) can define a `main()` function,
 
 In a later stage of the development, it will set up a complete SNAP environment to execute the AFU code in software just as if it was invoked in hardware. For now it is sufficient to write test cases for the algorithm to debug the implementation and assure its correctness before the SNAP integration can begin. The example below shows how the encrypt function could be tested.
 
-```
+```cpp
 #ifdef NO_SYNTH
 int main()
 {
@@ -111,7 +111,7 @@ All AFUs must be able to introduce themselves to the host with their action code
 If the host queries this information, `hls_action()` is entered just as if a regular job was started. To distinguish both cases, a flag in the control register is set to indicate that instead of executing a job the AFU should write the respective entries in a configuration memory space, accessible through a pointer argument to `hls_action()`.
 The specific code that implements this behavior can be seen below and - as it is not specific to a particular AFU - can be freely reused.
 
-```
+```cpp
 void hls_action(snap_membus_t  *din_gmem, snap_membus_t  *dout_gmem,
                 action_reg *action_reg, action_RO_config_reg *Action_Config)
 {
@@ -151,7 +151,7 @@ With the SNAP action code in place, the testbench should be changed accordingly,
 
 With all these preparations in place `hls_action()` can be called so that all parts of the action functionality are covered by the testbench. Should that produce incorrect results, breakpoints and variable inspection are effective means to find the bug.
 
-```
+```cpp
 void main()
 {
     static snap_membus_t din_gmem[1024];
@@ -192,7 +192,7 @@ With the memory and register pointers passed to `hls_action()` SNAP already prov
 
 When interacting with host memory, there arises a slight incongruity: While a regular bus interface can be expected to be bidirectional, SNAP provides two separate interfaces for host memory access, one for read and one for write operations. This is due to the way Vivado HLS translates bus interfaces, which is not quite compatible with SNAPs PSL interface module.
 
-```
+```cpp
 snap_membus_t result = din_gmem[address >> ADDR_RIGHT_SHIFT];
 ```
 

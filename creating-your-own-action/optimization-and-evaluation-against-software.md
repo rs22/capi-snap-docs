@@ -28,7 +28,7 @@ In this situation it is necessary to understand how arrays are implemented on th
 
 More than two parallel instances of `bf_f()` require more than two memory access ports to the S array. This particular read-only-case permits to overcome this limitation by maintaining a sufficient (\#instances/2) number of copies. This is however only useful, if each copy of the array is mapped into its particular set of Block RAMs so that no two copies share one Block RAM. To acheive this, HLS provides an annotation to control how arrays are mapped to Block RAMs:
 
-```
+```language-cpp
 //in action_blowfish.H
 typedef ap_uint<BF_S_DATA_W> bf_S_t[BF_S_CPYCNT][BF_S_ARYCNT][BF_S_ENTCNT];
 
@@ -46,7 +46,7 @@ One way to do this would be to introduce a new parameter as a copy id, that cont
 
 The easiest way to go to circumvent this, is to introduce a new version of the function that operates on as many parallel values as there will be encrypt instances. `bf_fLine` operates on a whole array of arguments and returns the results in a separate array of the same size. `BF_BPL` is a preprocessor macro that denotes the number of blocks, that should be processed in parallel. To ensure, that all iterations of the loop are executed in parallel, the `UNROLL` pragma is used. Unfortunately these pragmas can not resolve preprocessor macros, so that the value of `BF_BPL` must be specified manually. All four array accesses happen in the last line of the loop. As one copy can serve two read ports, the copy index is derived from the block index divided by two.
 
-```
+```language-cpp
 static void bf_fLine(bf_halfBlock_t res[BF_BPL], bf_halfBlock_t h[BF_BPL])
 {
     BF_F_LINE:
@@ -66,7 +66,7 @@ static void bf_fLine(bf_halfBlock_t res[BF_BPL], bf_halfBlock_t h[BF_BPL])
 
 This new function can only be used by a new set of `bf_encrypt()` and `bf_decrypt()` functions, that also operate an arrays of data blocks in parallel. These require besides `bf_fLine()` SIMD versions of the previously used scalar exclusive or operation. The names of the functions should be self explanatory. The following code example contrasts the single block and multi block versions of the encrypt function:
 
-```
+```language-cpp
 static void bf_encryptLine(bf_halfBlock_t leftHBlocks[BF_BPL],
                            bf_halfBlock_t rightHBlocks[BF_BPL])
 {
@@ -89,7 +89,7 @@ static void bf_encryptLine(bf_halfBlock_t leftHBlocks[BF_BPL],
 }
 ```
 
-```
+```language-cpp
 static void bf_encrypt(bf_halfBlock_t & left, bf_halfBlock_t & right)
 {
     BF_ENCRYPT:
