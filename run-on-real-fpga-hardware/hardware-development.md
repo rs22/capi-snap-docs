@@ -197,9 +197,3 @@ snap_membus_t result = din_gmem[address >> ADDR_RIGHT_SHIFT];
 ```
 
 The statement above performs a single read operation from host memory. The result is a `snap\_membus\_t` which represents one word with the native bus width of the underlying PSL interface. The [!?current] width is 512 bit, so only 64 byte aligned accesses to 64 byte blocks of data are possible. The addresses specified by the host software will generally be byte addresses, while the host memory pointer is indexed in multiples of 64 bytes. That necessitates the right shift of the byte address. Care should be taken if the lower bits of the byte address are not 0. In that case the desired part must be extracted from the result according to those lower bits.
-
-
-*****************************************************
-
-[! arguments of hls_action, Control regs and AXI busses (2Host!, 0-1 DRAM, 0-1 NVMe)]
-[! access job struct]
