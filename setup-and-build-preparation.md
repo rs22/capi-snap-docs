@@ -15,11 +15,11 @@ Xilinx Vivado is used to synthesize and layout our actions for the FPGA and cont
 1. Download and install Xilinx Vivado
 2. If not using the evaluation version, obtain a Vivado license-file (.lic)
 3. Add Vivado to your path by sourcing its settings file:
-```
-source /opt/Xilinx/Vivado/2016.4/settings64.sh
+```bash
+$ source /opt/Xilinx/Vivado/2016.4/settings64.sh
 ```
 If you do not want to repeat this after every reboot, do it automatically on startup by appending it to your bashrc:
-```
+```bash
 echo "source /opt/Xilinx/Vivado/2016.4/settings64.sh" >> ~/.bashrc
 ```
 
@@ -43,16 +43,16 @@ PSLSE is optional and only needed for simulation, but while building for hardwar
 Because simulation of hardware is computationally intense, only the actions and not the PSL should be simulated. The PSLSE implements the PSL in software and connects to the (locally hosted) simulation server with the desired action. The host application then communicates to the (locally hosted) PSLSE server instead of an FPGA. 
 
 Clone the PSLSE with
-```
-git clone https://github.com/ibm-capi/pslse
+```bash
+$ git clone https://github.com/ibm-capi/pslse
 ```
 
 #### 4. SNAP
 
 Now you still need to clone SNAP itself:
 
-```
-git clone https://github.com/open-power/snap
+```bash
+$ git clone https://github.com/open-power/snap
 ```
 
 The repository is split into three folders. The `software` and `hardware` folder contain the structures necessary for building software and hardware, while the `actions` folder contains various examples that are ready to be built. Each action is either prefixed by `hdl_` or `hls_`, indicating whether it is defined in a hardware description language or high level HLS code. Inside each action, the hardware specification lives in `hw` while the host application is implemented in `sw`.
@@ -61,7 +61,7 @@ The repository is split into three folders. The `software` and `hardware` folder
 
 Before you can use SNAP for building you have to specify where the components you just installed are. Add Vivado to the path by sourcing the Vivado settings script, point environment variables to the components you just downloaded (omitting `PSLSE_ROOT` if you did not download PSLSE). Then source the hardware settings script in the SNAP repository:
 
-```
+```bash
 source /opt/Xilinx/Vivado/2016.4/settings64.sh
 export XILINXD_LICENSE_FILE=<pointer to Xilinx license>
 export PSL_DCP=<CAPI PSL Checkpoint file (b_route_design.dcp)>
@@ -99,9 +99,9 @@ FACTORY_IMAGE           is set to: "FALSE"
 
 Depending on which card you use you may have to change `$FPGACARD` and `$FPGACHIP`:
 
-```
-export FPGACARD=<FGT or KU3>
-export FPGACARD=<your chip identifier>
+```bash
+$ export FPGACARD=<FGT or KU3>
+$ export FPGACARD=<your chip identifier>
 ```
 
 While `xsim` is the default Simulator and  `SNAP_ROOT` is set automatically, `ACTION_ROOT` and the SNAP function Variables have to be chosen based on the action you want to build.
@@ -111,16 +111,16 @@ While `xsim` is the default Simulator and  `SNAP_ROOT` is set automatically, `AC
 
 As an example, let us built one of the provided actions. In order to tell SNAP that you would like to build the breadth-first search action (called `hls_bfs` because it's implemented using the C-like Vivado HLS language), set `ACTION_ROOT` to the absolute path of the `actions/hls_bfs` directory inside your local SNAP repository:
 
-```
-export ACTION_ROOT=<path to snap>/actions/hls_bfs
+```bash
+$ export ACTION_ROOT=<path to snap>/actions/hls_bfs
 ```
 
 Because `hls_bfs` does not use DRAM or NVMe storage (see the [documentation](https://github.com/open-power/snap/tree/master/actions/hls_bfs/doc)), we leave `SDRAM_USED` and `NVME_USED` to `FALSE`.
 
 Now, if you have not done so already, change into the `hardware` directory of your snap repository (`cd $SNAP_ROOT/hardware`). If all the settings are correct (you can check that by calling `./snap_settings`), you can generate the Vivado project files needed to build and simulate the action with:
 
-```
-make config
+```bash
+$ make config
 ```
 
 You can follow the same procedure if you want to build other examples or your own actions.
