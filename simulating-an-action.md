@@ -22,11 +22,11 @@ The PSLSE implements a higher level and thus faster model of the internal CAPI c
 
 The necessary setup of the PSLSE server and its connection to the simulator is done automatically by a script called `run_sim`. It creates an environment where the regular libcxl is replaced by the PSLSE version. Thus all applications started in this environment will automatically interact with the simulated AFU. The script supports different modes of operation:
 
-```
+```bash
 ${SNAP_ROOT}/hardware/sim> ./run_sim -explore
 ```
 
-```
+```bash
 ${SNAP_ROOT}/hardware/sim> ./run_sim -app ${SNAP_ROOT}/software/tools/snap_maint -arg '-i 3 -vvv'
 ```
 
@@ -35,23 +35,23 @@ If it is run without the `-app` parameter, it opens a new terminal session with 
 ### Simulating the breadth-first search AFU
 
 1. Given that you've already run `make config` as described in the previous section, build the simulation image with 
-  ```
-  make model
+  ```bash
+  $ make model
   ```
 2. Before you can test the model, you will also need to build the consumer application \(that will communicate with the simulator through PSLSE\):
-   ```
-   cd ${SNAP_ROOT}/actions
-   make
+   ```bash
+   $ cd ${SNAP_ROOT}/actions
+   $ make
    ```
 3. As described above, start the the simulation itself:
-   ```
-   cd ${SNAP_ROOT}/hardware/sim
-   ./run_sim -explore
+   ```bash
+   $ cd ${SNAP_ROOT}/hardware/sim
+   $ ./run_sim -explore
    ```
 4. A new terminal window will open -- you can launch the test application in there \(please do not change the working directory\):
 
-   ```
-   ../../../../actions/hls_bfs/sw/snap_bfs -v
+   ```bash
+   $ ../../../../actions/hls_bfs/sw/snap_bfs -v
    ```
 
 5. Once you're done testing, close the simulation terminal window to shut down the simulator (otherwise it will consume CPU cycles waiting for new requests).

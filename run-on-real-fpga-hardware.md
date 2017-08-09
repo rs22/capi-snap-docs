@@ -41,17 +41,17 @@ Therefore, set up a ping to the host OS and trigger a reboot \(a normal OS reboo
 
 Once the FPGA is detected as a CAPI-device it is a lot easier and faster to flash new images onto it. The tool necessary can be obtained from GitHub:
 
-```
-git clone https://github.com/ibm-capi/capi-utils
-cd capi-utils
-make
-make install
+```bash
+$ git clone https://github.com/ibm-capi/capi-utils
+$ cd capi-utils
+$ make
+$ make install
 ```
 
 Afterwards, start the tool like this and follow the instructions:
 
-```
-capi-flash-script my_image.bin
+```bash
+$ capi-flash-script my_image.bin
 ```
 
 ### Testing the breadth-first search action on hardware
@@ -62,32 +62,32 @@ You will now need a version of SNAP on the Power8 server:
 
 1. Because now the 'real' version of libcxl is needed \(compared to the 'mock' version used earlier by the PSL Simulation Engine\), install it \(e.g. on Ubuntu\):
 
-   ```
-   apt install libcxl-dev
+   ```bash
+   $ apt install libcxl-dev
    ```
 
 2. Clone SNAP, build the actions and tooling
 
-   ```
-   git clone https://github.com/open-power/snap
-   cd snap/software
-   make
-   cd ../actions
-   make
+   ```bash
+   $ git clone https://github.com/open-power/snap
+   $ cd snap/software
+   $ make
+   $ cd ../actions
+   $ make
    ```
 
 3. Before you can use the action for the first time, it needs to be detected by SNAP. Use the `snap_maint` tool to trigger this:
 
-   ```
-   cd ${SNAP_ROOT}/software/tools
-   ./snap_maint -v
+   ```bash
+   $ cd ${SNAP_ROOT}/software/tools
+   $ ./snap_maint -v
    ```
 
 4. Now you can execute the breadth-first search on hardware!
 
-   ```
-   cd ${SNAP_ROOT}/actions/hls_bfs/sw
-   ./snap_bfs -v
+   ```bash
+   $ cd ${SNAP_ROOT}/actions/hls_bfs/sw
+   $ ./snap_bfs -v
    ```
 
 
