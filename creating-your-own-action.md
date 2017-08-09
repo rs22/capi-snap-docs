@@ -19,7 +19,7 @@ We create an empty repository outside of the SNAP folder structure and call it `
 
 In `hls_blowfish/include/action_blowfish.h` we specify the our action. By copying `snap/actions/hls_bfs/include/action_bfs.h` and deleting and renaming action-specific parts, we get the following frame:
 
-```cpp
+```
 #ifndef __ACTION_BLOWFISH_H__
 #define __ACTION_BLOWFISH_H__
 
@@ -46,15 +46,12 @@ typedef struct blowfish_job {
 
 In accordance with https://github.com/open-power/snap/blob/master/ActionTypes.md, we choose an action type number from the "free for experimental use" range:
 
-```cpp
-#define BLOWFISH_ACTION_TYPE 0x00000108
-```
+`#define BLOWFISH_ACTION_TYPE 0x00000108
+`
 
 For the job struct, we want to specify the operation, the address of the input data and its length and where to write output data. We do not need a field where the length of the output data can be written, as it is defined by operation and input length.
 
-TODO data has to be multiple of 128 bytes
-
-```cpp
+```
 #define MODE_SET_KEY 0
 #define MODE_ENCRYPT 1
 #define MODE_DECRYPT 2
