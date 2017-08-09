@@ -68,3 +68,5 @@ typedef struct blowfish_job {
 ```
 <p class="figure-caption">Different operation modes we defined and specific job structure.
 </p>
+
+The resulting `action_blowfish.h` can be found [here](https://github.com/ldurdel/hls_blowfish/blob/master/sw_minimal/Makefile).
