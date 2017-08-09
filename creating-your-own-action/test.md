@@ -65,7 +65,7 @@ static void snap_prepare_blowfish(struct snap_job *job,
 		 bjob_out, sizeof(*bjob_out));
 }
 ```
-<p class="figure-caption">Method for preparing a job based on input and output structures that contain SNAP addresses.</a>.
+<p class="figure-caption">Method for preparing a job based on input and output structures that contain SNAP addresses.
 </p>encryption and decryption with a previously set key
 
 For how to execute an action, let's have a look at the method `blowfish_cipher` that can be used for either en- or decryption &mdash; depending on the `mode` supplied. A job is first created and then is executed via `snap_action_sync_execute_job(action, &job, timeout);`.
