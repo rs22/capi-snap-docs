@@ -8,7 +8,7 @@ To seperate this from the bigger example that you will also find in our github r
 
 First, we copy a Makefile from one of the examples \(e.g. `snap/actions/hls_bfs/sw/Makefile`\) into our `hls_blowfish/sw_minimal` directory and modify it to build blowfish.
 
-```Makefile
+```makefile
 # Finding $SNAP_ROOT
 ifndef SNAP_ROOT
 # check if we are in sw folder of an action (three directories below snap root)
