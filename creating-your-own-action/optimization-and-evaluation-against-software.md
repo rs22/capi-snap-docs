@@ -42,10 +42,70 @@ static bf_S_t g_S;
 This example shows, how a third dimension is added to the originally two-dimensional S array to provide space for its copies. The `#pragma`, which must be placed inside a function (preferably the entry point `hls_action()`), partitions `g_S` completely along the copy dimension ensuring that each copy resides in a separate Block RAM.
 
 With an appropriate number of read ports, it is now necessary that the generated hardware structures utilize them efficiently. This involves explicit scheduling, which instance of `bf_f()` reads from which copy of the S array.
+One way to do this would be to introduce a new parameter as a copy id, that controls with which copy `bf_f()` interacts. However, unless the function is inlined, it will require an explicit interface to any resource it _might_ interact thus making each instance of `bf_f()` consume one port of _each_ copy and rendering the previous port multiplication efforts useless.
 
-[! improve encrypt throughput]
-    [! parallel implementation of encrypt, characteristics and dependencies]
-    [! read only port duplication with multiple arrays and ARRAY_PARTITION]
+The easiest way to go to circumvent this, is to introduce a new version of the function that operates on as many parallel values as there will be encrypt instances. `bf_fLine` operates on a whole array of arguments and returns the results in a separate array of the same size. `BF_BPL` is a preprocessor macro that denotes the number of blocks, that should be processed in parallel. To ensure, that all iterations of the loop are executed in parallel, the `UNROLL` pragma is used. Unfortunately these pragmas can not resolve preprocessor macros, so that the value of `BF_BPL` must be specified manually. All four array accesses happen in the last line of the loop. As one copy can serve two read ports, the copy index is derived from the block index divided by two.
+
+```
+static void bf_fLine(bf_halfBlock_t res[BF_BPL], bf_halfBlock_t h[BF_BPL])
+{
+    BF_F_LINE:
+    for (bf_uiBpL_t iBlock = 0; iBlock < BF_BPL; ++iBlock)
+    {
+#pragma HLS UNROLL factor=16 //==BF_BPL
+        bf_SiE_t a = (bf_SiE_t)(h[iBlock] >> 24),
+                 b = (bf_SiE_t)(h[iBlock] >> 16),
+                 c = (bf_SiE_t)(h[iBlock] >> 8),
+                 d = (bf_SiE_t) h[iBlock];
+
+        res[iBlock] = ((g_S[iBlock/2][0][a] + g_S[iBlock/2][1][b]) ^ g_S[iBlock/2][2][c]) + g_S[iBlock/2][3][d];
+    }
+}
+```
+
+This new function can only be used by a new set of `bf_encrypt()` and `bf_decrypt()` functions, that also operate an arrays of data blocks in parallel. These require besides `bf_fLine()` SIMD versions of the previously used scalar exclusive or operation. The names of the functions should be self explanatory. The following code example contrasts the single block and multi block versions of the encrypt function:
+
+```
+static void bf_encryptLine(bf_halfBlock_t leftHBlocks[BF_BPL],
+                           bf_halfBlock_t rightHBlocks[BF_BPL])
+{
+    BF_ENCRYPT_LINE:
+    for (int i = 0; i < 16; i += 2)
+    {
+        bf_halfBlock_t fRes[BF_BPL];
+        bf_xorOne(leftHBlocks, leftHBlocks, g_P[i]);
+        bf_fLine(fRes, leftHBlocks);
+        bf_xorAll(rightHBlocks, rightHBlocks, fRes);
+        bf_xorOne(rightHBlocks, rightHBlocks, g_P[i+1]);
+        bf_fLine(fRes, rightHBlocks);
+        bf_xorAll(leftHBlocks, leftHBlocks, fRes);
+    }
+
+    bf_halfBlock_t tmp[BF_BPL];
+    bf_xorOne(tmp, leftHBlocks, g_P[16]);
+    bf_xorOne(leftHBlocks, rightHBlocks, g_P[17]);
+    rightHBlocks = tmp;
+}
+```
+|abcd | ashtioen
+|iaosehtnioevni | asiohenioenianv
+```
+static void bf_encrypt(bf_halfBlock_t & left, bf_halfBlock_t & right)
+{
+    BF_ENCRYPT:
+    for (int i = 0; i < 16; i += 2)
+    {
+        left ^= g_P[i];
+        right ^= bf_f(left, iCpy);
+        right ^= g_P[i+1];
+        left ^= bf_f(right, iCpy);
+    }
+
+    bf_halfBlock_t tmp = left ^ g_P[16];
+    left = right ^ g_P[17];
+    right = tmp;
+}
+```
 
 [! improve memory throughput, 4k buffering]
 
