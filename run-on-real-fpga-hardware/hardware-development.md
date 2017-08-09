@@ -165,12 +165,14 @@ void hls_action(snap_membus_t  *din_gmem, snap_membus_t  *dout_gmem,
 To separate this mechanism from the actual logic, the Blowfish AFU calls `process_action()` if the `hls_action()` invocation was not a configuration request. This function is the first AFU specific part and the right place to extract all necessary parameters and commands from the job structure. This is accessible via the `action_reg * act_reg` parameter. It contains the general AFU control registers in `act_reg->Control` and the AFU specific job struct in its `act_reg->Data` member, which is organized as specified in the common `action_blowfish.h` header. When using members of the type `struct snap_addr` care should be taken, as they not only include the actual address, but only fields for the length of the specified address range, the type of memory referenced and some flags intended for later use in the SNAP framework.
 The Blowfish example uses as yet only the address part of this struct and thus the job struct decoding looks as follows:
 
-```
+```cpp
     snapu64_t inAddr = action_reg->Data.input_data.addr;
     snapu64_t outAddr = action_reg->Data.output_data.addr;
     snapu32_t byteCount = action_reg->Data.data_length;
     snapu32_t mode = action_reg->Data.mode;
 ```
+<p class="figure-caption">Excerpt of <a href="https://github.com/ldurdel/hls_blowfish/blob/master/hw/hls_blowfish.cpp">hls_blowfish.cpp</a> <code>process_action()</code></p>
+
 
 The Blowfish AFU provides three separate operations: Encryption, decryption and key initialization. They are distinguished by specific values of the `mode` field and use the input and output buffers if applicable. To maintain a clear structure, the operations are implemented in separate functions: `action_setkey()` performs the key initialization, whereas `action_endecrypt()` handles both en- and decryption as they are very similar. These functions contain the required memory access logic to execute the Blowfish algorithm consisting of the `bf_*()` functions efficiently.
 
