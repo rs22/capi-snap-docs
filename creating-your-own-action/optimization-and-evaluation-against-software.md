@@ -13,7 +13,8 @@ Another important consideration is whether one particular parallelization (that 
 
 The best starting point for optimizations can often be found by experimenting with the real hardware. Thus our first step to optimize the Blowfish AFU was to perform two series of throughput measurements. The first only read and wrote back data blocks without encrypting them but keeping the same access patterns. In the second series the AFU did not interact with host memory at all but only performed the requested number of encryptions on a dummy data block. Based on this information as visualized in the plot below, we determined that the encrypt function was the current bottleneck and that a speedup of up to 16 times will benefit the overall performance.
 
-![](/assets/throughputCombined.svg)
+![Memory and encryption throughput for different input sizes](/assets/throughputCombined.svg)
+<p class="figure-caption">Memory and encryption throughput for different input sizes</p>
 
 
 ### Improving Encrypt Performance

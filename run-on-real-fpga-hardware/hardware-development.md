@@ -49,7 +49,6 @@ static void bf_decrypt(bf_halfBlock_t & left, bf_halfBlock_t & right, bf_SiC_t i
     right = tmp;
 }
 
-
 static void bf_keyInit(bf_halfBlock_t key[18])
 {
     for (bf_PiE_t i = 0; i < 18; ++i) {
@@ -161,6 +160,7 @@ void hls_action(snap_membus_t  *din_gmem, snap_membus_t  *dout_gmem,
     }
 }
 ```
+<p class="figure-caption">Excerpt of <a href="https://github.com/ldurdel/hls_blowfish/blob/master/hw/hls_blowfish.cpp">hls_blowfish.cpp</a></p>
 
 To separate this mechanism from the actual logic, the Blowfish AFU calls `process_action()` if the `hls_action()` invocation was not a configuration request. This function is the first AFU specific part and the right place to extract all necessary parameters and commands from the job structure. This is accessible via the `action_reg * act_reg` parameter. It contains the general AFU control registers in `act_reg->Control` and the AFU specific job struct in its `act_reg->Data` member, which is organized as specified in the common `action_blowfish.h` header. When using members of the type `struct snap_addr` care should be taken, as they not only include the actual address, but only fields for the length of the specified address range, the type of memory referenced and some flags intended for later use in the SNAP framework.
 The Blowfish example uses as yet only the address part of this struct and thus the job struct decoding looks as follows:
@@ -215,6 +215,7 @@ void main()
     hls_action(din_gmem, dout_gmem, &act_reg, &act_config);
 }
 ```
+<p class="figure-caption">Excerpt of <a href="https://github.com/ldurdel/hls_blowfish/blob/master/hw/hls_blowfish.cpp">hls_blowfish.cpp</a></p>
 
 ### Using the SNAP Environment
 
