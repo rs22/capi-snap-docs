@@ -86,6 +86,12 @@ This can be seen in the code above. Instead of using the usual `int` for loop co
 
 The hardware implementation (`hls_blowfish.cpp`) can define a `main()` function, that should be non-synthesizable. It will be the entry point for debugging and should contain a testbench for the HLS code.
 
+---
+
+When building an action there often arises the need for debugging. The classic approach in hardware development is to simulate the design on a testbench that applies predefined signal sequences to the design under test and monitors how it reacts. This procedure is perfectly possible with an HLS design as the C code is translated to VHDL modules that act like any user written hardware design. Nevertheless the translation process produces somewhat cryptic names for states and signals. Furthermore the state machine is not easily comprehensible to a developer used to C code and the mapping between states and C statements is not obvious. Therefore it is desirable to run the HLS code like a regular C program in a software debugger to fix errors on that level, always assuming that the translated hardware modules behave exactly as the original C code.
+
+---
+
 In a later stage of the development, it will set up a complete SNAP environment to execute the AFU code in software just as if it was invoked in hardware. For now it is sufficient to write test cases for the algorithm to debug the implementation and assure its correctness before the SNAP integration can begin. The example below shows how the encrypt function could be tested.
 
 ```cpp
