@@ -11,7 +11,6 @@
 * [Creating your own action](creating-your-own-action.md)
   * [Minimal host software](creating-your-own-action/test.md)
   * [Hardware development](run-on-real-fpga-hardware/hardware-development.md)
-  * [Debugging with the Vivado test bench](run-on-real-fpga-hardware/debugging-using-the-test-bench.md)
   * [Optimization and evaluation against software](creating-your-own-action/optimization-and-evaluation-against-software.md)
 * [Appendix](appendix.md)
   * [Creating an Adder-AFU using Verilog and CAPI](chapter1/creating-an-adder-afu-using-verilog-and-capi.md)
