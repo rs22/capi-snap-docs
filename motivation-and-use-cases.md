@@ -12,25 +12,29 @@ In order to overcome these issues, IBM provides the CAPI and SNAP frameworks dis
 
 ### Offloading parallel computation tasks from the CPU to the FPGA
 
-![](/assets/offload.png)
+![Off-load Method](/assets/offload.png)
+<p class="figure-caption">Off-load Method</p>
 
 The most traditional use case for accelerators: Real-world benefits are however limited by the effective data bandwidth that the underlying bus \(e.g. PCIe\) supports. Application scenarios should focus on throughput instead of latency \(which the CPU is optimized for, with all its caches and prefetchers\). Massively parallelizable application procedures have to be isolated to create heterogenous applications where the sequential part remains on the CPU side. In contrast to CPUs, GPUs and FPGAs are still expected to significantly increase their computation power per watt over new hardware generations \([Dennard scaling](https://en.wikipedia.org/wiki/Dennard_scaling)\).
 
 ### Transforming data before it is sent to network or storage
 
-![](/assets/egress.png)
+![Egress Method](/assets/egress.png)
+<p class="figure-caption">Egress Method</p>
 
 Depending on the hardware capabilities of the FPGA \(i.e. integrated network or storage adapters; on-chip non-volatile memory\) this paradigm can be used to reduce load on the CPU by taking over I/O operations such as communication with network devices over certain protocols. Furthermore it adds the flexibility to transform the data stream \(e.g. encryption or compression\) without incurring any additional load on the CPU.
 
 ### Transforming or filtering data received from network or storage
 
-![](/assets/ingress.png)
+![Ingress Method](/assets/ingress.png)
+<p class="figure-caption">Ingress Method</p>
 
 Same as above, just the other way around.
 
 ### Aggregating data received from multiple external sources
 
-![](/assets/funnel.png)
+![Funnel Engine](/assets/funnel.png)
+<p class="figure-caption">Funnel Engine</p>
 
 This scenario is especially interesting when the combined input bandwidth of all connected external sources is greater than the available bandwidth from the FPGA to the CPU \(otherwise: 'drips into the funnel'\). One application example could be to pre-filter or pre-aggregate incoming sensor data to reduce the amount of data that needs to be transferred via PCIe buses to the CPU.
 

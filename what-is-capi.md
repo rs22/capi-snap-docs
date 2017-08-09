@@ -8,7 +8,8 @@ As yet, a CAPI accelerator card is connected to the system via a PCIe slot. Howe
 
 ### Architecture
 
-![](/assets/CAPI__block_diagramm.png)
+![CAPI Block Diagram](/assets/CAPI__block_diagramm.png)
+<p class="figure-caption">CAPI Block Diagram</p>
 
 The block diagram above shows that CAPI consists of several components distributed among the accelerator and host CPU: The logic on the FPGA is split into the application specific AFU \(Accelerator Function Unit\) part, that implements the accelerator hardware proper, and the PSL \(Power Service Layer\). The latter is a fixed design provided by IBM, that implements the interface logic necessary to provide cached virtual host memory access and job management services to the AFU.
 
@@ -26,5 +27,5 @@ The interface between AFU and PSL consists of five semi-independent sets of sign
 
 This complex interface between PSL and AFU enables an efficient operation and communication with the PSL, but imposes higher efforts on an AFU developer: In order to perform a single read operation three concurrent interfaces must be controlled and monitored, requiring additional states in the AFU state machine. An example provides the figure below, that depicts the structure and state machine of a simple AFU that does nothing more than add two numbers stored in host memory.
 
-![](/assets/statemachine.png)
-
+![State Machine model of the Adder AFU](/assets/statemachine.png)
+<p class="figure-caption">State Machine model of the Adder AFU</p>
