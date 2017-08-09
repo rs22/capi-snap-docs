@@ -7,7 +7,9 @@ Makefile
 
 CODE
 
+
+<img style="float: left;" width="42px" src="/assets/brain.svg"/>
 To bring it to the structure of a snap example, we need more commmand line options, file reading and printed information. This can be found in [link]. Also, software impl. to compare [link].
 
 
-<img width="42px" src="/assets/brain.svg">
+<img style="float: left;" width="42px" src="/assets/brain.svg">
