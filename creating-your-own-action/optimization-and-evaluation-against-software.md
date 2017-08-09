@@ -96,9 +96,9 @@ static void bf_encrypt(bf_halfBlock_t & left, bf_halfBlock_t & right)
     for (int i = 0; i < 16; i += 2)
     {
         left ^= g_P[i];
-        right ^= bf_f(left, iCpy);
+        right ^= bf_f(left);
         right ^= g_P[i+1];
-        left ^= bf_f(right, iCpy);
+        left ^= bf_f(right);
     }
 
     bf_halfBlock_t tmp = left ^ g_P[16];
@@ -106,6 +106,10 @@ static void bf_encrypt(bf_halfBlock_t & left, bf_halfBlock_t & right)
     right = tmp;
 }
 ```
+
+
+***
+
 
 [! improve memory throughput, 4k buffering]
 
