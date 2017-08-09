@@ -14,7 +14,16 @@ After SNAP is configured, a simulation model of the user design can be built wit
 $SNAP_ROOT/hardware> make model
 ```
 
-All HDL sources both from SNAP and the user design are compiled into a simulation model and the simulator configuration is written into a shell script. The simulation of large hardware designs is computationally very expensive. Therefore the resulting model does not include the PSL nor any part of the host side hardware. Nevertheless these components are essential for a user application to access the AFU under test. The solution is the PSLSE \(Power Service Layer Simulation Environment\) server, that implements a higher level and thus faster model of the internal CAPI components. It provides a special version of the libcxl, that does not attempt to interact with any cxl device, but connects to the PSLSE server to access the virtual device it provides. In the same way, the PSL is not simulated as a hardware component, but is only a placeholder, whose behavior on the signal level is controlled by the PSLSE server via a network connection.
+All HDL sources both from SNAP and the user design are compiled into a simulation model and the simulator configuration is written into a shell script. The simulation of large hardware designs is computationally very expensive. Therefore the resulting model does not include the PSL nor any part of the host side hardware. Nevertheless these components are essential for a user application to access the AFU under test. The solution is the PSLSE \(Power Service Layer Simulation Environment\) server.
+
+<!-- Brain box -->
+<div style="background:#EEF3F4;padding:1em">
+<img style="color:#375659;float:left;width:3em;height:3em;margin-right:1em" src="/assets/brain.svg"/>
+<span style="overflow:hidden;display:block">
+The PSLSE implements a higher level and thus faster model of the internal CAPI components. It provides a special version of the libcxl, that does not attempt to interact with any CAPI device, but connects to the PSLSE server to access the virtual device it provides. In the same way, the PSL is not simulated as a hardware component, but is only a placeholder, whose behavior on the signal level is controlled by the PSLSE server via a network connection.
+</span>
+</div>
+<!-- /Brain box -->
 
 The necessary setup of the PSLSE server and its connection to the simulator is done automatically by a script called `run_sim`. It creates an environment where the regular libcxl is replaced by the PSLSE version. Thus all applications started in this environment will automatically interact with the simulated AFU. The script supports different modes of operation:
 
