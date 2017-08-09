@@ -29,13 +29,19 @@ In this situation it is necessary to understand how arrays are implemented on th
 More than two parallel instances of `bf_f()` require more than two memory access ports to the S array. This particular read-only-case permits to overcome this limitation by maintaining a sufficient (\#instances/2) number of copies. This is however only useful, if each copy of the array is mapped into its particular set of Block RAMs so that no two copies share one Block RAM. To acheive this, HLS provides an annotation to control how arrays are mapped to Block RAMs:
 
 ```
+//in action_blowfish.H
 typedef ap_uint<BF_S_DATA_W> bf_S_t[BF_S_CPYCNT][BF_S_ARYCNT][BF_S_ENTCNT];
-//---
+
+//in hls_blowfish.cpp
 static bf_S_t g_S;
-//---
+
+//in hls_blowfish.cpp:hls_action()
 #pragma HLS ARRAY_PARTITION variable=g_S complete dim=1
 ```
 
+This example shows, how a third dimension is added to the originally two-dimensional S array to provide space for its copies. The `#pragma`, which must be placed inside a function (preferably the entry point `hls_action()`), partitions `g_S` completely along the copy dimension ensuring that each copy resides in a separate Block RAM.
+
+With an appropriate number of read ports, it is now necessary that the generated hardware structures utilize them efficiently. This involves explicit scheduling, which instance of `bf_f()` reads from which copy of the S array.
 
 [! improve encrypt throughput]
     [! parallel implementation of encrypt, characteristics and dependencies]

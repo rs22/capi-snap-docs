@@ -10,8 +10,8 @@ As the key pre-processing is quite expensive, we want to be able to handle large
 1. Encrypt data with the current key
 1. Decrypt data with the current key
 
-Each call to our action will be one of these operations. 
-TODO correct this: When calling an action, the parameters are shared as a struct in host memory: the AFU gets the pointer to this struct and can thereby access the parameters. How 
+Each call to our action will specify one of these operations. 
+When the action is called, the SNAP library automatically writes the job struct residing in host memory to the AFU's IO Register space (MMIO). This space is implemented by a SNAP hardware component and available to the user design via the `action_reg *` parameter. How the AFU uses this parameter to access the job struct will be explained in the _Hardware Development_ section. 
 
 We create an empty repository outside of the SNAP folder structure and call it `hls_blowfish`. To use the existing build structures, we divide the directory into `hw`, `sw` and `include`. While files exclusively needed for the hardware or software definition are placed in their respective directory, the `include` directory contains the header files important for both.
 
