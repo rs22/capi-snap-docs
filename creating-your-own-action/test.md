@@ -4,6 +4,8 @@ To focus on what may be new for software developers â€” i.e. the hardware part â
 
 To seperate this from the bigger example that you will also find in our github repository, we create the directory `hls_blowfish/sw_minimal`.
 
+### Makefile
+
 First, we copy a Makefile from one of the examples \(e.g. `snap/actions/hls_bfs/sw/Makefile`\) into our `hls_blowfish/sw_minimal` directory and modify it to build blowfish.
 
 ```Makefile
@@ -26,12 +28,40 @@ projs += snap_blowfish_minimal
 include $(SNAP_ROOT)/actions/software.mk
 ```
 
-CODE
+### Host program
+
+The Makefile builds `hls_blowfish/sw_minimal/snap_blowfish_minimal.c` which we created by copying and modifing `snap/actions/hls_bfs/sw/snap_bfs.c`. In the following paragraphs we explain the most important parts. View the complete code [here]().
+
+```C
+static void snap_prepare_blowfish(struct snap_job *job,
+        uint32_t mode_in,
+        uint32_t data_length_in,
+        blowfish_job_t *bjob_in,
+        blowfish_job_t *bjob_out,
+        const void *addr_in,
+        uint16_t type_in,
+        void *addr_out,
+        uint16_t type_out)
+{
+    snap_addr_set(&bjob_in->input_data, addr_in, data_length_in,
+		  type_in, SNAP_ADDRFLAG_ADDR | SNAP_ADDRFLAG_SRC);
+
+    snap_addr_set(&bjob_in->output_data, addr_out, data_length_in,
+		  type_out, SNAP_ADDRFLAG_ADDR | SNAP_ADDRFLAG_DST |
+		  SNAP_ADDRFLAG_END );
+
+    bjob_in->mode = mode_in;
+    bjob_in->data_length = data_length_in;
+
+    // Here sets the 108byte MMIO settings input.
+    // We have input parameters.
+    snap_job_set(job, bjob_in, sizeof(*bjob_in),
+		 bjob_out, sizeof(*bjob_out));
+}
+```
 
 
+### Further comments
 
-To bring it to the structure of a snap example, we need more commmand line options, file reading and printed information. This can be found in \[link\]. Also, software impl. to compare \[link\].
-
-##### Maintaining a Redundant Software Implementation
-
-Though not necessary for the hardware implementation itself, it is often a good idea to maintain a separate implementation of the AFU functionality in software. Besides being a good reference for testing the hardware implementation correctness, is also serves as a baseline for performance analyses.
+Our minimal implementation lacks error handling and is inflexible due to hardcoded information. To bring it to the level of a SNAP example, it would need some more features, including commmand line options, file reading and debug output. You can find the code for the real example in the same repository in the `sw` folder in [snap_blowfish.c](https://github.com/ldurdel/hls_blowfish/blob/master/sw/snap_blowfish.c).
+If you clone the [repository](https://github.com/ldurdel/hls_blowfish), it can be used like the original examples. This also includes a software implementation of the blowfish algorithm in `hls_blowfish/sw/action_blowfish.c`. Though not necessary for the hardware implementation itself, maintain such a separate implementation of the AFU is often a good idea. Besides being a reference for testing the hardware implementation correctness, is also serves as a baseline for performance analyses.
