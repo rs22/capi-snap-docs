@@ -16,11 +16,11 @@ Xilinx Vivado is used to synthesize and layout our actions for the FPGA and cont
 2. If not using the evaluation version, obtain a Vivado license-file (.lic)
 3. Add Vivado to your path by sourcing its settings file:
 ```bash
-$ source /opt/Xilinx/Vivado/2016.4/settings64.sh
+~ $ source /opt/Xilinx/Vivado/2016.4/settings64.sh
 ```
 If you do not want to repeat this after every reboot, do it automatically on startup by appending it to your bashrc:
 ```bash
-echo "source /opt/Xilinx/Vivado/2016.4/settings64.sh" >> ~/.bashrc
+~ $ echo "source /opt/Xilinx/Vivado/2016.4/settings64.sh" >> ~/.bashrc
 ```
 
 <div class="brainbox"><span>
@@ -44,7 +44,7 @@ Because simulation of hardware is computationally intense, only the actions and 
 
 Clone the PSLSE with
 ```bash
-$ git clone https://github.com/ibm-capi/pslse
+~ $ git clone https://github.com/ibm-capi/pslse
 ```
 
 #### 4. SNAP
@@ -52,7 +52,7 @@ $ git clone https://github.com/ibm-capi/pslse
 Now you still need to clone SNAP itself:
 
 ```bash
-$ git clone https://github.com/open-power/snap
+~ $ git clone https://github.com/open-power/snap
 ```
 
 The repository is split into three folders. The `software` and `hardware` folder contain the structures necessary for building software and hardware, while the `actions` folder contains various examples that are ready to be built. Each action is either prefixed by `hdl_` or `hls_`, indicating whether it is defined in a hardware description language or high level HLS code. Inside each action, the hardware specification lives in `hw` while the host application is implemented in `sw`.
@@ -104,8 +104,8 @@ FACTORY_IMAGE           is set to: "FALSE"
 Depending on which card you use you may have to change `$FPGACARD` and `$FPGACHIP`:
 
 ```bash
-$ export FPGACARD=<FGT or KU3>
-$ export FPGACARD=<your chip identifier>
+~ $ export FPGACARD=<FGT or KU3>
+~ $ export FPGACARD=<your chip identifier>
 ```
 
 While `xsim` is the default Simulator and  `SNAP_ROOT` is set automatically, `ACTION_ROOT` and the SNAP function Variables have to be chosen based on the action you want to build.
@@ -116,7 +116,7 @@ While `xsim` is the default Simulator and  `SNAP_ROOT` is set automatically, `AC
 As an example, let us built one of the provided actions. In order to tell SNAP that you would like to build the breadth-first search action (called `hls_bfs` because it's implemented using the C-like Vivado HLS language), set `ACTION_ROOT` to the absolute path of the `actions/hls_bfs` directory inside your local SNAP repository:
 
 ```bash
-$ export ACTION_ROOT=<path to snap>/actions/hls_bfs
+~ $ export ACTION_ROOT=<path to snap>/actions/hls_bfs
 ```
 
 Because `hls_bfs` does not use DRAM or NVMe storage (see the [documentation](https://github.com/open-power/snap/tree/master/actions/hls_bfs/doc)), we leave `SDRAM_USED` and `NVME_USED` to `FALSE`.
@@ -124,7 +124,7 @@ Because `hls_bfs` does not use DRAM or NVMe storage (see the [documentation](htt
 Now, if you have not done so already, change into the `hardware` directory of your snap repository (`cd $SNAP_ROOT/hardware`). If all the settings are correct (you can check that by calling `./snap_settings`), you can generate the Vivado project files needed to build and simulate the action with:
 
 ```bash
-$ make config
+$SNAP_ROOT/hardware/ $ make config
 ```
 
 You can follow the same procedure if you want to build other examples or your own actions.
