@@ -43,6 +43,8 @@ typedef struct blowfish_job {
 #endif
 #endif	/* __ACTION_BLOWFISH_H__ */
 ```
+<p class="figure-caption">Frame for the header file defining the job structure.
+</p>
 
 In accordance with https://github.com/open-power/snap/blob/master/ActionTypes.md, we choose an action type number from the "free for experimental use" range:
 
@@ -64,3 +66,5 @@ typedef struct blowfish_job {
     uint32_t data_length;
 } blowfish_job_t;
 ```
+<p class="figure-caption">Different operation modes we defined and specific job structure.
+</p>
