@@ -27,7 +27,7 @@ In `hls_blowfish/include/action_blowfish.h` we specify the our action. By copyin
 extern "C" {
 #endif
 
-#define BLOWFISH_ACTION_TYPE 0xXXXXXX
+#define BLOWFISH_ACTION_TYPE 0xXXXXXX // TODO
 
 #ifndef CACHELINE_BYTES
 #define CACHELINE_BYTES 128
@@ -42,12 +42,12 @@ typedef struct blowfish_job {
 #endif	/* __ACTION_BLOWFISH_H__ */
 ```
 
-According to https://github.com/open-power/snap/blob/master/ActionTypes.md, we choose an action type number from the "free for experimental use" range:
+In accordance with https://github.com/open-power/snap/blob/master/ActionTypes.md, we choose an action type number from the "free for experimental use" range:
 
 `#define BLOWFISH_ACTION_TYPE 0x00000108
 `
 
-For the job struct, we need to specify the operation, the address of the input data and its length and where to write output data. We do not need a field where the length of the output data can be written, as it is defined by operation and input length.
+For the job struct, we want to specify the operation, the address of the input data and its length and where to write output data. We do not need a field where the length of the output data can be written, as it is defined by operation and input length.
 
 TODO data has to be multiple of 128 bytes
 
