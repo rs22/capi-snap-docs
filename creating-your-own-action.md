@@ -12,7 +12,7 @@ As the key pre-processing is quite expensive, we want to be able to handle large
 
 Each call to our action will specify one of these operations.
 <div class="brainbox"><span>
-When the action is called, the SNAP library automatically writes the job struct residing in host memory to the AFU's IO Register space (MMIO). This space is implemented by a SNAP hardware component and available to the user design via the <code>action_reg *</code> parameter. How the AFU uses this parameter to access the job struct will be explained in the _Hardware Development_ section. 
+When the action is called, the SNAP library automatically writes the job struct residing in host memory to the AFU's IO Register space (MMIO). This space is implemented by a SNAP hardware component and available to the user design via the <code>action_reg *</code> parameter. How the AFU uses this parameter to access the job struct will be explained in the <em>Hardware Development</em> section. 
 </span></div>
 
 We create an empty repository outside of the SNAP folder structure and call it `hls_blowfish`. To use the existing build structures, we create the subdirectories into `hw`, `sw` and `include`. While files exclusively needed for the hardware or software definition are placed in their respective directory, the `include` directory contains the header files important for both.
