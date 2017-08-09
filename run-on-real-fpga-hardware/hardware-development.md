@@ -106,11 +106,8 @@ int main()
 
 The Vivado HLS IDE is used to run such a testbench. Once installed it should be started from a shell with all SNAP environment variables set up. The project to be opened is the directory in `${ACTION_ROOT}/hw` that contains an FPGA part number in its name. In this case it would be `${SNAP_ROOT}/actions/hls_blowfish/hw/hlsBlowfish_xcku060-ffva1156-2-e`.
 
-<figure>
-  <img src="/assets/hls_cflags.png" alt="Screenshot Vivado HLS: Synth View and PSettings Dialog">
-  <figcaption class="figure-caption">Screenshot Vivado HLS: Synth View and PSettings Dialog</figcaption>
-</figure>
-![Screenshot Vivado HLS: Synth View and PSettings Dialog](/assets/hls_cflags.png)
+![Vivado HLS: Synthesis View and Project Settings Dialog](/assets/hls_cflags.png)
+<p class="figure-caption">Vivado HLS: Synthesis View and Project Settings Dialog</p>
 
 Before running the testbench, the hardware source file `hls_blowfish.cpp` must be added as a simulation source, by right clicking _Test Bench_ in the project explorer and selecting _Add Files..._ . Furthermore some SNAP specific CFLAGS must be set up by opening the _Project_ -> _Project Settings_ dialog and editing the CFLAGS of the `hls_blowfish.cpp` file in the _Simulation_ Tab. The flags to use are documented in the [SNAP Action Readme](https://github.com/open-power/snap/tree/master/actions#xilinx-hls-testbench) on GitHub. At the time of writing the required flags were:
 
@@ -120,7 +117,8 @@ Before running the testbench, the hardware source file `hls_blowfish.cpp` must b
 
 Afterwards by pressing the _Run C Simulation_ icon in the toolbar the simulation will be started and the Debug view entered, where the usual functionality of a C debugger is available.
 
-![Screenshot Vivado HLS: Debug View and Simulation in Progress](/assets/hls_debugging.png)
+![Vivado HLS: Debug View and Simulation in Progress](/assets/hls_debugging.png)
+<p class="figure-caption">Vivado HLS: Debug View and Simulation in Progress</p>
 
 ### Integration with the SNAP Framework
 
