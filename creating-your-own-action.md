@@ -1,4 +1,4 @@
-## Creating your own action
+## Creating a New AFU
 
 This chapter will walk you through the complete process of creating an FPGA-based implementation of encrypting and decrypting with the [blowfish cipher](https://en.wikipedia.org/wiki/Blowfish_\(cipher\)).
 
