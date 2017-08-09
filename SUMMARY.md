@@ -12,6 +12,6 @@
   * [Minimal host software](creating-your-own-action/test.md)
   * [Hardware development](run-on-real-fpga-hardware/hardware-development.md)
   * [Optimization and evaluation against software](creating-your-own-action/optimization-and-evaluation-against-software.md)
-* [Appendix](appendix.md)
+* [Appendix](chapter1/creating-an-adder-afu-using-verilog-and-capi.md)
   * [Creating an Adder-AFU using Verilog and CAPI](chapter1/creating-an-adder-afu-using-verilog-and-capi.md)
 
