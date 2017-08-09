@@ -13,7 +13,7 @@ As the key pre-processing is quite expensive, we want to be able to handle large
 Each call to our action will be one of these operations. 
 TODO correct this: When calling an action, the parameters are shared as a struct in host memory: the AFU gets the pointer to this struct and can thereby access the parameters. How 
 
-We create an empty repository outside of the SNAP folder structure and call it `hls_blowfish`. To use the existing build structures, we divide the directory into `hw`, `sw` and `include`. While files execlusivly needed for the hardware or software definition are placed in their respective directory, the `include` directory contains the header files important for both.
+We create an empty repository outside of the SNAP folder structure and call it `hls_blowfish`. To use the existing build structures, we divide the directory into `hw`, `sw` and `include`. While files exclusively needed for the hardware or software definition are placed in their respective directory, the `include` directory contains the header files important for both.
 
 In `hls_blowfish/include/action_blowfish.h` we specify the our action. By copying `snap/actions/hls_bfs/include/action_bfs.h` and deleting and renaming action-specific parts, we get the following frame:
 
