@@ -58,7 +58,8 @@ static void bf_fLine(bf_halfBlock_t res[BF_BPL], bf_halfBlock_t h[BF_BPL])
                  c = (bf_SiE_t)(h[iBlock] >> 8),
                  d = (bf_SiE_t) h[iBlock];
 
-        res[iBlock] = ((g_S[iBlock/2][0][a] + g_S[iBlock/2][1][b]) ^ g_S[iBlock/2][2][c]) + g_S[iBlock/2][3][d];
+        res[iBlock] = ((g_S[iBlock/2][0][a] + g_S[iBlock/2][1][b]) ^
+                        g_S[iBlock/2][2][c]) + g_S[iBlock/2][3][d];
     }
 }
 ```
@@ -87,8 +88,7 @@ static void bf_encryptLine(bf_halfBlock_t leftHBlocks[BF_BPL],
     rightHBlocks = tmp;
 }
 ```
-|abcd | ashtioen
-|iaosehtnioevni | asiohenioenianv
+
 ```
 static void bf_encrypt(bf_halfBlock_t & left, bf_halfBlock_t & right)
 {
