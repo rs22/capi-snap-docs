@@ -12,4 +12,4 @@ CODE
 To bring it to the structure of a snap example, we need more commmand line options, file reading and printed information. This can be found in [link]. Also, software impl. to compare [link].
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
-<img style="float: left;" width="42px" src="/assets/brain.svg">
+<img style="float: left;" height="2em" src="/assets/brain.svg">
