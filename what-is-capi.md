@@ -15,9 +15,9 @@ The PSL communicates with the host part of the CAPI hardware, the Coherent Accel
 <!-- Brain box -->
 <div style="background:#EEF3F4;padding:1em">
 <img style="color:#375659;float:left;width:3em;height:3em;margin-right:1em" src="/assets/brain.svg"/>
-<p style="overflow:hidden">
+<span style="overflow:hidden">
 The software part of CAPI, running on regular processor cores, consists of a driver in the linux kernel that exposes cxl devices representing an installed CAPI accelerator card. To encapsulate the interaction with raw cxl devices via read/write and ioctl systemcalls, libcxl provides a C API with the same functionality. Any user application, given sufficient privileges to interact with the cxl device, can use functions from and link against libcxl and thereby use the functions implemented by the AFU on any installed accelerator card.
-</p>
+</span>
 </div>
 <!-- /Brain box -->
 
