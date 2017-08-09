@@ -22,6 +22,7 @@ If you do not want to repeat this after every reboot, do it automatically on sta
 ```
 echo "source /opt/Xilinx/Vivado/2016.4/settings64.sh" >> ~/.bashrc
 ```
+4. Because a Vivado license is usually bound to a specific MAC address, Vivado scans your network adapters to verify the license. However, it only looks for interfaces named eth*. As a result, we had to rename our interface to eth0 on Ubuntu to make it work.
 
 #### 2. PSL checkpoint
 

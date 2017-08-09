@@ -15,10 +15,4 @@
   * [Optimization and evaluation against software](creating-your-own-action/optimization-and-evaluation-against-software.md)
 * [Appendix](appendix.md)
   * [Creating an Adder-AFU using Verilog and CAPI](chapter1/creating-an-adder-afu-using-verilog-and-capi.md)
-* [Introduction to Hardware Development](chapter1.md)
-  * [Installing Xilinx Vivado](chapter1/installing-xilinx-vivado.md)
-  * [Verilog and VHDL](chapter1/verilog-and-vhdl.md)
-  * [What is IBM CAPI?](chapter1/what-is-ibm-capi.md)
-* [Creating an AFU with SNAP](installing-xilinx-vivado.md)
-  * [Set up the Development Environment](installing-xilinx-vivado/set-up-the-development-environment.md)
 
