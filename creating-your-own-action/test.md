@@ -27,12 +27,17 @@ projs += snap_blowfish_minimal
 
 include $(SNAP_ROOT)/actions/software.mk
 ```
+<p class="figure-caption">Makefile<a href="url">link text</a>
+</p>
+
+
 
 ### Host program
 
 The Makefile builds `hls_blowfish/sw_minimal/snap_blowfish_minimal.c` which we created by copying and modifing `snap/actions/hls_bfs/sw/snap_bfs.c`. In the following paragraphs we explain the most important parts. View the complete code [here]().
 
-The `prepare_blowfish` method takes a pointer to two job structs (one for in and on for out) and the parameters for the job. It then makes the 
+The `prepare_blowfish` method takes a pointer to a empty SNAP job and two empty job structs (one for in and on for out) and the parameters for the job. It then initializes the `snap_addr` variables that the AFU will read and write and fills the input job struct with the parameters. This all is used to create the SNAP job.
+
 ```c
 static void snap_prepare_blowfish(struct snap_job *job,
         uint32_t mode_in,
@@ -44,6 +49,7 @@ static void snap_prepare_blowfish(struct snap_job *job,
         void *addr_out,
         uint16_t type_out)
 {
+    //initialize SNAP addresses
     snap_addr_set(&bjob_in->input_data, addr_in, data_length_in,
 		  type_in, SNAP_ADDRFLAG_ADDR | SNAP_ADDRFLAG_SRC);
 
@@ -51,6 +57,7 @@ static void snap_prepare_blowfish(struct snap_job *job,
 		  type_out, SNAP_ADDRFLAG_ADDR | SNAP_ADDRFLAG_DST |
 		  SNAP_ADDRFLAG_END );
 
+    // fill job struct
     bjob_in->mode = mode_in;
     bjob_in->data_length = data_length_in;
 
