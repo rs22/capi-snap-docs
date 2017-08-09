@@ -1,4 +1,47 @@
-# Creating an Adder-AFU using Verilog
+
+
+# Steps to setup, build and simulate a simple AFU using CAPI
+
+This guide includes the steps we performed to create a working AFU with CAPI. It is just one possible way to do it and is inspired by Kenneth Wilkes blog posts on CAPI.
+
+## Setup the environment
+1. Clone the PSL simulation engine https://github.com/ibm-capi/pslse
+1. Install Xilinx Vivado Webpack https://www.xilinx.com/support/download.html  _(Version 2017.1 didn’t work for us, we used 2016.4 instead)_
+1. Add `source <PATH_TO_YOUR_VIVADO_DIR>/settings64.sh` and 
+`export PSLSE_DIR=<PATH_TO_YOUR_PSLSE>` to your `~/.bashrc` i.e.
+```
+source /opt/Xilinx/Vivado/2016.4/settings64.sh
+export PSLSE_DIR=~/code/pslse/
+```
+
+1. Clone the `afu_hello_world` repository
+1. With the environment set up in point 3, run afu_hello_world/setup_pslse.sh once to build the simulation environment.
+
+1. Create a new repository or directory (subsequently called `my_afu`) for your application. It is a good practice to separate the hardware and software part of the project. We used the directories `afu` for the FPGA part and `consumer` for the C application that uses the AFU.
+1. Copy `pslse/afu_driver/verilog/top.v` into `my_afu/afu/` that will act as a wrapper for your AFU in the CAPI environment.
+1. Copy `afu.sv` and `capi.sv` from https://github.com/KennethWilke/capi-parity into `my_afu/afu/`. `capi.sv` provides useful type definitions for CAPI signals and `afu.sv` simplifies the interface of the official wrapper `top.v`. 
+1. Replace the module name `parity_afu` in `afu.sv` with how you want to name your module.
+Create `<YOUR_MODULE_NAME>.sv` with the following contets:
+```
+\`include "capi.sv"
+import CAPI::*;
+
+module <YOUR_MODULE_NAME> (
+  input clock,
+  output timebase_request,
+  output parity_enabled,
+  input JobInterfaceInput job_in,
+  output JobInterfaceOutput job_out,
+  input CommandInterfaceInput command_in,
+  output CommandInterfaceOutput command_out,
+  input BufferInterfaceInput buffer_in,
+  output BufferInterfaceOutput buffer_out,
+  input ResponseInterface response,
+  input MMIOInterfaceInput mmio_in,
+  output MMIOInterfaceOutput mmio_out);
+
+endmodule
+```
 
 * Similar example using VHDL: [https://github.com/ibm-capi/afu-walkthrough](https://github.com/ibm-capi/afu-walkthrough)
 
