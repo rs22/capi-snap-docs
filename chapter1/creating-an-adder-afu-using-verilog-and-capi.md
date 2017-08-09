@@ -7,9 +7,9 @@ As mentioned in the introduction, the PSL interface consists of six parts, the J
 ###JobInterface
 Via the job interface the AFU lifecycle is controlled by the PSL. This includes resetting the AFU, initiating jobs and monitoring the AFU's state.
 
-A transaction on the job interface is qualified by the valid signal and contains a command that is either RESET or START. To both commands the AFU reacts by asserting the done signal once the requested operation is complete. This might be immediately after assertion of valid, as shown in the first (RESET) transaction in the figure below. Otherwise the AFU can delay done by an arbitrary number of clock cycles thereby blocking the PSL and also any host process waiting for the operation to complete.
+A transaction on the job interface is qualified by the `valid` signal and contains a `command` that is either `RESET` or `START`. To both commands the AFU reacts by asserting the `done` signal once the requested operation is complete. This might be immediately after assertion of `valid`, as shown in the first (`RESET`) transaction in the figure below. Otherwise the AFU can delay `done` by an arbitrary number of clock cycles thereby blocking the PSL and also any host process waiting for the operation to complete.
 
-If the command is START, it also qualified the address signal, that contains the address of the job structure the AFU is meant to work on. As long as the AFU is working, it has to assert the running signal.
+If the command is `START`, it also qualifies the `address` signal, that contains the address of the job structure the AFU is meant to work on. As long as the AFU is working, it has to assert the `running` signal.
 
 ![](/assets/wave_job.svg)
 
@@ -18,7 +18,7 @@ If the command is START, it also qualified the address signal, that contains the
 The MMIO (Memory Mapped IO) interface allows the User Design to provide a register based view of the job-independent part of its state and configuration. This view can be mapped into the address space of a host process, which can thus configure the operation of the afu.
 The same interface is also used by the host to access the AFU Descriptor space, which contains registers with a standardized format (as specified in section 4 of the Manual) that specify the capabilities of the afu device.
 
-A transaction on the MMIO interface is initiated by the PSL with the assertion of the the valid line. This qualifies the register address, the read/write select, the word/doubleword select and the descriptor/user space select lines. A transaction is finished when the User Design asserts the acknowledge line. For a write transaction the data is presented on the data in signals while  valid is asserted, while a read transaction requires the data to be driven on the data out signals together with the assertion of acknowledge. The figure below illustrates both a read and a write transaction on the MMIO interface. Please note that the time from the recognition of the valid assertion to the assertion of the acknowledge line can be freely chosen by the user design. In the example below this time is one clock cycle for the read operation and zero clock cycles for the write operation.
+A transaction on the MMIO interface is initiated by the PSL with the assertion of the the `valid` line. This qualifies the register address, the read/write select, the word/doubleword select and the descriptor/user space select lines. A transaction is finished when the User Design asserts the `acknowledge` line. For a write transaction the data is presented on the `data_in` signal while `valid` is asserted, while a read transaction requires the data to be driven on the `data_out` signal together with the assertion of `acknowledge`. The figure below illustrates both a read and a write transaction on the MMIO interface. Please note that the time from the recognition of the `valid` assertion to the assertion of the `acknowledge` line can be freely chosen by the user design. In the example below this time is one clock cycle for the read operation and zero clock cycles for the write operation.
 
 ![](/assets/wave_mmio.svg)
 
