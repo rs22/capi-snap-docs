@@ -68,6 +68,8 @@ export PSL_DCP=<CAPI PSL Checkpoint file (b_route_design.dcp)>
 export PSLSE_ROOT=<path to PSLSE>
 source <path to snap>/hardware/snap_settings
 ```
+<p class="figure-caption">Template for a script to setup the SNAP environment.
+</p>
 
 As you have to do this everytime you open a new terminal window in which you want to use SNAP, we recommend writing it into a script. You may also call that script in your `~/.bashrc` which gets executed every time you open a new terminal window. 
 
@@ -96,6 +98,8 @@ NVME_USED               is set to: "FALSE"
 ILA_DEBUG               is set to: "FALSE"
 FACTORY_IMAGE           is set to: "FALSE"
 ```
+<p class="figure-caption">Example output of the snap_settings script.
+</p>
 
 Depending on which card you use you may have to change `$FPGACARD` and `$FPGACHIP`:
 
