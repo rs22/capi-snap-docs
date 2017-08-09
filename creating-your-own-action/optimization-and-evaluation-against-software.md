@@ -22,7 +22,19 @@ Encrypting multiple blocks in parallel imposes however a severe limitation on th
 Therefore the parallel encryption of data blocks - though limiting - is still a valid paradigm.
 
 In order to effectively utilize multiple instances of the encrypt function, care must be taken to coordinate access to resources shared by all instances, i.e. the S and P arrays.
-During the 
+With no key initialization operation pending, these arrays are read only resources, so that no inconsistent states can arise from multiple instances interacting with the arrays in parallel. However the read access patterns among the instances are problematic: While the P array accesses are the same for every instance given a synchrinized invocation, the four S array accesses performed by the `bf_f()` subroutine are data dependent, forbidding any prediction about common or regular access patterns.
+
+In this situation it is necessary to understand how arrays are implemented on the FPGA hardware: One or more Block RAM resources are instantiated to create a contiguous memory space large enough to hold the array, which is later mapped into that space. Each Block RAM has two access ports, so that in one clock cycle two independent memory operations can be performed.
+
+More than two parallel instances of `bf_f()` require more than two memory access ports to the S array. This particular read-only-case permits to overcome this limitation by maintaining a sufficient (\#instances/2) number of copies. This is however only useful, if each copy of the array is mapped into its particular set of Block RAMs so that no two copies share one Block RAM. To acheive this, HLS provides an annotation to control how arrays are mapped to Block RAMs:
+
+```
+typedef ap_uint<BF_S_DATA_W> bf_S_t[BF_S_CPYCNT][BF_S_ARYCNT][BF_S_ENTCNT];
+//---
+static bf_S_t g_S;
+//---
+#pragma HLS ARRAY_PARTITION variable=g_S complete dim=1
+```
 
 
 [! improve encrypt throughput]
