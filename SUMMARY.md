@@ -10,8 +10,8 @@
   * [Running on actual hardware](run-on-real-fpga-hardware.md)
 * [Creating your own action](creating-your-own-action.md)
   * [Minimal host software](creating-your-own-action/test.md)
-  * [Hardware development](run-on-real-fpga-hardware/hardware-development.md)
-  * [Optimization and evaluation against software](creating-your-own-action/optimization-and-evaluation-against-software.md)
+  * [Hardware Development](run-on-real-fpga-hardware/hardware-development.md)
+  * [Optimization](creating-your-own-action/optimization-and-evaluation-against-software.md)
 * [Appendix](chapter1/creating-an-adder-afu-using-verilog-and-capi.md)
-  * [Creating an Adder-AFU using Verilog and CAPI](chapter1/creating-an-adder-afu-using-verilog-and-capi.md)
+  * [Native CAPI Interface](chapter1/creating-an-adder-afu-using-verilog-and-capi.md)
 
