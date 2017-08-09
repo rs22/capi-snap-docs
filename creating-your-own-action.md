@@ -2,7 +2,7 @@
 
 This chapter will walk you through the complete process of creating an FPGA-based implementation of encrypting and decrypting with the [blowfish cipher](https://en.wikipedia.org/wiki/Blowfish_\(cipher\)).
 
-We chose it, because it is easy to implement and quite fast when encrypting or decrypting. Only the key-preprocessing when changing the key is expensive. Note that this implementation is not intended for real life use with confidential information but rather a demonstration for SNAP. To effectivly use the parallelization capabilities of the FPGA, we deviced for [Electronic Codebook](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Electronic_Codebook_.28ECB.29) as blockmode, because each block can be en- and decrypted individually. In a real-world scenario, we would recommend [CTR](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Counter_.28CTR.29).
+We chose it, because it is easy to implement and quite fast when encrypting or decrypting. Only the key-preprocessing when changing the key is expensive. Note that this implementation is not intended for real life use with confidential information but rather a demonstration for SNAP. To effectively use the parallelization capabilities of the FPGA, we deviced for [Electronic Codebook](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Electronic_Codebook_.28ECB.29) as blockmode, because each block can be en- and decrypted individually. In a real-world scenario, we would recommend [CTR](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Counter_.28CTR.29).
 
 As the key pre-processing is quite expensive, we want to be able to handle large data streams with one pre-processing. Therefore we decided to include three operations in our action:
 
@@ -13,7 +13,7 @@ As the key pre-processing is quite expensive, we want to be able to handle large
 Each call to our action will be one of these operations. 
 TODO correct this: When calling an action, the parameters are shared as a struct in host memory: the AFU gets the pointer to this struct and can thereby access the parameters. How 
 
-We create an empty repository ourside of the SNAP folder structure and call it `hls_blowfish`. To use the existing build structures, we divide the directory into `hw`, `sw` and `include`. While files execlusivly needed for the hardware or software definition are placed in their respective directory, the `include` directory contains the header files important for both.
+We create an empty repository outside of the SNAP folder structure and call it `hls_blowfish`. To use the existing build structures, we divide the directory into `hw`, `sw` and `include`. While files execlusivly needed for the hardware or software definition are placed in their respective directory, the `include` directory contains the header files important for both.
 
 In `hls_blowfish/include/action_blowfish.h` we specify the our action. By copying `snap/actions/hls_bfs/include/action_bfs.h` and deleting and renaming action-specific parts, we get the following frame:
 

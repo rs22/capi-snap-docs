@@ -26,7 +26,7 @@ Depending on the hardware capabilities of the FPGA \(i.e. integrated network or 
 
 ![](/assets/ingress.png)
 
-Basically same as above, just the other way around.
+Same as above, just the other way around.
 
 ### Aggregating data received from multiple external sources
 

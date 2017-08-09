@@ -2,11 +2,11 @@
 
 ## Setup and build preparation
 
-In order to work with SNAP and CAPI, the most important requirement is to install Xilinx Vivado. In our setup we used Ubuntu 16.04, but although not officially supported by the needed Vivado version, Ubuntu 17.04 should also be possible.
+In order to work with SNAP and CAPI, the most important requirement is to install Xilinx Vivado. In our setup we used Ubuntu 16.04, but although not officially supported by the needed Vivado version, working with Ubuntu 17.04 should also be possible.
 
 ### Download and installation
 
-Let's first download, install and configure the software and repositories we need on our devolpment machine.
+Let's first download, install and configure the software and repositories we need on our development machine.
 
 #### 1. Xilinx Vivado 
 
@@ -47,7 +47,7 @@ Now you still need to clone SNAP itself:
 git clone https://github.com/open-power/snap
 ```
 
-The repository is split into three folders. The `software` and `hardware` folder contain the structures neccessary for building software and hardware, while the `actions` folder contains various examples that are ready to be built. Each action is either prefixed by `hdl_` or `hls_`, indicating whether it is definded in a hardware description language or high level HLS code. Inside each action, the hardware specifcation lives in `hw` while the host application is implemented in `sw`.
+The repository is split into three folders. The `software` and `hardware` folder contain the structures necessary for building software and hardware, while the `actions` folder contains various examples that are ready to be built. Each action is either prefixed by `hdl_` or `hls_`, indicating whether it is defined in a hardware description language or high level HLS code. Inside each action, the hardware specification lives in `hw` while the host application is implemented in `sw`.
 
 ### Preparing the build environment
 
@@ -96,7 +96,7 @@ export FPGACARD=<FGT or KU3>
 export FPGACARD=<your chip identifier>
 ```
 
-While `xsim` is the default Simulator and  `SNAP_ROOT` is set automatically, `ACTION_ROOT` and the SNAP function Variables have to be choosen based on the action you want to build.
+While `xsim` is the default Simulator and  `SNAP_ROOT` is set automatically, `ACTION_ROOT` and the SNAP function Variables have to be chosen based on the action you want to build.
 
 
 ### Selecting the action to build
