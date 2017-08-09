@@ -76,7 +76,7 @@ static void bf_keyInit(bf_halfBlock_t key[18])
 }
 ```
 
-When porting pseudo or existing C code to HLS, care should be taken when choosing data types: In software development it does not usually make a difference in terms of performance, if much wider data types than necessary are used, provided they do not exceed the underlying machine's native register width. When specifying hardware however, a data type's bit width has a significant impact on the size and performance of a design.
+When porting pseudocode or existing C code to HLS, care should be taken when choosing data types: In software development it does not usually make a difference in terms of performance, if much wider data types than necessary are used, provided they do not exceed the underlying machine's native register width. When specifying hardware however, a data type's bit width has a significant impact on the size and performance of a design.
 The generated hardware is exactly large enough to process the specified bit count. During the translation process it is generally impossible to determine the range of values a variable might take at runtime so that the worst case must be assumed. Therefore it is advisable to specify the bit width of a variable as tightly as possible. To enable a finer control, the template types `ap_uint` and `ap_int` can be parameterized to represent any integral bit width.
 
 This can be seen in the code above. Instead of using the usual `int` for loop counters, specific types such as `bf_SiE` were selected, that are defined in the hardware specific header.
