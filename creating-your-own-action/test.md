@@ -1,3 +1,5 @@
+## Creating a minimal host software
+
 To focus on what may be new for software developers — i.e. the hardware part — we create a minimal program to test our blowfish AFU. It should encrypt and then decrypt some hardcoded example data with a hardcoded key.
 
 To seperate this from the bigger example that you will also find in our github repository, we create the directory `hls_blowfish/sw_minimal`.
@@ -30,3 +32,6 @@ CODE
 
 To bring it to the structure of a snap example, we need more commmand line options, file reading and printed information. This can be found in \[link\]. Also, software impl. to compare \[link\].
 
+##### Maintaining a Redundant Software Implementation
+
+Though not necessary for the hardware implementation itself, it is often a good idea to maintain a separate implementation of the AFU functionality in software. Besides being a good reference for testing the hardware implementation correctness, is also serves as a baseline for performance analyses.
