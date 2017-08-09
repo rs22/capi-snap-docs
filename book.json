@@ -1,3 +1,7 @@
 {
-  "plugins": ["prism", "-highlight"]
+  "plugins": ["prism", "-highlight"],
+  "styles": {
+    "website": "styles/capi-snap.css",
+    "ebook": "styles/capi-snap.css"
+  }
 }

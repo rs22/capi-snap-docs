@@ -1,0 +1,9 @@
+div.brainbox {
+  background: #EEF3F4;
+  padding:1em;
+}
+div.brainbox:before {
+  background: url('../assets/brain.svg') no-repeat;
+  float:left;
+  width: 3em; 
+}
