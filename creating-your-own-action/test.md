@@ -1,6 +1,7 @@
 To focus on what may be new for software developers — i.e. the hardware part — we create a minimal program to test our blowfish AFU. It should encrypt and then decrypt some hardcoded example data with a hardcoded key.
 
 First, we copy a Makefile from one of the examples \(e.g. `snap/actions/hls_bfs/sw/Makefile`\) into our `hls_blowfish/sw` directory and modify it to build blowfish.
+
 ```Makefile
 # Finding $SNAP_ROOT
 ifndef SNAP_ROOT
