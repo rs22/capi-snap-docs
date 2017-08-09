@@ -66,7 +66,7 @@ static void snap_prepare_blowfish(struct snap_job *job,
 }
 ```
 <p class="figure-caption">Method for preparing a job based on input and output structures that contain SNAP addresses.
-</p>encryption and decryption with a previously set key
+</p>
 
 For how to execute an action, let's have a look at the method `blowfish_cipher` that can be used for either en- or decryption &mdash; depending on the `mode` supplied. A job is first created and then is executed via `snap_action_sync_execute_job(action, &job, timeout);`.
 
@@ -95,7 +95,7 @@ static int blowfish_cipher(struct snap_action *action,
     return 0;
 }
 ```
-<p class="figure-caption">Method for encryption and decryption with a previously set key.</a>.
+<p class="figure-caption">Method for encryption and decryption with a previously set key.
 </p>
 
 Now we define some example data and create the method `blowfish_test`, that first sets the key, then encrypts data with said key and decrypts it again.
@@ -105,7 +105,7 @@ blowfish_cipher(action, MODE_ENCRYPT, timeout,
                  example_plaintext, sizeof(example_plaintext),
                  example_encrypted);
 ```
-<p class="figure-caption">Example on how our test method calls the ciphering method for encryption.</a>.
+<p class="figure-caption">Example on how our test method calls the ciphering method for encryption.
 </p>
 
 Now we can allocate the card in our main method, select the action we want to use (as there can be multiple on the card) and execute our tests. After that we need to de-select the action and free the card to make it usable for others again.
@@ -138,10 +138,10 @@ int main()
     return 0;
 }
 ```
-<p class="figure-caption">The main method of our minimal blowfish test.</a>.
+<p class="figure-caption">The main method of our minimal blowfish test.
 </p>
 
-Again, for the complete implementation, please refer to the (code on Github)[https://github.com/ldurdel/hls_blowfish/blob/master/sw_minimal/snap_blowfish_minimal.c].
+Again, for the complete implementation, please refer to the [code on Github](https://github.com/ldurdel/hls_blowfish/blob/master/sw_minimal/snap_blowfish_minimal.c).
 
 Now we can call `make` in `hls_blowfish/sw_minimal` to build our software part and use it like described in _Simulating an action_ or _Running on actual hardware_. If you use the default directory name (`sw`), building is done automatically when calling `make model` on your devolping machine. Please remember that, when using real hardware, you want to build the software part on the power machine to avoid cross compiling.
 
