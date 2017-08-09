@@ -87,10 +87,10 @@ This can be seen in the code above. Instead of using the usual `int` for loop co
 The hardware implementation (`hls_blowfish.cpp`) can define a `main()` function, that should be non-synthesizable. It will be the entry point for debugging and should contain a testbench for the HLS code.
 
 <div class="brainbox"><span>
-When building an action there often arises the need for debugging. The classic approach in hardware development is to simulate the design on a testbench that applies predefined signal sequences to the design under test and monitors how it reacts. This procedure is perfectly possible with an HLS design as the C code is translated to VHDL modules that act like any user written hardware design. Nevertheless the translation process produces somewhat cryptic names for states and signals. Furthermore the state machine is not easily comprehensible to a developer used to C code and the mapping between states and C statements is not obvious. Therefore it is desirable to run the HLS code like a regular C program in a software debugger to fix errors on that level, always assuming that the translated hardware modules behave exactly as the original C code.
+When building an AFU there often arises the need for debugging. The classic approach in hardware development is to simulate the design on a testbench that applies predefined signal sequences to the design under test and monitors how it reacts. This procedure is perfectly possible with an HLS design as the C code is translated to VHDL modules that act like any user written hardware design. Nevertheless the translation process produces somewhat cryptic names for states and signals. Furthermore the state machine is not easily comprehensible to a developer used to C code and the mapping between states and C statements is not obvious. Therefore it is desirable to run the HLS code like a regular C program in a software debugger to fix errors on that level, always assuming that the translated hardware modules behave exactly as the original C code.
 </span></div>
 
-In a later stage of the development, it will set up a complete SNAP environment to execute the AFU code in software just as if it was invoked in hardware. For now it is sufficient to write test cases for the algorithm to debug the implementation and assure its correctness before the SNAP integration can begin. The example below shows how the encrypt function could be tested.
+In a later stage of the development, the testbench will set up a complete SNAP environment to execute the AFU code in software just as if it was invoked in hardware. For now it is sufficient to write test cases for the algorithm to debug the implementation and assure its correctness before the SNAP integration can begin. The example below shows how the encrypt function could be tested.
 
 ```cpp
 #ifdef NO_SYNTH
@@ -160,7 +160,17 @@ void hls_action(snap_membus_t  *din_gmem, snap_membus_t  *dout_gmem,
 }
 ```
 
-To separate this mechanism from the actual logic, the Blowfish AFU calls `process_action()` if the `hls_action()` invocation was not a configuration request. This function is the first AFU specific part and the right place to extract all necessary parameters and commands from the job structure. The Blowfish AFU provides three separate operations: Encryption, decryption and key initialization. They are distinguished by specific values of the `mode` field and use the input and output buffers if applicable. To maintain a clear structure, the operations are implemented in separate functions: `action_setkey()` performs the key initialization, whereas `action_endecrypt()` handles both en- and decryption as they are very similar. These functions contain the required memory access logic to execute the Blowfish algorithm consisting of the `bf_*()` functions efficiently.
+To separate this mechanism from the actual logic, the Blowfish AFU calls `process_action()` if the `hls_action()` invocation was not a configuration request. This function is the first AFU specific part and the right place to extract all necessary parameters and commands from the job structure. This is accessible via the `action_reg * act_reg` parameter. It contains the general AFU control registers in `act_reg->Control` and the AFU specific job struct in its `act_reg->Data` member, which is organized as specified in the common `action_blowfish.h` header. When using members of the type `struct snap_addr` care should be taken, as they not only include the actual address, but only fields for the length of the specified address range and some flags intended for later use in the SNAP framework.
+The Blowfish example uses as yet only the address part of this struct and thus the job struct decoding looks as follows:
+
+```
+    snapu64_t inAddr = action_reg->Data.input_data.addr;
+    snapu64_t outAddr = action_reg->Data.output_data.addr;
+    snapu32_t byteCount = action_reg->Data.data_length;
+    snapu32_t mode = action_reg->Data.mode;
+```
+
+The Blowfish AFU provides three separate operations: Encryption, decryption and key initialization. They are distinguished by specific values of the `mode` field and use the input and output buffers if applicable. To maintain a clear structure, the operations are implemented in separate functions: `action_setkey()` performs the key initialization, whereas `action_endecrypt()` handles both en- and decryption as they are very similar. These functions contain the required memory access logic to execute the Blowfish algorithm consisting of the `bf_*()` functions efficiently.
 
 
 ### Testbench II
