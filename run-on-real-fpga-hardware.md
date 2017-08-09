@@ -6,14 +6,9 @@ Once you have successfully tested your AFU in the simulator, it is time to actua
 
 To do that -- assuming you've executed `make config` before -- just run `make image` inside the hardware directory. Synthesizing the image is a memory intensive process and can take any time from 50 minutes to a couple of hours depending on the complexity of your action.
 
-<!-- Brain box -->
-<div style="background:#EEF3F4;padding:1em">
-<img style="color:#375659;float:left;width:3em;height:3em;margin-right:1em" src="/assets/brain.svg"/>
-<span style="overflow:hidden;display:block">
+<div class="brainbox"><span>
 If you suspect that the model synthesis may fail due to a timing problem (i.e. you have defined complex nested statements in your code), set the <code>TIMING_LABLIMIT</code> environment variable to a large negative value (<a href="https://github.com/open-power/snap/blob/master/hardware/setup/snap_build.tcl#L29">default</a>: -250 ps) before starting the build. This avoids build failures at a late stage in the process, but may produce images that are not suited for production use. However, you might have success trying them out in a lab environment.
-</span>
-</div>
-<!-- /Brain box -->
+</span></div>
 
 Once the build process has successfully finished, you can find the resulting bitstream files in the `build/Image` folder under the `hardware` directory. The version ending in \*.bit can be flashed using the JTAG programmer; the \*.bin file is meant for the capi-flash-script \(see the below sections\).
 
