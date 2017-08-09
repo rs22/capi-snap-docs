@@ -201,17 +201,5 @@ The statement above performs a single read operation from host memory. The resul
 
 *****************************************************
 
-
-[!? introduce BRAM, local arrays?]
-[!! resolve confusion with job structure location: CAPI = hostmem; SNAP = obscure part of MMIO space?!]
-
 [! arguments of hls_action, Control regs and AXI busses (2Host!, 0-1 DRAM, 0-1 NVMe)]
-
 [! access job struct]
-
-[!REF io performance, 4k buffering -> Opt section]
-[!? How to integrate source code, which version?]
-
-##### Maintaining a Redundant Software Implementation
-
-Though not necessary for the hardware implementation itself, it is often a good idea to maintain a separate implementation of the AFU functionality in software. Besides being a good reference for testing the hardware implementation correctness, is also serves as a baseline for performance analyses.
