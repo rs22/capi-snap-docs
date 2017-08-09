@@ -13,9 +13,11 @@ The block diagram above shows that CAPI consists of several components distribut
 The PSL communicates with the host part of the CAPI hardware, the Coherent Accelerator Processor Proxy (CAPP) via PCIe. The CAPP is part of the POWER CPU and from the point of view of the memory subsystem it has the same status as a processor core.
 
 <!-- Brain box -->
-<div style="background:#EEF3F4">
-<img style="color:#375659;float:left;width:3em;height:3em;margin:1em" src="/assets/brain.svg"/>
+<div style="background:#EEF3F4;padding:1em">
+<img style="color:#375659;float:left;width:3em;height:3em;margin-right:1em" src="/assets/brain.svg"/>
+<p style="overflow:hidden">
 The software part of CAPI, running on regular processor cores, consists of a driver in the linux kernel that exposes cxl devices representing an installed CAPI accelerator card. To encapsulate the interaction with raw cxl devices via read/write and ioctl systemcalls, libcxl provides a C API with the same functionality. Any user application, given sufficient privileges to interact with the cxl device, can use functions from and link against libcxl and thereby use the functions implemented by the AFU on any installed accelerator card.
+</p>
 </div>
 <!-- /Brain box -->
 
