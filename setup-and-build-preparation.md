@@ -71,7 +71,7 @@ source <path to snap>/hardware/snap_settings
 <p class="figure-caption">Template for a script to setup the SNAP environment.
 </p>
 
-As you have to do this everytime you open a new terminal window in which you want to use SNAP, we recommend writing it into a script. You may also call that script in your `~/.bashrc` which gets executed every time you open a new terminal window. 
+As you have to do this every time you open a new terminal window in which you want to use SNAP, we recommend writing it into a script. You may also call that script in your `~/.bashrc` which gets executed automatically once you open a new terminal window.
 
 When executed (or sourced), `snap_settings` displays the settings for your build:
 
@@ -108,8 +108,7 @@ Depending on which card you use you may have to change `$FPGACARD` and `$FPGACHI
 ~ $ export FPGACARD=<your chip identifier>
 ```
 
-While `xsim` is the default Simulator and  `SNAP_ROOT` is set automatically, `ACTION_ROOT` and the SNAP function Variables have to be chosen based on the action you want to build.
-
+While `xsim` is the default Simulator and  `SNAP_ROOT` is set automatically, `ACTION_ROOT` and the SNAP function variables (`SDRAM_USED`, `NVME_USED`) have to be chosen based on the action you want to build.
 
 ### Selecting the action to build
 
@@ -128,4 +127,4 @@ $SNAP_ROOT/hardware $ make config
 ```
 
 You can follow the same procedure if you want to build other examples or your own actions.
-Whenever you change one of the `snap_settings` parameters, you will have to execute `make clean config` to re-generate the project files (be careful with cleaning, however, as all previously built model and image files will be lost!)
+Whenever you change one of the `snap_settings` parameters, you will have to execute `make clean config` to re-generate the project files. Be careful with cleaning, however, as all previously built model and image files will be lost!

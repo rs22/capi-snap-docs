@@ -18,11 +18,11 @@ While Xilinx Vivado is used to synthesize and layout the action for the FPGA or 
 
 #### High Level Synthesis support
 
-Incorporating Vivado HLS into the build process allows the action behaviour to also be specified in C or C++ which automatically gets converted to hardware code. Even though it is not possible to completely abstract from thinking about pipelining and parrallelization, it removes the need for developers to learn VHDL or Verilog.
+Incorporating Vivado HLS into the build process allows the action behavior to also be specified in C or C++ which automatically gets converted to hardware code. Even though it is not possible to completely abstract from thinking about pipelining and parallelization, it removes the need for developers to learn VHDL or Verilog.
 
 #### Ready-to-run examples
 
-SNAP contains various examples with test data that can be simulated or run on a real device. They help to learn the build flow and act as a stepping stone to creating own actions. A list of the available example actions can be found [in the repo](https://github.com/open-power/snap/tree/master/actions).
+SNAP contains various examples with test data that can be simulated or run on a real device. They help to learn the build flow and act as a stepping stone to creating own actions. A list of the available example actions can be found [in the SNAP repository](https://github.com/open-power/snap/tree/master/actions).
 
 ### Framework part
 
@@ -30,7 +30,7 @@ SNAP also tries to abstract from the low level view of CAPI where it is possible
 
 #### Simpler API
 
-This includes providing a simpler API for the interaction with the FPGA. When calling an action in CAPI the waiting for return had to be implemented by the callee on the host. In SNAP, the action is prepared by creating a job with a filled parameter struct and then called via the blocking call `snap_action_sync_execute_job(action, &job, timeout);`
+This includes providing a simpler API for the interaction with the FPGA. When calling an action in CAPI the wait for completion has to be implemented by the caller on the host. In SNAP, the action is prepared by creating a job with a filled parameter struct and then called via the blocking call `snap_action_sync_execute_job(action, &job, timeout);`
 
 #### Unified memory access
 
