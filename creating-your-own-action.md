@@ -46,7 +46,7 @@ typedef struct blowfish_job {
 <p class="figure-caption">Frame for the header file defining the job structure.
 </p>
 
-In accordance with https://github.com/open-power/snap/blob/master/ActionTypes.md, we choose an action type number from the "free for experimental use" range:
+In accordance with [SNAP's action type guidelines](https://github.com/open-power/snap/blob/master/ActionTypes.md), we choose an action type number from the 'free for experimental use' range:
 
 ```cpp
 #define BLOWFISH_ACTION_TYPE 0x00000108
@@ -69,4 +69,4 @@ typedef struct blowfish_job {
 <p class="figure-caption">Different operation modes we defined and specific job structure.
 </p>
 
-The resulting `action_blowfish.h` can be found [here](https://github.com/ldurdel/hls_blowfish/blob/master/sw_minimal/Makefile).
+The resulting `action_blowfish.h` can be found [here](https://github.com/ldurdel/hls_blowfish/blob/master/include/action_blowfish.h).

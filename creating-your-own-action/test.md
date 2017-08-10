@@ -2,7 +2,7 @@
 
 To focus on what may be new for software developers — i.e. the hardware part — we create a minimal program to test our blowfish AFU. It should encrypt and then decrypt some hardcoded example data with a hardcoded key.
 
-To seperate this from the bigger example that you will also find in our github repository, we create the directory `hls_blowfish/sw_minimal`.
+To seperate this from the bigger example that you will also find in our GitHub repository, we create the directory `hls_blowfish/sw_minimal`.
 
 ### Makefile
 
@@ -34,7 +34,7 @@ include $(SNAP_ROOT)/actions/software.mk
 
 The Makefile builds `hls_blowfish/sw_minimal/snap_blowfish_minimal.c` which we created by copying and modifing `snap/actions/hls_bfs/sw/snap_bfs.c`. In the following paragraphs we explain the most important parts. View the complete code [here](https://github.com/ldurdel/hls_blowfish/blob/master/sw_minimal/snap_blowfish_minimal.c).
 
-The `prepare_blowfish` method takes a pointer to a empty SNAP job, two empty job structs (one for in and on for out) and the parameters for the job. It then initializes the `snap_addr` variables that the AFU for the input and output data and fills the input job struct with its parameters. The "out" job struct is not really needed in our usecase, but is part of the method signature for combining everything into a SNAP job.
+The `prepare_blowfish` method takes a pointer to a empty SNAP job, two empty job structs (one for in and one for out) and the parameters for the job. It then initializes the `snap_addr` variables that the AFU for the input and output data and fills the input job struct with its parameters. The 'out' job struct is not really needed in our use case, but is part of the method signature for combining everything into a SNAP job.
 
 ```c
 static void snap_prepare_blowfish(struct snap_job *job,
@@ -47,7 +47,7 @@ static void snap_prepare_blowfish(struct snap_job *job,
         void *addr_out,
         uint16_t type_out)
 {
-    //initialize SNAP addresses
+    // initialize SNAP addresses
     snap_addr_set(&bjob_in->input_data, addr_in, data_length_in,
 		  type_in, SNAP_ADDRFLAG_ADDR | SNAP_ADDRFLAG_SRC);
 
@@ -143,13 +143,13 @@ int main()
 
 Again, for the complete implementation, please refer to the [code on Github](https://github.com/ldurdel/hls_blowfish/blob/master/sw_minimal/snap_blowfish_minimal.c).
 
-Now we can call `make` in `hls_blowfish/sw_minimal` to build our software part and use it like described in _Simulating an action_ or _Running on actual hardware_. If you use the default directory name (`sw`), building is done automatically when calling `make model` on your devolping machine. Please remember that, when using real hardware, you want to build the software part on the power machine to avoid cross compiling.
+Now we can call `make` in `hls_blowfish/sw_minimal` to build our software part and use it like described in _Simulating an action_ or _Running on actual hardware_. If you use the default directory name (`sw`), building is done automatically when calling `make model` on your devolping machine. Please remember that, when using real hardware, you want to build the software part on the POWER machine to avoid cross compiling.
 
 <div class="brainbox"><span>
-Due to CAPI reading only full cache lines (128 byte), you have to allocate addresses that you want to share 128 byte alligned. Also, when choosing the size of our test data, only full 64 bytes arrived at the FPGA. When using less data, only zeros arrived.
+Due to CAPI reading only full cache lines (128 byte), you have to allocate addresses that you want to share 128 byte aligned. Also, when choosing the size of our test data, only full 64 bytes arrived at the FPGA. When using less data, only zeros arrived.
 </span></div>
 
 ### Further comments
 
 Our minimal implementation lacks error handling and is inflexible due to hardcoded information. To bring it to the level of a SNAP example, it would need some more features, including commmand line options, file reading and debug output. You can find the code for the real example in the same repository located in the `sw` folder: [snap_blowfish.c](https://github.com/ldurdel/hls_blowfish/blob/master/sw/snap_blowfish.c).
-If you clone the whole [repository](https://github.com/ldurdel/hls_blowfish), it can be used like the original examples with both, `sw` and `sw_minimal`, containing working host programs. We also &mdash; like it is done in other examples &mdash; included a software implementation of the blowfish algorithm in `hls_blowfish/sw/action_blowfish.c`. Though not necessary for the hardware implementation itself, maintaining such a separate implementation of the AFU is often a good idea. Besides being a reference for testing the hardware implementation correctness, is also serves as a baseline for performance analyses.
+If you clone the whole [repository](https://github.com/ldurdel/hls_blowfish), it can be used like the original examples with both, `sw` and `sw_minimal`, containing working host programs. We also &mdash; like it is done in other examples &mdash; included a software implementation of the blowfish algorithm in `hls_blowfish/sw/action_blowfish.c`. Although not necessary for the hardware implementation itself, maintaining such a separate implementation of the AFU is often a good idea. Besides being a reference for testing the hardware implementation correctness, is also serves as a baseline for performance analyses.

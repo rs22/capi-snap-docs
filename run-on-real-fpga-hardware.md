@@ -4,7 +4,7 @@
 
 Once you have successfully tested your AFU in the simulator, it is time to actually deploy it to the FPGA.
 
-To do that -- assuming you've executed `make config` before -- just run `make image` inside the hardware directory. Synthesizing the image is a memory intensive process and can take any time from 50 minutes to a couple of hours depending on the complexity of your action.
+To do that &mdash; assuming you've executed `make config` before &mdash; just run `make image` inside the hardware directory. Synthesizing the image is a memory intensive process and can take any time from 50 minutes to a couple of hours depending on the complexity of your action.
 
 <div class="brainbox"><span>
 If you suspect that the model synthesis may fail due to a timing problem (i.e. you have defined complex nested statements in your code), set the <code>TIMING_LABLIMIT</code> environment variable to a large negative value (<a href="https://github.com/open-power/snap/blob/master/hardware/setup/snap_build.tcl#L29">default</a>: -250 ps) before starting the build. This avoids build failures at a late stage in the process, but may produce images that are not suited for production use. However, you might have success trying them out in a lab environment.
@@ -26,7 +26,9 @@ The official documentation on this topic can be found [here](https://github.com/
 
 After the FPGA was installed, usually the Linux OS on the OpenPower-machine will not detect it as a CAPI-enabled device. This is because the image that comes pre-installed on the _factory_ partition of the FPGA doesn't support CAPI; instead a suitable image needs to be flashed onto the _user_ partition by using the external USB programmer.
 
-Once this procedure is completed and the FPGA is listed under `/dev/cxl`, new images can be flashed directly from the OpenPower host using the CAPI tooling provided by IBM. This is described in the next section.
+<div class="brainbox"><span>
+Once this procedure is completed and the FPGA is listed under <code>/dev/cxl</code>, new images can be flashed directly from the OpenPower host using the CAPI tooling provided by IBM. This is described in the next section.
+</span></div>
 
 If you would like to set up a headless Vivado installation on the Intel machine connected to the JTAG programmer, you can instead choose to install a lighter weight version of Vivado that includes the hardware server tool `hw_server`.
 
@@ -39,7 +41,7 @@ Therefore, set up a ping to the host OS and trigger a reboot \(a normal OS reboo
 
 ### Programming the FPGA directly from the OpenPower Host
 
-Once the FPGA is detected as a CAPI-device it is a lot easier and faster to flash new images onto it. The tool necessary can be obtained from GitHub:
+Once the FPGA is detected as a CAPI-device it is a lot easier and faster to flash new images onto it. The JTAG programmer and the programming server are no longer needed. You can obtain the necessary tool from GitHub:
 
 ```bash
 ~ $ git clone https://github.com/ibm-capi/capi-utils

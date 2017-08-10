@@ -46,7 +46,7 @@ If it is run without the `-app` parameter, it opens a new terminal session with 
    ```bash
    $SNAP_ROOT/hardware/sim $ ./run_sim -explore
    ```
-4. A new terminal window will open -- you can launch the test application there. The environment in this terminal window is carefully prepared by `run_sim` which includes the current working directory. Please do not change it as any test application not run from within there can not use the simulated environment.
+4. A new terminal window will open which you can use to launch the test application. The environment in this terminal window is carefully prepared by `run_sim` which includes the current working directory. Please do not change it as any test application not run from within there can not use the simulated environment.
 
    ```bash
    /path/to/sim/env $ $SNAP_ROOT/actions/hls_bfs/sw/snap_bfs -v

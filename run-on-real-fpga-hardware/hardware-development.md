@@ -2,7 +2,11 @@
 
 As mentioned earlier, SNAP supports hardware development with Vivado HLS (subsequently called HLS), that translates C/C++ code to VHDL or Verilog.
 
-The translation involves tracing the dependencies between sequential statements and identifying parallelizable groups, resulting in the automatic generation of a state machine producing the same results as the original C code. This enables software developers to quickly port existing algorithms to a hardware implementation. For some easily parallelizable algorithms this might be enough to achieve substantial speedups, as HLS recognizes the optimization potential and generates parallel hardware. In the general case however, the formulation of an algorithm that is optimized for a sequential execution model is not a favourable candidate for automatic optimization, as HLS has hardly the same domain knowledge of a hardware developer, who knows or guesses how best to restructure the algorithm to distribute the workload well among the available resources. Therefore HLS provides a set of annotations (`#pragma HLS ...`) that allow a developer to direct the hardware generation process in specific ways to give a more fine grained control over the generated hardware. In some specific cases it might even be necessary to restructure the C code by hand in order to make HLS generate the intended hardware structures.
+The translation involves tracing the dependencies between sequential statements and identifying parallelizable groups, resulting in the automatic generation of a state machine producing the same results as the original C code. This enables software developers to quickly port existing algorithms to a hardware implementation.
+
+For some easily parallelizable algorithms this might be enough to achieve substantial speedups, as HLS recognizes the optimization potential and generates parallel hardware. In the general case however, the formulation of an algorithm that is optimized for a sequential execution model is not a favourable candidate for automatic optimization: HLS has hardly the same domain knowledge of a hardware developer, who knows or guesses how best to restructure the algorithm to distribute the workload well among the available resources.
+
+Therefore HLS provides a set of annotations (`#pragma HLS ...`) that allow a developer to direct the hardware generation process in specific ways to give a more fine grained control over the generated hardware. In some specific cases it might even be necessary to restructure the C code by hand in order to make HLS generate the intended hardware structures.
 
 A basic SNAP AFU project consists of two files in the hardware (`hw`) subdirectory of the action repository: One hardware specific header file, and the C implementation. In our case these are `action_blowfish.H` and `hls_blowfish.cpp`. Note the capital `H` in the header file extension. This convention is used to distinguish the hardware specific from the common header file `action_blowfish.h`. The latter contains the definition of the job structure and is thus included in both the hardware and software implementation.
 
@@ -81,7 +85,7 @@ The generated hardware is exactly large enough to process the specified bit coun
 This can be seen in the code above. Instead of using the usual `int` for loop counters, specific types such as `bf_SiE` were selected, that are defined in the hardware specific header.
 
 
-### Testbench I
+### Test Bench I
 
 The hardware implementation (`hls_blowfish.cpp`) can define a `main()` function, that should be non-synthesizable. It will be the entry point for debugging and should contain a testbench for the HLS code.
 
@@ -89,7 +93,7 @@ The hardware implementation (`hls_blowfish.cpp`) can define a `main()` function,
 When building an AFU there often arises the need for debugging. The classic approach in hardware development is to simulate the design on a testbench that applies predefined signal sequences to the design under test and monitors how it reacts. This procedure is perfectly possible with an HLS design as the C code is translated to VHDL modules that act like any user written hardware design. Nevertheless the translation process produces somewhat cryptic names for states and signals. Furthermore the state machine is not easily comprehensible to a developer used to C code and the mapping between states and C statements is not obvious. Therefore it is desirable to run the HLS code like a regular C program in a software debugger to fix errors on that level, always assuming that the translated hardware modules behave exactly as the original C code.
 </span></div>
 
-In a later stage of the development, the testbench will set up a complete SNAP environment to execute the AFU code in software just as if it was invoked in hardware. For now it is sufficient to write test cases for the algorithm to debug the implementation and assure its correctness before the SNAP integration can begin. The example below shows how the encrypt function could be tested.
+In a later stage of the development, the test bench will set up a complete SNAP environment to execute the AFU code in software just as if it was invoked in hardware. For now it is sufficient to write test cases for the algorithm to debug the implementation and ensure its correctness before the SNAP integration can begin. The example below shows how the encrypt function could be tested.
 
 ```cpp
 #ifdef NO_SYNTH
@@ -103,7 +107,7 @@ int main()
 #endif
 ```
 
-The Vivado HLS IDE is used to run such a testbench. Once installed it should be started from a shell with all SNAP environment variables set up. The project to be opened is the directory in `${ACTION_ROOT}/hw` that contains an FPGA part number in its name. In this case it would be `${SNAP_ROOT}/actions/hls_blowfish/hw/hlsBlowfish_xcku060-ffva1156-2-e`.
+The Vivado HLS IDE is used to run such a test bench. Once installed it should be started from a shell with all SNAP environment variables set up. The project to be opened is the directory in `${ACTION_ROOT}/hw` that contains an FPGA part number in its name. In this case it would be `${SNAP_ROOT}/actions/hls_blowfish/hw/hlsBlowfish_xcku060-ffva1156-2-e`.
 
 ![Vivado HLS: Synthesis View and Project Settings Dialog](/assets/hls_cflags.png)
 <p class="figure-caption">Vivado HLS: Synthesis View and Project Settings Dialog</p>
@@ -122,12 +126,15 @@ Afterwards by pressing the _Run C Simulation_ icon in the toolbar the simulation
 ### Integration with the SNAP Framework
 
 The next step on the way to a working Blowfish-AFU is to adapt its structure to the SNAP framework. SNAP expects a module named `hls_action` and instantiates it as the AFU user design when composing the final design on the FPGA.
+
 HLS translates all functions to separate VHDL modules unless they are inlined. Consequently the AFU code must contain a function named `hls_action()` that will be the entry point to the AFU logic.
+
 The arguments of this function represent different parts of the environment that SNAP offers to an AFU: They include pointers to host memory, a pointer to the job structure and if enabled a pointer to the cards local memory. (See `USE_DRAM=TRUE` with `make config`). `hls_action()` is *called* each time the job interface of the PSL indicates that a job should be started.
 
 All AFUs must be able to introduce themselves to the host with their action code and hardware revision. There is a list of assigned action codes in the SNAP repository named `ActionTypes.md`. A new action code is registered by a successful merge request that adds the new assignment to that list. There is however a large range of codes reserved for experimental use which - though with the risk of collisions - should be ideal for the private development of a new AFU. The hardware revision is at the discretion of the developer and should only be increased if significant changes in the host visible AFU interface or behavior have occurred.
 
 If the host queries this information, `hls_action()` is entered just as if a regular job was started. To distinguish both cases, a flag in the control register is set to indicate that instead of executing a job the AFU should write the respective entries in a configuration memory space, accessible through a pointer argument to `hls_action()`.
+
 The specific code that implements this behavior can be seen below and - as it is not specific to a particular AFU - can be freely reused.
 
 ```cpp
@@ -162,7 +169,10 @@ void hls_action(snap_membus_t  *din_gmem, snap_membus_t  *dout_gmem,
 ```
 <p class="figure-caption">Excerpt of <a href="https://github.com/ldurdel/hls_blowfish/blob/master/hw/hls_blowfish.cpp">hls_blowfish.cpp</a></p>
 
-To separate this mechanism from the actual logic, the Blowfish AFU calls `process_action()` if the `hls_action()` invocation was not a configuration request. This function is the first AFU specific part and the right place to extract all necessary parameters and commands from the job structure. This is accessible via the `action_reg * act_reg` parameter. It contains the general AFU control registers in `act_reg->Control` and the AFU specific job struct in its `act_reg->Data` member, which is organized as specified in the common `action_blowfish.h` header. When using members of the type `struct snap_addr` care should be taken, as they not only include the actual address, but only fields for the length of the specified address range, the type of memory referenced and some flags intended for later use in the SNAP framework.
+To separate this mechanism from the actual logic, the Blowfish AFU calls `process_action()` if the `hls_action()` invocation was not a configuration request. This function is the first AFU specific part and the right place to extract all necessary parameters and commands from the job structure. This is accessible via the `action_reg * act_reg` parameter. It contains the general AFU control registers in `act_reg->Control` and the AFU specific job struct in its `act_reg->Data` member, which is organized as specified in the common `action_blowfish.h` header. 
+
+When using members of the type `struct snap_addr` care should be taken, as they not only include the actual address, but only fields for the length of the specified address range, the type of memory referenced and some flags intended for later use in the SNAP framework.
+
 The Blowfish example uses as yet only the address part of this struct and thus the job struct decoding looks as follows:
 
 ```cpp
@@ -177,11 +187,11 @@ The Blowfish example uses as yet only the address part of this struct and thus t
 The Blowfish AFU provides three separate operations: Encryption, decryption and key initialization. They are distinguished by specific values of the `mode` field and use the input and output buffers if applicable. To maintain a clear structure, the operations are implemented in separate functions: `action_setkey()` performs the key initialization, whereas `action_endecrypt()` handles both en- and decryption as they are very similar. These functions contain the required memory access logic to execute the Blowfish algorithm consisting of the `bf_*()` functions efficiently.
 
 
-### Testbench II
+### Test Bench II
 
-With the SNAP action code in place, the testbench should be changed accordingly, to call `hls_action()` with a correctly set up environment. This includes arrays of the `snap\_membus\_t` type for each bus that is connected to the action module, i.e. two buses to host memory and optionally one to the DRAM, as well as the action and config registers (`action_reg` and `act\_R0\_config\_reg`). The memory arrays must be initialized to contain the data, on which the action will operate. The action register must contain a correctly initialized job structure. The config register contains the flag to distinguish discovery from normal mode and this flag is the only part that needs to be set for testbench purposes.
+With the SNAP action code in place, the testbench should be changed accordingly, to call `hls_action()` with a correctly set up environment. This includes arrays of the `snap_membus_t` type for each bus that is connected to the action module, i.e. two buses to host memory and optionally one to the DRAM, as well as the action and config registers (`action_reg` and `act_R0_config_reg`). The memory arrays must be initialized to contain the data, on which the action will operate. The action register must contain a correctly initialized job structure. The config register contains the flag to distinguish discovery from normal mode and this flag is the only part that needs to be set for test bench purposes.
 
-With all these preparations in place `hls_action()` can be called so that all parts of the action functionality are covered by the testbench. Should that produce incorrect results, breakpoints and variable inspection are effective means to find the bug.
+With all these preparations in place `hls_action()` can be called so that all parts of the action functionality are covered by the test bench. Should that produce incorrect results, breakpoints and variable inspection are effective means to find the bug.
 
 ```cpp
 void main()
@@ -221,7 +231,7 @@ void main()
 
 ### Using the SNAP Environment
 
-With the memory and register pointers passed to `hls_action()` SNAP already provides everything to access the resources available to an AFU. By dereferencing and using pointer arithmetic different memory areas can be read and written. After the job structure pointer, that translates to an interface to a job management module provided by SNAP, the most interesting resource to any AFU will be host memory.
+With the memory and register pointers passed to `hls_action()` SNAP already provides everything to access the resources available to an AFU. By dereferencing and using pointer arithmetic, different memory areas can be read and written. After the job structure pointer, that translates to an interface to a job management module provided by SNAP, the most interesting resource to any AFU will be host memory.
 
 When interacting with host memory, there arises a slight incongruity: While a regular bus interface can be expected to be bidirectional, SNAP provides two separate interfaces for host memory access, one for read and one for write operations. This is due to the way Vivado HLS translates bus interfaces, which is not quite compatible with SNAPs PSL interface module.
 
@@ -229,4 +239,4 @@ When interacting with host memory, there arises a slight incongruity: While a re
 snap_membus_t result = din_gmem[address >> ADDR_RIGHT_SHIFT];
 ```
 
-The statement above performs a single read operation from host memory. The result is a `snap_membus_t` which represents one word with the native bus width of the underlying PSL interface. The [bus width is 512 bit, so only 64 byte aligned accesses to 64 byte blocks of data are possible. The addresses specified by the host software will generally be byte addresses, while the host memory pointer is indexed in multiples of 64 bytes. That necessitates the right shift of the byte address. Care should be taken if the lower bits of the byte address are not 0. In that case the desired part must be extracted from the result according to those lower bits.
+The statement above performs a single read operation from host memory. The result is a `snap_membus_t` which represents one word with the native bus width of the underlying PSL interface. The bus width is 512 bit, so only 64 byte aligned accesses to 64 byte blocks of data are possible. The addresses specified by the host software will generally be byte addresses, while the host memory pointer is indexed in multiples of 64 bytes. That necessitates the right shift of the byte address. Care should be taken if the lower bits of the byte address are not 0. In that case the desired part must be extracted from the result according to those lower bits.
