@@ -43,9 +43,9 @@ Once the FPGA is detected as a CAPI-device it is a lot easier and faster to flas
 
 ```bash
 ~ $ git clone https://github.com/ibm-capi/capi-utils
-~/capi-utils/ $ cd capi-utils
-~/capi-utils/ $ make
-~/capi-utils/ $ make install
+~/capi-utils $ cd capi-utils
+~/capi-utils $ make
+~/capi-utils $ make install
 ```
 
 Afterwards, start the tool like this and follow the instructions:
@@ -67,31 +67,23 @@ You will now need a version of SNAP on the Power8 server:
    ```
 
 2. Clone SNAP, build the actions and tooling
-
-   ```bash
-   ~ $ git clone https://github.com/open-power/snap
-   ~ $ cd snap/software
-   ~/snap/software/ $ make
-   ~/snap/software/ $ cd ../actions
-   ~/snap/actions/ $ make
-   ```
    
    ```bash
    ~ $ git clone https://github.com/open-power/snap
-   ~/snap/software/ $ make
-   ~/snap/actions/ $ make
+   ~/snap/software $ make
+   ~/snap/actions $ make
    ```
 
 3. Before you can use the action for the first time, it needs to be detected by SNAP. Use the `snap_maint` tool to trigger this:
 
    ```bash
-   ~/snap/software/tools/ $ ./snap_maint -v
+   ~/snap/software/tools $ ./snap_maint -v
    ```
 
 4. Now you can execute the breadth-first search on hardware!
 
    ```bash
-   ~/snap/actions/hls_bfs/sw/ $ ./snap_bfs -v
+   ~/snap/actions/hls_bfs/sw $ ./snap_bfs -v
    ```
 
 

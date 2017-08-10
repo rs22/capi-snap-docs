@@ -11,7 +11,7 @@ SNAP supports several simulators, but in this document we will assume `xsim` whi
 After SNAP is configured, a simulation model of the user design can be built with:
 
 ```bash
-$SNAP_ROOT/hardware/ $ make model
+$SNAP_ROOT/hardware $ make model
 ```
 
 All HDL sources both from SNAP and the user design are compiled into a simulation model and the simulator configuration is written into a shell script. The simulation of large hardware designs is computationally very expensive. Therefore the resulting model does not include the PSL nor any part of the host side hardware. Nevertheless these components are essential for a user application to access the AFU under test. The solution is the PSLSE \(Power Service Layer Simulation Environment\) server.
@@ -36,7 +36,7 @@ If it is run without the `-app` parameter, it opens a new terminal session with 
 
 1. Given that you've already run `make config` as described in the previous section, build the simulation image with 
   ```bash
-  $SNAP_ROOT/hardware/ $ make model
+  $SNAP_ROOT/hardware $ make model
   ```
 2. Before you can test the model, you will also need to build the consumer application \(that will communicate with the simulator through PSLSE\):
    ```bash
@@ -44,12 +44,12 @@ If it is run without the `-app` parameter, it opens a new terminal session with 
    ```
 3. As described above, start the the simulation itself:
    ```bash
-   $SNAP_ROOT/hardware/sim/ $ ./run_sim -explore
+   $SNAP_ROOT/hardware/sim $ ./run_sim -explore
    ```
 4. A new terminal window will open -- you can launch the test application there. The environment in this terminal window is carefully prepared by `run_sim` which includes the current working directory. Please do not change it as any test application not run from within there can not use the simulated environment.
 
    ```bash
-   /path/to/sim/env/ $ $SNAP_ROOT/actions/hls_bfs/sw/snap_bfs -v
+   /path/to/sim/env $ $SNAP_ROOT/actions/hls_bfs/sw/snap_bfs -v
    ```
 
 5. Once you're done testing, close the simulation terminal window to shut down the simulator to avoid it consuming CPU cycles unnecessarily.

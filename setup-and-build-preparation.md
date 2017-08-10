@@ -124,7 +124,7 @@ Because `hls_bfs` does not use DRAM or NVMe storage (see the [documentation](htt
 Now, if you have not done so already, change into the `hardware` directory of your snap repository (`cd $SNAP_ROOT/hardware`). If all the settings are correct (you can check that by calling `./snap_settings`), you can generate the Vivado project files needed to build and simulate the action with:
 
 ```bash
-$SNAP_ROOT/hardware/ $ make config
+$SNAP_ROOT/hardware $ make config
 ```
 
 You can follow the same procedure if you want to build other examples or your own actions.
