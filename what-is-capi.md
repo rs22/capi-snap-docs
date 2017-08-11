@@ -23,12 +23,12 @@ Besides using libcxl to initialize and attach a CAPI accelerator to the current 
 
 The AFU is a piece of logic that was configured into the FPGA and therefore the design of the AFU must be expressed in a hardware description language such as VHDL or Verilog. Such language differ significantly from imperative languages like C in that most statements have concurrent semantics as they translate to separate parts of hardware that operate independently from one another. If an algorithm requires several sequential steps, it must be represented in hardware as a state machine.
 
-The interface between AFU and PSL consists of five semi-independent sets of signals, the Job-, Command-, Response-, Read-Buffer- and Write-Buffer-Interface: 
+The interface between AFU and PSL consists of five semi-independent sets of signals, the Job-, Command-, Response-, Read/Write-Buffer- and MMIO-Interface: 
 
 * The Job-Interface is controlled by the PSL and indicates job control and reset commands from the host to the AFU. 
 * The MMIO-Interface exposes a register view of the AFU to the host that can map this view into its virtual memory to control and monitor the AFU. 
 * The Command-Interface is controlled by the AFU, which can issue a variety of read or write commands with different side effects on the Cache Hierarchy. 
-* The remaining 3 interfaces are controlled by the PSL and play a role in completing pending commands: A read command causes the PSL to return the requested data via the Write-Buffer-Interface and signal the command completion via the Response-Interface. To perform a write operation, the PSL would read the data to be written via the Read-Buffer-Interface once required.
+* The remaining interfaces are controlled by the PSL and play a role in completing pending commands: A read command causes the PSL to return the requested data via the Write-Buffer-Interface and signal the command completion via the Response-Interface. To perform a write operation, the PSL would read the data to be written via the Read-Buffer-Interface once required.
 
 <div class="brainbox"><span>
 To support an efficient implementation of the PSL, there are no ordering or uniqueness criteria on the Buffer-Interfaces. Therefore, one read command might result in several different results to be written via the Write-Buffer-Interface and transactions belonging to different pending commands are not guaranteed to execute in any order. Details and signal traces concerning the PSL interfaces can be found in the Appendix.
