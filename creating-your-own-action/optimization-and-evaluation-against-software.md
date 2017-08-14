@@ -11,7 +11,7 @@ As it is generally not obvious, in what way an algorithm can be most efficiently
 
 Another important consideration is whether one particular parallelization (that duplicates the required hardware resources by the respective factor) really improves the focused overall performance indicator. In a throughput oriented scenario like the Blowfish AFU it seems sensible to use multiple instances of the encrypt function to encrypt multiple blocks in parallel. This measure is however only useful, if the data blocks can be transferred from host memory with a sufficient rate. Otherwise the throughput is limited by the host memory bus and a far more useful strategy would be to improve memory throughput by implementing intelligent buffering and prefetching strategies.
 
-The best starting point for optimizations can often be found by experimenting with the real hardware. Thus our first step to optimize the Blowfish AFU was to perform two series of throughput measurements. The first only reads and wrotes back data blocks without encrypting them but keeping the same access patterns. In the second series the AFU does not interact with host memory at all but only performs the requested number of encryption runs on a dummy data block. Based on this information as visualized in the plot below, we determined that the encrypt function is the bottleneck and that an encrypt speedup of up to 16 times will benefit the overall performance.
+The best starting point for optimizations can often be found by experimenting with the real hardware. Thus our first step to optimize the Blowfish AFU was to perform two series of throughput measurements. The first only reads and writes back data blocks without encrypting them but keeping the same access patterns. In the second series the AFU does not interact with host memory at all but only performs the requested number of encryption runs on a dummy data block. Based on this information as visualized in the plot below, we determined that the encrypt function is the bottleneck and that an encrypt speedup of up to 16 times will benefit the overall performance.
 
 ![Memory and encryption throughput for different input sizes](/assets/throughputCombined.svg)
 <p class="figure-caption">Memory and encryption throughput for different input sizes (in bytes)</p>
@@ -21,11 +21,11 @@ The best starting point for optimizations can often be found by experimenting wi
 
 To speed up the encryption process, it is necessary to use parallel instances of the encrypt function on separate blocks of data. Because of the internal block structure of the Blowfish cipher, most operations during the encryption of one particular block depend directly on the results of its predecessors, which makes improving the single block encrypt performance by parallelization impossible.
 
-Encrypting multiple blocks in parallel imposes however a severe limitation on the feasible cipher modes. All chaining modes make the encryption of a block dependent on the result for the previous block, which collides with parallel block encryption unless several different data streams are to be encrypted concurrently. This leaves ECB and CTR mode. While ECB has severe security limitations, CTR mode provides a sufficient level of security.
+Encrypting multiple blocks in parallel imposes however a severe limitation on the feasible cipher modes. All chaining modes make the encryption of a block dependent on the result for the previous encryption, which collides with parallel block encryption unless several different data streams are to be encrypted concurrently. This leaves ECB and CTR mode. While ECB has severe security limitations, CTR mode provides a sufficient level of security.
 Therefore the parallel encryption of data blocks &mdash; though limiting &mdash; is still a valid paradigm.
 
 In order to effectively utilize multiple instances of the encrypt function, care must be taken to coordinate access to resources shared by all instances, i.e. the S and P arrays.
-With no key initialization operation pending, these arrays are read only resources, so that no inconsistent states can arise from multiple instances interacting with the arrays in parallel. However the read access patterns among the instances are problematic: While the P array accesses are the same for every instance given a synchronized invocation, the four S array accesses performed by the `bf_f()` subroutine are data dependent, forbidding any prediction about common or regular access patterns.
+With no key initialization operation pending, these arrays are read only resources, so that no inconsistent states can arise from multiple instances interacting with the arrays in parallel. However the read access patterns among the instances are problematic: While the P array accesses are the same for every `bf_encrypt()` instance given a synchronized invocation, the four S array accesses performed by the `bf_f()` subroutine are data dependent, forbidding any prediction about common or regular access patterns.
 
 In this situation it is necessary to understand how arrays are implemented on the FPGA hardware: One or more Block RAM resources are instantiated to create a contiguous memory space large enough to hold the array, which is later mapped into that space. Each Block RAM has two access ports, so that in one clock cycle two independent memory operations can be performed.
 
@@ -48,16 +48,16 @@ With an appropriate number of read ports, it is now necessary that the generated
 One way to do this would be to introduce a new parameter as a copy id, that controls with which copy `bf_f()` interacts. However, unless the function is inlined, it will require an explicit interface to any resource it _might_ interact with, thus making each instance of `bf_f()` consume one port of _each_ copy and rendering the previous port multiplication efforts useless.
 
 ```cpp
-static bf_halfBlock_t bf_f(bf_halfBlock_t h)
+static bf_halfBlock_t bf_f(bf_halfBlock_t h, bf_SiC_t iCpy)
 {
     bf_SiE_t a = (bf_SiE_t)(h >> 24),
              b = (bf_SiE_t)(h >> 16),
              c = (bf_SiE_t)(h >> 8),
              d = (bf_SiE_t) h;
-    return ((g_S[0][a] + g_S[1][b]) ^ g_S[2][c]) + g_S[3][d];
+    return ((g_S[iCpy][0][a] + g_S[iCpy][1][b]) ^ g_S[iCpy][2][c]) + g_S[iCpy][3][d];
 }
 ```
-<p class="figure-caption">Original scalar implementation of f(). (<a href="https://github.com/ldurdel/hls_blowfish/blob/master/hw/hls_blowfish.cpp">hls_blowfish.cpp</a>)</p>
+<p class="figure-caption">Original scalar implementation of f() with copy id parameter. (<a href="https://github.com/ldurdel/hls_blowfish/blob/master/hw/hls_blowfish.cpp">hls_blowfish.cpp</a>)</p>
 
 
 To circumvent this limitation of function semantics, we restructured the code to implement all required parallel `bf_f()` invocations in a _single_ function call. This introduces the new function `bf_fLine()`, that operates on a whole array of arguments and returns the results in a separate array of the same size. In the following listing `BF_BPL` is a preprocessor macro that denotes the number of blocks, that should be processed in parallel. 
