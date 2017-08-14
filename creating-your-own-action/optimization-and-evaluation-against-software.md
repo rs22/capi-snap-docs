@@ -11,7 +11,7 @@ As it is generally not obvious, in what way an algorithm can be most efficiently
 
 Another important consideration is whether one particular parallelization (that duplicates the required hardware resources by the respective factor) really improves the focused overall performance indicator. In a throughput oriented scenario like the Blowfish AFU it seems sensible to use multiple instances of the encrypt function to encrypt multiple blocks in parallel. This measure is however only useful, if the data blocks can be transferred from host memory with a sufficient rate. Otherwise the throughput is limited by the host memory bus and a far more useful strategy would be to improve memory throughput by implementing intelligent buffering and prefetching strategies.
 
-The best starting point for optimizations can often be found by experimenting with the real hardware. Thus our first step to optimize the Blowfish AFU was to perform two series of throughput measurements. The first only read and wrote back data blocks without encrypting them but keeping the same access patterns. In the second series the AFU did not interact with host memory at all but only performed the requested number of encryption runs on a dummy data block. Based on this information as visualized in the plot below, we determined that the encrypt function was the current bottleneck and that a speedup of up to 16 times will benefit the overall performance.
+The best starting point for optimizations can often be found by experimenting with the real hardware. Thus our first step to optimize the Blowfish AFU was to perform two series of throughput measurements. The first only reads and wrotes back data blocks without encrypting them but keeping the same access patterns. In the second series the AFU does not interact with host memory at all but only performs the requested number of encryption runs on a dummy data block. Based on this information as visualized in the plot below, we determined that the encrypt function is the bottleneck and that an encrypt speedup of up to 16 times will benefit the overall performance.
 
 ![Memory and encryption throughput for different input sizes](/assets/throughputCombined.svg)
 <p class="figure-caption">Memory and encryption throughput for different input sizes (in bytes)</p>
@@ -45,9 +45,24 @@ static bf_S_t g_S;
 This example shows, how a third dimension is added to the originally two-dimensional S array to provide space for its copies. The `#pragma`, which must be placed inside a function (preferably the entry point `hls_action()`), partitions `g_S` completely along the copy dimension ensuring that each copy resides in a separate Block RAM.
 
 With an appropriate number of read ports, it is now necessary that the generated hardware structures utilize them efficiently. This involves explicit scheduling, which instance of `bf_f()` reads from which copy of the S array.
-One way to do this would be to introduce a new parameter as a copy id, that controls with which copy `bf_f()` interacts. However, unless the function is inlined, it will require an explicit interface to any resource it _might_ interact thus making each instance of `bf_f()` consume one port of _each_ copy and rendering the previous port multiplication efforts useless.
+One way to do this would be to introduce a new parameter as a copy id, that controls with which copy `bf_f()` interacts. However, unless the function is inlined, it will require an explicit interface to any resource it _might_ interact with, thus making each instance of `bf_f()` consume one port of _each_ copy and rendering the previous port multiplication efforts useless.
 
-The easiest way to go to circumvent this, is to introduce a new version of the function that operates on as many parallel values as there will be encrypt instances. `bf_fLine` operates on a whole array of arguments and returns the results in a separate array of the same size. `BF_BPL` is a preprocessor macro that denotes the number of blocks, that should be processed in parallel. To ensure, that all iterations of the loop are executed in parallel, the `UNROLL` pragma is used. Unfortunately these pragmas can not resolve preprocessor macros, so that the value of `BF_BPL` must be specified manually. All four array accesses happen in the last line of the loop. As one copy can serve two read ports, the copy index is derived from the block index divided by two.
+```cpp
+static bf_halfBlock_t bf_f(bf_halfBlock_t h)
+{
+    bf_SiE_t a = (bf_SiE_t)(h >> 24),
+             b = (bf_SiE_t)(h >> 16),
+             c = (bf_SiE_t)(h >> 8),
+             d = (bf_SiE_t) h;
+    return ((g_S[0][a] + g_S[1][b]) ^ g_S[2][c]) + g_S[3][d];
+}
+```
+<p class="figure-caption">Original scalar implementation of f(). (<a href="https://github.com/ldurdel/hls_blowfish/blob/master/hw/hls_blowfish.cpp">hls_blowfish.cpp</a>)</p>
+
+
+To circumvent this limitation of function semantics, we restructured the code to implement all required parallel `bf_f()` invocations in a _single_ function call. This introduces the new function `bf_fLine()`, that operates on a whole array of arguments and returns the results in a separate array of the same size. In the following listing `BF_BPL` is a preprocessor macro that denotes the number of blocks, that should be processed in parallel. 
+
+To ensure that all iterations of the loop are executed in parallel, the `UNROLL` pragma is used. Unfortunately these pragmas can not resolve preprocessor macros, so that the value of `BF_BPL` must be specified manually. `bf_fLine()` requires `BF_BPL` ports to the S array and performs four sequential read operations on each of them to produce the results of `BF_BPL` independent `bf_f()` invocations. As one copy copy of the S array can serve two read ports, the copy index is derived from the argument array index divided by two.
 
 ```cpp
 static void bf_fLine(bf_halfBlock_t res[BF_BPL], bf_halfBlock_t h[BF_BPL])
@@ -55,7 +70,7 @@ static void bf_fLine(bf_halfBlock_t res[BF_BPL], bf_halfBlock_t h[BF_BPL])
     BF_F_LINE:
     for (bf_uiBpL_t iBlock = 0; iBlock < BF_BPL; ++iBlock)
     {
-#pragma HLS UNROLL factor=16 //==BF_BPL
+#pragma HLS UNROLL factor=8 //==BF_BPL
         bf_SiE_t a = (bf_SiE_t)(h[iBlock] >> 24),
                  b = (bf_SiE_t)(h[iBlock] >> 16),
                  c = (bf_SiE_t)(h[iBlock] >> 8),
@@ -66,10 +81,28 @@ static void bf_fLine(bf_halfBlock_t res[BF_BPL], bf_halfBlock_t h[BF_BPL])
     }
 }
 ```
-<p class="figure-caption">Excerpt of <a href="https://github.com/ldurdel/hls_blowfish/blob/master/hw/hls_blowfish.cpp">hls_blowfish.cpp</a></p>
+<p class="figure-caption">Parallelized array implementation of f(). (<a href="https://github.com/ldurdel/hls_blowfish/blob/master/hw/hls_blowfish.cpp">hls_blowfish.cpp</a>)</p>
 
 
-This new function is only useful to a new set of `bf_encrypt()` and `bf_decrypt()` functions, that also operate on multiple data blocks in parallel. Besides `bf_fLine()`, these require SIMD versions of the previously used scalar exclusive or operation. The names of these should be self explanatory. The following code example contrasts the single block and multi block versions of the encrypt function:
+`bf_fLine()` is only useful to a a variant of encrypt(), that operates on multiple data blocks in parallel. This new function `bf_encryptLine()` also requires array versions of the previously scalar XOR operations. The functions `bf_xorOne()` and `bf_xorAll()` provide this functionality and should be self explanatory. The following listing contrasts the scalar and array versions of the encrypt function:
+
+```cpp
+static void bf_encrypt(bf_halfBlock_t & left, bf_halfBlock_t & right)
+{
+    BF_ENCRYPT:
+    for (int i = 0; i < 16; i += 2)
+    {
+        left ^= g_P[i];
+        right ^= bf_f(left);
+        right ^= g_P[i+1];
+        left ^= bf_f(right);
+    }
+
+    bf_halfBlock_t tmp = left ^ g_P[16];
+    left = right ^ g_P[17];
+    right = tmp;
+}
+```
 
 ```cpp
 static void bf_encryptLine(bf_halfBlock_t leftHBlocks[BF_BPL],
@@ -93,25 +126,7 @@ static void bf_encryptLine(bf_halfBlock_t leftHBlocks[BF_BPL],
     rightHBlocks = tmp;
 }
 ```
-
-```cpp
-static void bf_encrypt(bf_halfBlock_t & left, bf_halfBlock_t & right)
-{
-    BF_ENCRYPT:
-    for (int i = 0; i < 16; i += 2)
-    {
-        left ^= g_P[i];
-        right ^= bf_f(left);
-        right ^= g_P[i+1];
-        left ^= bf_f(right);
-    }
-
-    bf_halfBlock_t tmp = left ^ g_P[16];
-    left = right ^ g_P[17];
-    right = tmp;
-}
-```
-<p class="figure-caption">Excerpt of <a href="https://github.com/ldurdel/hls_blowfish/blob/master/hw/hls_blowfish.cpp">hls_blowfish.cpp</a></p>
+<p class="figure-caption">Comparison of the scalar and array encrypt() implementations (<a href="https://github.com/ldurdel/hls_blowfish/blob/master/hw/hls_blowfish.cpp">hls_blowfish.cpp</a>)</p>
 
 
 

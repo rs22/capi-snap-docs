@@ -173,7 +173,7 @@ To separate this mechanism from the actual logic, the Blowfish AFU calls `proces
 
 When using members of the type `struct snap_addr` care should be taken, as they not only include the actual address, but only fields for the length of the specified address range, the type of memory referenced and some flags intended for later use in the SNAP framework.
 
-The Blowfish example uses as yet only the address part of this struct and thus the job struct decoding looks as follows:
+The Blowfish example uses only the address part of this struct and thus the job struct decoding looks as follows:
 
 ```cpp
     snapu64_t inAddr = action_reg->Data.input_data.addr;
