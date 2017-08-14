@@ -1,8 +1,8 @@
 ## Hardware Development
 
-As mentioned earlier, SNAP supports hardware development with Vivado HLS (subsequently called HLS), that translates C/C++ code to VHDL or Verilog.
+As mentioned earlier, SNAP supports hardware development with Vivado HLS, that translates C/C++ code to VHDL or Verilog. Subsequently both the translation tool and the C/C++ subset it can translate will be called HLS.
 
-The translation involves tracing the dependencies between sequential statements and identifying parallelizable groups, resulting in the automatic generation of a state machine producing the same results as the original C code. This enables software developers to quickly port existing algorithms to a hardware implementation.
+The HLS translation process tries to group the original sequential statements into groups, that can be executed in parallel. This involves tracing the control and data dependencies between those statements. The groups of parallel statements become states of a state machine and its transitions are determined according to the control structures in the original code. This state machine controls a datapath that is capable of executing all required operations by the original statements. The resulting synchronous hardware design implements the same functionality as the original code. This enables software developers to quickly port existing algorithms to a hardware implementation without in-depth knowledge of traditional hardware development principles.
 
 For some easily parallelizable algorithms this might be enough to achieve substantial speedups, as HLS recognizes the optimization potential and generates parallel hardware. In the general case however, the formulation of an algorithm that is optimized for a sequential execution model is not a favourable candidate for automatic optimization: HLS has hardly the same domain knowledge of a hardware developer, who knows or guesses how best to restructure the algorithm to distribute the workload well among the available resources.
 
