@@ -29,24 +29,18 @@ Examples: Machine Learning, Genomic algorithms, Erasure Code offload, Deep Compu
 <img src="/assets/egress.png" alt="Egress Method" style="max-height: 8em;">
 <p class="figure-caption">Egress Method</p>
 
-Depending on the hardware capabilities of the FPGA \(i.e. integrated network or storage adapters; on-chip non-volatile memory\) this paradigm can be used to reduce load on the CPU by taking over I/O operations such as communication with network devices over certain protocols. Furthermore it adds the flexibility to transform the data stream \(e.g. encryption or compression\) without incurring any additional load on the CPU.
-
-Examples: Encryption, Compression, Erasure Code prior to network or storage
+Depending on the hardware capabilities of the FPGA \(i.e. integrated network or storage adapters; on-chip non-volatile memory\) this paradigm can be used to transform streaming data directly on the FPGA. Furthermore, CPU load is reduced by taking over I/O operations such as communication with network devices over certain protocols. Application examples include encryption and compression algorithms as well as adding an erasure code prior to sending data to network or storage.
 
 ### Transforming or filtering data received from network or storage
 
 <img src="/assets/ingress.png" alt="Ingress Method" style="max-height: 8em;">
 <p class="figure-caption">Ingress Method</p>
 
-Same as above, just the other way around.
-
-Examples: Video Analytics, Deep Packet Inspection (DPI), Video Encoding (H.265) etc.
+The same technique as above can also be applied in the inverse direction: Communication with external devices is handled by the FPGA and incoming data streams can be pre-processed and filtered. Examples: Video Analytics, Deep Packet Inspection (DPI) and Video Encoding (H.265).
 
 ### Aggregating data received from multiple external sources
 
 <img src="/assets/funnel.png" alt="Funnel Engine" style="max-height: 8em;">
 <p class="figure-caption">Funnel Engine</p>
 
-This scenario is especially interesting when the combined input bandwidth of all connected external sources is greater than the available bandwidth from the FPGA to the CPU \(otherwise: 'drips into the funnel'\). One application example could be to pre-filter or pre-aggregate incoming sensor data to reduce the amount of data that needs to be transferred via PCIe buses to the CPU.
-
-Examples: Database searches, joins, intersections, merges
+If large amounts of data are received from various different sources, the Ingress paradigm can be extended to become a funnel: This scenario is especially interesting when the combined input bandwidth of all connected external sources is greater than the available bandwidth from the FPGA to the CPU \(otherwise: 'drips into the funnel'\). One application example could be to pre-filter or pre-aggregate incoming sensor data to reduce the amount of data that needs to be transferred via PCIe buses to the CPU. Further use cases include database searches, joins, intersections, and merges.
