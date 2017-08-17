@@ -18,9 +18,11 @@ Depending on the use case it is possible to obtain FPGAs that are equipped with 
 ![Off-load Method](/assets/offload.png)
 <p class="figure-caption">Off-load Method</p>
 
-This is the most traditional use case for accelerators: The host application provides source- and destination buffers for the task data, invokes the parallel processing action on the accelerator and continues processing once the action completes. As a result, this approach requires a transfer of the source data from the host to the FPGA and another transfer of the results back to the host. When the FPGA is busy, the host CPU is free to perform other tasks; effectively reducing its load compared to a CPU-only implementation of the workload (off-loading).
+This is the most traditional use case for accelerators: The host application provides source- and destination buffers for the task data, invokes the parallel processing action on the accelerator and continues processing once the action completes. Consequently, this approach requires a transfer of the source data from the host to the FPGA and another transfer of the results back to the host. For the time the FPGA is busy, the host CPU is free to perform other tasks; effectively reducing its load compared to a CPU-only implementation of the workload (off-loading).
 
 Real-world benefits of this approach are however limited by the effective data bandwidth that the underlying bus \(e.g. PCIe\) supports. Application scenarios should focus on throughput instead of latency \(which the CPU is optimized for, with its caches and prefetchers\). As a prerequisite, parallelizable application procedures have to be identified and isolated, which can be difficult depending on the use case. Once implemented, the possible performance gains are likely to improve over time because, in contrast to CPUs, GPUs and FPGAs are still expected to significantly increase their computation power per watt over new hardware generations \([Dennard scaling](https://en.wikipedia.org/wiki/Dennard_scaling)\).
+
+Examples: Machine Learning, Genomic algorithms, Erasure Code offload, Deep Computation
 
 ### Transforming data before it is sent to network or storage
 
@@ -29,12 +31,16 @@ Real-world benefits of this approach are however limited by the effective data b
 
 Depending on the hardware capabilities of the FPGA \(i.e. integrated network or storage adapters; on-chip non-volatile memory\) this paradigm can be used to reduce load on the CPU by taking over I/O operations such as communication with network devices over certain protocols. Furthermore it adds the flexibility to transform the data stream \(e.g. encryption or compression\) without incurring any additional load on the CPU.
 
+Examples: Encryption, Compression, Erasure Code prior to network or storage
+
 ### Transforming or filtering data received from network or storage
 
 ![Ingress Method](/assets/ingress.png)
 <p class="figure-caption">Ingress Method</p>
 
 Same as above, just the other way around.
+
+Examples: Video Analytics, Deep Packet Inspection (DPI), Video Encoding (H.265) etc.
 
 ### Aggregating data received from multiple external sources
 
@@ -43,3 +49,4 @@ Same as above, just the other way around.
 
 This scenario is especially interesting when the combined input bandwidth of all connected external sources is greater than the available bandwidth from the FPGA to the CPU \(otherwise: 'drips into the funnel'\). One application example could be to pre-filter or pre-aggregate incoming sensor data to reduce the amount of data that needs to be transferred via PCIe buses to the CPU.
 
+Examples: Database searches, joins, intersections, merges
