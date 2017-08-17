@@ -34,7 +34,7 @@ include $(SNAP_ROOT)/actions/software.mk
 
 The Makefile builds `hls_blowfish/sw_minimal/snap_blowfish_minimal.c` which we created by copying and modifing `snap/actions/hls_bfs/sw/snap_bfs.c`. In the following paragraphs we explain the most important parts. View the complete code [here](https://github.com/ldurdel/hls_blowfish/blob/master/sw_minimal/snap_blowfish_minimal.c).
 
-The `prepare_blowfish` method takes a pointer to a empty SNAP job, two empty job structs (one for in and one for out) and the parameters for the job. It then initializes the `snap_addr` variables that the AFU for the input and output data and fills the input job struct with its parameters. The 'out' job struct is not really needed in our use case, but is part of the method signature for combining everything into a SNAP job.
+The `prepare_blowfish` method takes a pointer to an empty SNAP job, two empty job structs (one for in and one for out) and the parameters for the job. It then initializes the `snap_addr` variables that the AFU for the input and output data and fills the input job struct with its parameters. The 'out' job struct is not really needed in our use case, but is part of the method signature for combining everything into a SNAP job.
 
 ```c
 static void snap_prepare_blowfish(struct snap_job *job,

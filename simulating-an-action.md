@@ -51,6 +51,12 @@ If it is run without the `-app` parameter, it opens a new terminal session with 
    ```bash
    /path/to/sim/env $ $SNAP_ROOT/actions/hls_bfs/sw/snap_bfs -v
    ```
+   
+  If the output ends with
+  ```bash
+  Visiting node (0): 0, 3, 5, 1, 8, 4, 7, 9, End. Cnt = 8
+  ```
+  the breadth-first search has successfully completed! You can try different configurations by using the options described in `$ snap_bfs --help`
 
 5. Once you're done testing, close the simulation terminal window to shut down the simulator to avoid it consuming CPU cycles unnecessarily.
 

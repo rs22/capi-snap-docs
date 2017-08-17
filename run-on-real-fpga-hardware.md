@@ -16,7 +16,7 @@ Once the build process has successfully finished, you can find the resulting bit
 
 We are not responsible for damage you do to your own hardware.
 
-1. Find a CAPI capable PCIe port which you can use to install the FPGA. For the S824L OpenPower machine we used, this information can be obtained in the 'Internal I/O subsystem' section of its [technical overview document](http://www.redbooks.ibm.com/redpapers/pdfs/redp5139.pdf) \(page 59 of the PDF in this case\).
+1. Find a CAPI capable PCIe port which you can use to install the FPGA. For the S824L OpenPOWER machine we used, this information can be obtained in the 'Internal I/O subsystem' section of its [technical overview document](http://www.redbooks.ibm.com/redpapers/pdfs/redp5139.pdf) \(page 59 of the PDF in this case\).
 2. Install the FPGA
 3. Attach the [JTAG programmer](https://www.xilinx.com/products/boards-and-kits/hw-usb-ii-g.html) to the FPGA and connect its USB cable to an Intel-based machine that will be used to initialize the FPGA with Xilinx' hw\_server. Its activity LED will only come on after the Xilinx software has successfully established a connection to the card, so don't worry if it stays off once the systems have booted.
 
@@ -24,7 +24,7 @@ We are not responsible for damage you do to your own hardware.
 
 The official documentation on this topic can be found [here](https://github.com/open-power/snap/blob/master/hardware/doc/Bitstream_flashing.md).
 
-After the FPGA was installed, usually the Linux OS on the OpenPower-machine will not detect it as a CAPI-enabled device. This is because the image that comes pre-installed on the _factory_ partition of the FPGA doesn't support CAPI; instead a suitable image needs to be flashed onto the _user_ partition by using the external USB programmer.
+After the FPGA was installed, usually the Linux OS on the POWER machine will not detect it as a CAPI-enabled device. This is because the image that comes pre-installed on the _factory_ partition of the FPGA doesn't support CAPI; instead a suitable image needs to be flashed onto the _user_ partition by using the external USB programmer.
 
 <div class="brainbox"><span>
 Once this procedure is completed and the FPGA is listed under <code>/dev/cxl</code>, new images can be flashed directly from the OpenPower host using the CAPI tooling provided by IBM. This is described in the next section.
@@ -33,13 +33,13 @@ Once this procedure is completed and the FPGA is listed under <code>/dev/cxl</co
 If you would like to set up a headless Vivado installation on the Intel machine connected to the JTAG programmer, you can instead choose to install a lighter weight version of Vivado that includes the hardware server tool `hw_server`.
 
 In any case, the process accessing the programmer \(either Vivado or `hw_server`\) might need to run with root privileges. Open Vivado's Hardware Manager and 'open' the target device either on the local server or remotely. Once it has successfully connected to the FPGA, the programmer's activity LED should come on.  
-You will now need a device image \(\*.bit\) that includes at least the PSL component -- one way to obtain such an image is to run `make image` for one of the SNAP examples or your own action \(it is not necessary to enable SNAP's `FACTORY_IMAGE` switch\).
+You will now need a device image \(\*.bit\) that includes at least the PSL component. One way to obtain such an image is to run `make image` for one of the SNAP examples or your own action. When reviewing your `snap_settings`, you might notice the `FACTORY_IMAGE` switch. Because you don't want to overwrite the FPGA's factory partition (but its user partition) you can leave it disabled.
 
-Because the user partition's contents will be cleared on each power cycle of the OpenPower machine if the card was not yet detected as a CAPI device, a certain procedure is required to initialize it: The image needs to be flashed _after_ the system was powered on, but _before_ the OS performs the PCI Express walk.
+Because the user partition's contents will be cleared on each power cycle of the POWER machine if the card was not yet detected as a CAPI device, a certain procedure is required to initialize it: The image needs to be flashed _after_ the system was powered on, but _before_ the OS performs the PCI Express walk.
 
 Therefore, set up a ping to the host OS and trigger a reboot \(a normal OS reboot should suffice, although sometimes an ipmi power cycle is necessary\). Once the ping is lost, start the programming process in Vivado. There should be enough time to fully program the card before the host OS has completed booting.
 
-### Programming the FPGA directly from the OpenPower Host
+### Programming the FPGA directly from the POWER Host
 
 Once the FPGA is detected as a CAPI-device it is a lot easier and faster to flash new images onto it. The JTAG programmer and the programming server are no longer needed. You can obtain the necessary tool from GitHub:
 
