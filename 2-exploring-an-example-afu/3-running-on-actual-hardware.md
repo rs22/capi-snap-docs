@@ -12,7 +12,7 @@ If you suspect that the model synthesis may fail due to a timing problem (i.e. y
 
 Once the build process has successfully finished, you can find the resulting bitstream files in the `build/Image` folder under the `hardware` directory. The version ending in \*.bit can be flashed using the JTAG programmer; the \*.bin file is meant for the capi-flash-script \(see the below sections\).
 
-### Installing the FPGA in the OpenPower machine
+### Installing the FPGA in the POWER machine
 
 We are not responsible for damage you do to your own hardware.
 
@@ -27,7 +27,7 @@ The official documentation on this topic can be found [here](https://github.com/
 After the FPGA was installed, usually the Linux OS on the POWER machine will not detect it as a CAPI-enabled device. This is because the image that comes pre-installed on the _factory_ partition of the FPGA doesn't support CAPI; instead a suitable image needs to be flashed onto the _user_ partition by using the external USB programmer.
 
 <div class="brainbox"><span>
-Once this procedure is completed and the FPGA is listed under <code>/dev/cxl</code>, new images can be flashed directly from the OpenPower host using the CAPI tooling provided by IBM. This is described in the next section.
+Once this procedure is completed and the FPGA is listed under <code>/dev/cxl</code>, new images can be flashed directly from the POWER host using the CAPI tooling provided by IBM. This is described in the next section.
 </span></div>
 
 If you would like to set up a headless Vivado installation on the Intel machine connected to the JTAG programmer, you can instead choose to install a lighter weight version of Vivado that includes the hardware server tool `hw_server`.
@@ -64,7 +64,7 @@ Afterwards, start the tool like this and follow the instructions:
 
 Assuming you have built the bitstream \(using `make image`\) and set up the FPGA as described above, the `hls_bfs` action should by now be programmed onto the card.
 
-You will now need a version of SNAP on the Power8 server:
+You will now need a version of SNAP on the POWER server:
 
 1. Because now the 'real' version of libcxl is needed \(compared to the 'mock' version used earlier by the PSL Simulation Engine\), install it \(e.g. on Ubuntu\):
 

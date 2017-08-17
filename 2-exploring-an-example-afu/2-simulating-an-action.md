@@ -1,6 +1,6 @@
 ## Simulating an action
 
-The simulation step is useful if you want to quickly test if your host application can successfully communicate with the AFU. You won't need access to the OpenPower/FPGA hardware and can generate a simulation model in a much shorter time than a hardware bitstream.
+The simulation step is useful if you want to quickly test if your host application can successfully communicate with the AFU. You won't need access to the POWER/FPGA hardware and can generate a simulation model in a much shorter time than a hardware bitstream.
 
 However, the simulation speed is, understandably, much slower than what the real hardware will achieve. Furthermore, although you can trace the flow of different binary signals in Vivado, simulation often isn't useful for debugging HLS AFUs: The HLS code will be converted into a VHDL/Verilog blocks that are quite hard to match to the HLS code. How to debug HLS code will be explained in the following chapter.
 

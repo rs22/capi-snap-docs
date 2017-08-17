@@ -25,4 +25,4 @@ who are students at the Hasso-Plattner-Institute in Potsdam and constituted the 
 * Felix Eberhardt &lt;felix.eberhardt@hpi.de&gt;
 * Max Plauth &lt;max.plauth@hpi.de&gt;.
 
-We also want to thank everyone at IBM who held close contact and helped us during the project, including but not limited to: Frank Haverkamp, Jörg-Stephan Vogt, Sven Boekholt, Thomas Fuchs, Bruno Mesnet and Bruce Wile
+We also want to thank everyone at IBM who held close contact and helped us during the project, including but not limited to: Frank Haverkamp, Jörg-Stephan Vogt, Sven Boekholt, Thomas Fuchs, Bruno Mesnet and Bruce Wile.
