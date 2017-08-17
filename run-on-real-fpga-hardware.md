@@ -33,7 +33,11 @@ Once this procedure is completed and the FPGA is listed under <code>/dev/cxl</co
 If you would like to set up a headless Vivado installation on the Intel machine connected to the JTAG programmer, you can instead choose to install a lighter weight version of Vivado that includes the hardware server tool `hw_server`.
 
 In any case, the process accessing the programmer \(either Vivado or `hw_server`\) might need to run with root privileges. Open Vivado's Hardware Manager and 'open' the target device either on the local server or remotely. Once it has successfully connected to the FPGA, the programmer's activity LED should come on.  
-You will now need a device image \(\*.bit\) that includes at least the PSL component. One way to obtain such an image is to run `make image` for one of the SNAP examples or your own action. When reviewing your `snap_settings`, you might notice the `FACTORY_IMAGE` switch. Because you don't want to overwrite the FPGA's factory partition (but its user partition) you can leave it disabled.
+You will now need a device image \(\*.bit\) that includes at least the PSL component. One way to obtain such an image is to run `make image` for one of the SNAP examples or your own action. 
+
+<div class="brainbox"><span>
+When reviewing your <code>snap_settings</code>, you might notice the <code>FACTORY_IMAGE</code> switch. Because you don't want to overwrite the FPGA's factory partition (but its user partition) you can leave it disabled.
+</span></div>
 
 Because the user partition's contents will be cleared on each power cycle of the POWER machine if the card was not yet detected as a CAPI device, a certain procedure is required to initialize it: The image needs to be flashed _after_ the system was powered on, but _before_ the OS performs the PCI Express walk.
 
