@@ -8,6 +8,9 @@ As much as **CAPI** builds the technical foundations for effectively using accel
 
 Therefore **SNAP**, which is build on top of CAPI, aims to make it **as easy as possible** to use FPGA-based hardware acceleration. It does that by providing two things: a unified, automated build process and a simpler API on top of CAPI.
 
+![Overview about Artifacts and Tools/Components involved in the SNAP development process](/assets/snapbigpicture.png)
+<p class="figure-caption">Overview about artifacts and tools/components involved in the lifecycle of a SNAP AFU</p>
+
 ### Build parts
 
 The SNAP framework defines a unified build process for building, simulation and execution on hardware.
