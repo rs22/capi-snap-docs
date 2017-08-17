@@ -4,7 +4,7 @@
 
 IBM [CAPI SNAP](https://github.com/open-power/snap) is an open source framework targeted at making FPGA-acceleration on IBM POWER servers as easy as possible. This book wants to help developers getting started by providing an A-to-Z explanation on how to create an acceleration example in SNAP. It includes setting up the environment, building and simulating the the given examples, creating one by yourself and evaluating it against software. If you have access to an IBM POWER System with a Nallatech 250S \(or another compatible\) FPGA-card you will also be able to execute examples on the real hardware.
 
-![Nallatech 250S FPGA](assets/nallatech250s.jpg)
+<img src="/assets/nallatech250s.jpg" alt="Nallatech 250S FPGA" style="max-height: 300px;">
 <p class="figure-caption">Nallatech 250S FPGA</p>
 
 ### Why was this written?
