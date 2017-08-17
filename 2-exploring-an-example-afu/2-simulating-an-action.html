@@ -1,0 +1,425 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Simulating an action · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/capi-snap.css">
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="3-running-on-actual-hardware.html" />
+    
+    
+    <link rel="prev" href="1-setup-and-build-preparation.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../1-introduction/1-motivation-and-use-cases.html">
+            
+                <a href="../1-introduction/1-motivation-and-use-cases.html">
+            
+                    
+                    Motivation and use cases
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../1-introduction/2-what-is-capi.html">
+            
+                <a href="../1-introduction/2-what-is-capi.html">
+            
+                    
+                    What is CAPI?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="../1-introduction/3-what-is-snap.html">
+            
+                <a href="../1-introduction/3-what-is-snap.html">
+            
+                    
+                    What is SNAP?
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Exploring an Example AFU
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="1-setup-and-build-preparation.html">
+            
+                <a href="1-setup-and-build-preparation.html">
+            
+                    
+                    Setup and build preparation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.2" data-path="2-simulating-an-action.html">
+            
+                <a href="2-simulating-an-action.html">
+            
+                    
+                    Simulating an action
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="3-running-on-actual-hardware.html">
+            
+                <a href="3-running-on-actual-hardware.html">
+            
+                    
+                    Running on actual hardware
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../3-creating-a-new-afu/">
+            
+                <a href="../3-creating-a-new-afu/">
+            
+                    
+                    Creating a New AFU
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../3-creating-a-new-afu/1-minimal-host-software.html">
+            
+                <a href="../3-creating-a-new-afu/1-minimal-host-software.html">
+            
+                    
+                    Minimal host software
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../3-creating-a-new-afu/2-hardware-development.html">
+            
+                <a href="../3-creating-a-new-afu/2-hardware-development.html">
+            
+                    
+                    Hardware Development
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../3-creating-a-new-afu/3-optimization.html">
+            
+                <a href="../3-creating-a-new-afu/3-optimization.html">
+            
+                    
+                    Optimization
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Simulating an action</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="simulating-an-action">Simulating an action</h2>
+<p>The simulation step is useful if you want to quickly test if your host application can successfully communicate with the AFU. You won&apos;t need access to the POWER/FPGA hardware and can generate a simulation model in a much shorter time than a hardware bitstream.</p>
+<p>However, the simulation speed is, understandably, much slower than what the real hardware will achieve. Furthermore, although you can trace the flow of different binary signals in Vivado, simulation often isn&apos;t useful for debugging HLS AFUs: The HLS code will be converted into a VHDL/Verilog blocks that are quite hard to match to the HLS code. How to debug HLS code will be explained in the following chapter.</p>
+<h3 id="simulation-explained">Simulation explained</h3>
+<p>SNAP supports several simulators, but in this document we will assume <code>xsim</code> which is included in the Xilinx Vivado Suite and therefore available in all setups.</p>
+<p>After SNAP is configured, a simulation model of the user design can be built with:</p>
+<pre class="language-"><code class="lang-bash"><span class="token variable">$SNAP_ROOT</span>/hardware $ <span class="token function">make</span> model
+</code></pre>
+<p>All HDL sources both from SNAP and the user design are compiled into a simulation model and the simulator configuration is written into a shell script. The simulation of large hardware designs is computationally very expensive. Therefore the resulting model does not include the PSL nor any part of the host side hardware. Nevertheless these components are essential for a user application to access the AFU under test. The solution is the PSLSE (Power Service Layer Simulation Environment) server.</p>
+<div class="brainbox"><span>
+The PSLSE implements a higher level and thus faster model of the internal CAPI components. It provides a special version of the libcxl, that does not attempt to interact with any CAPI device, but connects to the PSLSE server to access the virtual device it provides. In the same way, the PSL is not simulated as a hardware component, but is only a placeholder, whose behavior on the signal level is controlled by the PSLSE server via a network connection.
+</span></div>
+
+<p>The necessary setup of the PSLSE server and its connection to the simulator is done automatically by a script called <code>run_sim</code>. It creates an environment where the regular libcxl is replaced by the PSLSE version. Thus all applications started in this environment will automatically interact with the simulated AFU. The script supports different modes of operation:</p>
+<pre class="language-"><code class="lang-bash"><span class="token variable">$SNAP_ROOT</span>/hardware/sim $ ./run_sim -explore
+</code></pre>
+<pre class="language-"><code class="lang-bash"><span class="token variable">$SNAP_ROOT</span>/hardware/sim $ ./run_sim -app <span class="token variable">${SNAP_ROOT}</span>/software/tools/snap_maint -arg <span class="token string">&apos;-i 3 -vvv&apos;</span>
+</code></pre>
+<p>If it is run without the <code>-app</code> parameter, it opens a new terminal session with the correctly set up environment to run applications on the simulated hardware. If <code>-app</code> is given, the specified application is executed with the arguments optionally specified by <code>-arg</code> in the simulation environment without creating an interactive session. The <code>-explore</code> option enables an action exploration step before the specified application or terminal session is started. This step is necessary to discover the configuration of the AFU and allow a user application to correctly identify it. This is equivalent to executing the <code>snap_maint</code> tool manually before starting the user application.</p>
+<h3 id="simulating-the-breadth-first-search-afu">Simulating the breadth-first search AFU</h3>
+<ol>
+<li>Given that you&apos;ve already run <code>make config</code> as described in the previous section, build the simulation image with <pre class="language-"><code class="lang-bash"><span class="token variable">$SNAP_ROOT</span>/hardware $ <span class="token function">make</span> model
+</code></pre>
+</li>
+<li>Before you can test the model, you will also need to build the consumer application (that will communicate with the simulator through PSLSE):<pre class="language-"><code class="lang-bash"><span class="token variable">$SNAP_ROOT</span>/actions $ <span class="token function">make</span>
+</code></pre>
+</li>
+<li>As described above, start the the simulation itself:<pre class="language-"><code class="lang-bash"><span class="token variable">$SNAP_ROOT</span>/hardware/sim $ ./run_sim -explore
+</code></pre>
+</li>
+<li><p>A new terminal window will open which you can use to launch the test application. The environment in this terminal window is carefully prepared by <code>run_sim</code> which includes the current working directory. Please do not change it as any test application not run from within there can not use the simulated environment.</p>
+<pre class="language-"><code class="lang-bash">/path/to/sim/env $ <span class="token variable">$SNAP_ROOT</span>/actions/hls_bfs/sw/snap_bfs -v
+</code></pre>
+<p>If the output ends with</p>
+<pre class="language-"><code class="lang-bash">Visiting node <span class="token punctuation">(</span>0<span class="token punctuation">)</span>: 0, 3, 5, 1, 8, 4, 7, 9, End. Cnt <span class="token operator">=</span> 8
+</code></pre>
+<p>the breadth-first search has successfully completed! You can try different configurations by using the options described in <code>$ snap_bfs --help</code></p>
+</li>
+<li><p>Once you&apos;re done testing, close the simulation terminal window to shut down the simulator to avoid it consuming CPU cycles unnecessarily.</p>
+</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="1-setup-and-build-preparation.html" class="navigation navigation-prev " aria-label="Previous page: Setup and build preparation">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="3-running-on-actual-hardware.html" class="navigation navigation-next " aria-label="Next page: Running on actual hardware">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Simulating an action","level":"1.2.2","depth":2,"next":{"title":"Running on actual hardware","level":"1.2.3","depth":2,"path":"2-exploring-an-example-afu/3-running-on-actual-hardware.md","ref":"2-exploring-an-example-afu/3-running-on-actual-hardware.md","articles":[]},"previous":{"title":"Setup and build preparation","level":"1.2.1","depth":2,"path":"2-exploring-an-example-afu/1-setup-and-build-preparation.md","ref":"2-exploring-an-example-afu/1-setup-and-build-preparation.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["prism","-highlight"],"pluginsConfig":{"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/capi-snap.css","ebook":"styles/capi-snap.css"}},"file":{"path":"2-exploring-an-example-afu/2-simulating-an-action.md","mtime":"2017-08-17T16:03:23.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-08-17T16:15:23.543Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

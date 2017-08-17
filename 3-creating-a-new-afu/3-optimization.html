@@ -1,0 +1,488 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Optimization · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/capi-snap.css">
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="2-hardware-development.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../1-introduction/1-motivation-and-use-cases.html">
+            
+                <a href="../1-introduction/1-motivation-and-use-cases.html">
+            
+                    
+                    Motivation and use cases
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../1-introduction/2-what-is-capi.html">
+            
+                <a href="../1-introduction/2-what-is-capi.html">
+            
+                    
+                    What is CAPI?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="../1-introduction/3-what-is-snap.html">
+            
+                <a href="../1-introduction/3-what-is-snap.html">
+            
+                    
+                    What is SNAP?
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../2-exploring-an-example-afu/">
+            
+                <a href="../2-exploring-an-example-afu/">
+            
+                    
+                    Exploring an Example AFU
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../2-exploring-an-example-afu/1-setup-and-build-preparation.html">
+            
+                <a href="../2-exploring-an-example-afu/1-setup-and-build-preparation.html">
+            
+                    
+                    Setup and build preparation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../2-exploring-an-example-afu/2-simulating-an-action.html">
+            
+                <a href="../2-exploring-an-example-afu/2-simulating-an-action.html">
+            
+                    
+                    Simulating an action
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../2-exploring-an-example-afu/3-running-on-actual-hardware.html">
+            
+                <a href="../2-exploring-an-example-afu/3-running-on-actual-hardware.html">
+            
+                    
+                    Running on actual hardware
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Creating a New AFU
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="1-minimal-host-software.html">
+            
+                <a href="1-minimal-host-software.html">
+            
+                    
+                    Minimal host software
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="2-hardware-development.html">
+            
+                <a href="2-hardware-development.html">
+            
+                    
+                    Hardware Development
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.3" data-path="3-optimization.html">
+            
+                <a href="3-optimization.html">
+            
+                    
+                    Optimization
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Optimization</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="optimization">Optimization</h2>
+<p>After the first correct version of the AFU is flashed on the FPGA and tested, there usually comes a surprise: Without explicit optimization, very few algorithms perform better on the FPGA than on the CPU and after all the effort spent to port the algorithm the reward might be longer runtimes. This picture might however change significantly, after the design is properly optimized for the platform it is meant to run on.</p>
+<p>Due to their generic structure FPGAs support much lower clock frequencies in comparison to CPUs. The value of an FPGA solution lies in the fact, that problems can be solved with parallel hardware that implements exactly the required functionality in few clock cycles, instead of using sequential general purpose instructions.</p>
+<p>As it is generally not obvious, in what way an algorithm can be most efficiently parallelized, it is the task of the AFU developer to annotate the HLS code sufficiently to point out parallelization possibilities and remove obstacles such as false dependencies. The Vivado HLS IDE provides a valuable tool in its <em>Analysis</em> View, that visualizes the generated state machines. It can be used to explore the complexity and runtime of the hardware generated for different sections of HLS code and to judge the effect that a particular annotation has on the overall performance. Details on how to use the Analysis View and in-depth information on optimization best practices can be found in the official <a href="https://github.com/bmesnet/snap_education/blob/master/doc/SNAP%20Education%20Class%20Content%202b%20Porting%20and%20Optimizing%20Code.pdf" target="_blank">IBM course material</a>.</p>
+<h3 id="performance-analysis">Performance Analysis</h3>
+<p>Another important consideration is whether one particular parallelization (that duplicates the required hardware resources by the respective factor) really improves the focused overall performance indicator. In a throughput oriented scenario like the Blowfish AFU it seems sensible to use multiple instances of the encrypt function to encrypt multiple blocks in parallel. This measure is however only useful, if the data blocks can be transferred from host memory with a sufficient rate. Otherwise the throughput is limited by the host memory bus and a far more useful strategy would be to improve memory throughput by implementing intelligent buffering and prefetching strategies.</p>
+<p>The best starting point for optimizations can often be found by experimenting with the real hardware. Thus our first step to optimize the Blowfish AFU was to perform two series of throughput measurements. The first only reads and writes back data blocks without encrypting them but keeping the same access patterns. In the second series the AFU does not interact with host memory at all but only performs the requested number of encryption runs on a dummy data block. Based on this information as visualized in the plot below, we determined that the encrypt function is the bottleneck and that an encrypt speedup of up to 16 times will benefit the overall performance.</p>
+<p><img src="../assets/throughputCombined.svg" alt="Memory and encryption throughput for different input sizes"></p>
+<p class="figure-caption">Memory and encryption throughput for different input sizes (in bytes)</p>
+
+
+<h3 id="improving-encrypt-performance">Improving Encrypt Performance</h3>
+<p>To speed up the encryption process, it is necessary to use parallel instances of the encrypt function on separate blocks of data. Because of the internal block structure of the Blowfish cipher, most operations during the encryption of one particular block depend directly on the results of its predecessors, which makes improving the single block encrypt performance by parallelization impossible.</p>
+<p>Encrypting multiple blocks in parallel imposes however a severe limitation on the feasible cipher modes. All chaining modes make the encryption of a block dependent on the result for the previous encryption, which collides with parallel block encryption unless several different data streams are to be encrypted concurrently. This leaves ECB and CTR mode. While ECB has severe security limitations, CTR mode provides a sufficient level of security.
+Therefore the parallel encryption of data blocks &#x2014; though limiting &#x2014; is still a valid paradigm.</p>
+<p>In order to effectively utilize multiple instances of the encrypt function, care must be taken to coordinate access to resources shared by all instances, i.e. the S and P arrays.
+With no key initialization operation pending, these arrays are read only resources, so that no inconsistent states can arise from multiple instances interacting with the arrays in parallel. However the read access patterns among the instances are problematic: While the P array accesses are the same for every <code>bf_encrypt()</code> instance given a synchronized invocation, the four S array accesses performed by the <code>bf_f()</code> subroutine are data dependent, forbidding any prediction about common or regular access patterns.</p>
+<p>In this situation it is necessary to understand how arrays are implemented on the FPGA hardware: One or more Block RAM resources are instantiated to create a contiguous memory space large enough to hold the array, which is later mapped into that space. Each Block RAM has two access ports, so that in one clock cycle two independent memory operations can be performed.</p>
+<p>More than two parallel instances of <code>bf_f()</code> require more than two memory access ports to the S array. This particular read-only-case permits to overcome this limitation by maintaining a sufficient (#instances/2) number of copies. This is however only useful, if each copy of the array is mapped into its particular set of Block RAMs so that no two copies share one Block RAM. To achieve this, HLS provides an annotation to control how arrays are mapped to Block RAMs:</p>
+<pre class="language-"><code class="lang-cpp"><span class="token comment" spellcheck="true">//in action_blowfish.H</span>
+<span class="token keyword">typedef</span> ap_uint<span class="token operator">&lt;</span>BF_S_DATA_W<span class="token operator">&gt;</span> bf_S_t<span class="token punctuation">[</span>BF_S_CPYCNT<span class="token punctuation">]</span><span class="token punctuation">[</span>BF_S_ARYCNT<span class="token punctuation">]</span><span class="token punctuation">[</span>BF_S_ENTCNT<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//in hls_blowfish.cpp</span>
+<span class="token keyword">static</span> bf_S_t g_S<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//in hls_blowfish.cpp:hls_action()</span>
+<span class="token macro property">#<span class="token directive keyword">pragma</span> HLS ARRAY_PARTITION variable=g_S complete dim=1</span>
+</code></pre>
+<p>This example shows, how a third dimension is added to the originally two-dimensional S array to provide space for its copies. The <code>#pragma</code>, which must be placed inside a function (preferably the entry point <code>hls_action()</code>), partitions <code>g_S</code> completely along the copy dimension ensuring that each copy resides in a separate Block RAM.</p>
+<p>With an appropriate number of read ports, it is now necessary that the generated hardware structures utilize them efficiently. This involves explicit scheduling, which instance of <code>bf_f()</code> reads from which copy of the S array.
+One way to do this would be to introduce a new parameter as a copy id, that controls with which copy <code>bf_f()</code> interacts. However, unless the function is inlined, it will require an explicit interface to any resource it <em>might</em> interact with, thus making each instance of <code>bf_f()</code> consume one port of <em>each</em> copy and rendering the previous port multiplication efforts useless.</p>
+<pre class="language-"><code class="lang-cpp"><span class="token keyword">static</span> bf_halfBlock_t <span class="token function">bf_f</span><span class="token punctuation">(</span>bf_halfBlock_t h<span class="token punctuation">,</span> bf_SiC_t iCpy<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    bf_SiE_t a <span class="token operator">=</span> <span class="token punctuation">(</span>bf_SiE_t<span class="token punctuation">)</span><span class="token punctuation">(</span>h <span class="token operator">&gt;&gt;</span> <span class="token number">24</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+             b <span class="token operator">=</span> <span class="token punctuation">(</span>bf_SiE_t<span class="token punctuation">)</span><span class="token punctuation">(</span>h <span class="token operator">&gt;&gt;</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+             c <span class="token operator">=</span> <span class="token punctuation">(</span>bf_SiE_t<span class="token punctuation">)</span><span class="token punctuation">(</span>h <span class="token operator">&gt;&gt;</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+             d <span class="token operator">=</span> <span class="token punctuation">(</span>bf_SiE_t<span class="token punctuation">)</span> h<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>g_S<span class="token punctuation">[</span>iCpy<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span>a<span class="token punctuation">]</span> <span class="token operator">+</span> g_S<span class="token punctuation">[</span>iCpy<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>b<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">^</span> g_S<span class="token punctuation">[</span>iCpy<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">+</span> g_S<span class="token punctuation">[</span>iCpy<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">[</span>d<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p class="figure-caption">Original scalar implementation of f() with copy id parameter. (<a href="https://github.com/ldurdel/hls_blowfish/blob/master/hw/hls_blowfish.cpp" target="_blank">hls_blowfish.cpp</a>)</p>
+
+
+<p>To circumvent this limitation of function semantics, we restructured the code to implement all required parallel <code>bf_f()</code> invocations in a <em>single</em> function call. This introduces the new function <code>bf_fLine()</code>, that operates on a whole array of arguments and returns the results in a separate array of the same size. In the following listing <code>BF_BPL</code> is a preprocessor macro that denotes the number of blocks, that should be processed in parallel. </p>
+<p>To ensure that all iterations of the loop are executed in parallel, the <code>UNROLL</code> pragma is used. Unfortunately these pragmas can not resolve preprocessor macros, so that the value of <code>BF_BPL</code> must be specified manually. <code>bf_fLine()</code> requires <code>BF_BPL</code> ports to the S array and performs four sequential read operations on each of them to produce the results of <code>BF_BPL</code> independent <code>bf_f()</code> invocations. As one copy copy of the S array can serve two read ports, the copy index is derived from the argument array index divided by two.</p>
+<pre class="language-"><code class="lang-cpp"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">bf_fLine</span><span class="token punctuation">(</span>bf_halfBlock_t res<span class="token punctuation">[</span>BF_BPL<span class="token punctuation">]</span><span class="token punctuation">,</span> bf_halfBlock_t h<span class="token punctuation">[</span>BF_BPL<span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    BF_F_LINE<span class="token operator">:</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>bf_uiBpL_t iBlock <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> iBlock <span class="token operator">&lt;</span> BF_BPL<span class="token punctuation">;</span> <span class="token operator">++</span>iBlock<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+<span class="token macro property">#<span class="token directive keyword">pragma</span> HLS UNROLL factor=8 </span><span class="token comment" spellcheck="true">//==BF_BPL</span>
+        bf_SiE_t a <span class="token operator">=</span> <span class="token punctuation">(</span>bf_SiE_t<span class="token punctuation">)</span><span class="token punctuation">(</span>h<span class="token punctuation">[</span>iBlock<span class="token punctuation">]</span> <span class="token operator">&gt;&gt;</span> <span class="token number">24</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                 b <span class="token operator">=</span> <span class="token punctuation">(</span>bf_SiE_t<span class="token punctuation">)</span><span class="token punctuation">(</span>h<span class="token punctuation">[</span>iBlock<span class="token punctuation">]</span> <span class="token operator">&gt;&gt;</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                 c <span class="token operator">=</span> <span class="token punctuation">(</span>bf_SiE_t<span class="token punctuation">)</span><span class="token punctuation">(</span>h<span class="token punctuation">[</span>iBlock<span class="token punctuation">]</span> <span class="token operator">&gt;&gt;</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                 d <span class="token operator">=</span> <span class="token punctuation">(</span>bf_SiE_t<span class="token punctuation">)</span> h<span class="token punctuation">[</span>iBlock<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+        res<span class="token punctuation">[</span>iBlock<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>g_S<span class="token punctuation">[</span>iBlock<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span>a<span class="token punctuation">]</span> <span class="token operator">+</span> g_S<span class="token punctuation">[</span>iBlock<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>b<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">^</span>
+                        g_S<span class="token punctuation">[</span>iBlock<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">+</span> g_S<span class="token punctuation">[</span>iBlock<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">[</span>d<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p class="figure-caption">Parallelized array implementation of f(). (<a href="https://github.com/ldurdel/hls_blowfish/blob/master/hw/hls_blowfish.cpp" target="_blank">hls_blowfish.cpp</a>)</p>
+
+
+<p><code>bf_fLine()</code> is only useful to a a variant of encrypt(), that operates on multiple data blocks in parallel. This new function <code>bf_encryptLine()</code> also requires array versions of the previously scalar XOR operations. The functions <code>bf_xorOne()</code> and <code>bf_xorAll()</code> provide this functionality and should be self explanatory. The following listing contrasts the scalar and array versions of the encrypt function:</p>
+<pre class="language-"><code class="lang-cpp"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">bf_encrypt</span><span class="token punctuation">(</span>bf_halfBlock_t <span class="token operator">&amp;</span> left<span class="token punctuation">,</span> bf_halfBlock_t <span class="token operator">&amp;</span> right<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    BF_ENCRYPT<span class="token operator">:</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">16</span><span class="token punctuation">;</span> i <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        left <span class="token operator">^</span><span class="token operator">=</span> g_P<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        right <span class="token operator">^</span><span class="token operator">=</span> <span class="token function">bf_f</span><span class="token punctuation">(</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        right <span class="token operator">^</span><span class="token operator">=</span> g_P<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        left <span class="token operator">^</span><span class="token operator">=</span> <span class="token function">bf_f</span><span class="token punctuation">(</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    bf_halfBlock_t tmp <span class="token operator">=</span> left <span class="token operator">^</span> g_P<span class="token punctuation">[</span><span class="token number">16</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    left <span class="token operator">=</span> right <span class="token operator">^</span> g_P<span class="token punctuation">[</span><span class="token number">17</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    right <span class="token operator">=</span> tmp<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class="language-"><code class="lang-cpp"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">bf_encryptLine</span><span class="token punctuation">(</span>bf_halfBlock_t leftHBlocks<span class="token punctuation">[</span>BF_BPL<span class="token punctuation">]</span><span class="token punctuation">,</span>
+                           bf_halfBlock_t rightHBlocks<span class="token punctuation">[</span>BF_BPL<span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    BF_ENCRYPT_LINE<span class="token operator">:</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">16</span><span class="token punctuation">;</span> i <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        bf_halfBlock_t fRes<span class="token punctuation">[</span>BF_BPL<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token function">bf_xorOne</span><span class="token punctuation">(</span>leftHBlocks<span class="token punctuation">,</span> leftHBlocks<span class="token punctuation">,</span> g_P<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">bf_fLine</span><span class="token punctuation">(</span>fRes<span class="token punctuation">,</span> leftHBlocks<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">bf_xorAll</span><span class="token punctuation">(</span>rightHBlocks<span class="token punctuation">,</span> rightHBlocks<span class="token punctuation">,</span> fRes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">bf_xorOne</span><span class="token punctuation">(</span>rightHBlocks<span class="token punctuation">,</span> rightHBlocks<span class="token punctuation">,</span> g_P<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">bf_fLine</span><span class="token punctuation">(</span>fRes<span class="token punctuation">,</span> rightHBlocks<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">bf_xorAll</span><span class="token punctuation">(</span>leftHBlocks<span class="token punctuation">,</span> leftHBlocks<span class="token punctuation">,</span> fRes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    bf_halfBlock_t tmp<span class="token punctuation">[</span>BF_BPL<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">bf_xorOne</span><span class="token punctuation">(</span>tmp<span class="token punctuation">,</span> leftHBlocks<span class="token punctuation">,</span> g_P<span class="token punctuation">[</span><span class="token number">16</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">bf_xorOne</span><span class="token punctuation">(</span>leftHBlocks<span class="token punctuation">,</span> rightHBlocks<span class="token punctuation">,</span> g_P<span class="token punctuation">[</span><span class="token number">17</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    rightHBlocks <span class="token operator">=</span> tmp<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p class="figure-caption">Comparison of the scalar and array encrypt() implementations (<a href="https://github.com/ldurdel/hls_blowfish/blob/master/hw/hls_blowfish.cpp" target="_blank">hls_blowfish.cpp</a>)</p>
+
+
+
+<hr>
+<h4 id="todo">TODO</h4>
+<p>[! improve memory throughput, 4k buffering]</p>
+<p>[! results and conclusion, comparison to CPU solution] </p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="2-hardware-development.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Hardware Development">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Optimization","level":"1.3.3","depth":2,"previous":{"title":"Hardware Development","level":"1.3.2","depth":2,"path":"3-creating-a-new-afu/2-hardware-development.md","ref":"3-creating-a-new-afu/2-hardware-development.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["prism","-highlight"],"pluginsConfig":{"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/capi-snap.css","ebook":"styles/capi-snap.css"}},"file":{"path":"3-creating-a-new-afu/3-optimization.md","mtime":"2017-08-17T14:49:55.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-08-17T16:15:23.543Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

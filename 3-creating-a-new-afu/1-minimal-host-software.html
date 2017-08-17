@@ -1,0 +1,518 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Minimal host software · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/capi-snap.css">
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="2-hardware-development.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../1-introduction/1-motivation-and-use-cases.html">
+            
+                <a href="../1-introduction/1-motivation-and-use-cases.html">
+            
+                    
+                    Motivation and use cases
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../1-introduction/2-what-is-capi.html">
+            
+                <a href="../1-introduction/2-what-is-capi.html">
+            
+                    
+                    What is CAPI?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="../1-introduction/3-what-is-snap.html">
+            
+                <a href="../1-introduction/3-what-is-snap.html">
+            
+                    
+                    What is SNAP?
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../2-exploring-an-example-afu/">
+            
+                <a href="../2-exploring-an-example-afu/">
+            
+                    
+                    Exploring an Example AFU
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../2-exploring-an-example-afu/1-setup-and-build-preparation.html">
+            
+                <a href="../2-exploring-an-example-afu/1-setup-and-build-preparation.html">
+            
+                    
+                    Setup and build preparation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../2-exploring-an-example-afu/2-simulating-an-action.html">
+            
+                <a href="../2-exploring-an-example-afu/2-simulating-an-action.html">
+            
+                    
+                    Simulating an action
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../2-exploring-an-example-afu/3-running-on-actual-hardware.html">
+            
+                <a href="../2-exploring-an-example-afu/3-running-on-actual-hardware.html">
+            
+                    
+                    Running on actual hardware
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Creating a New AFU
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.3.1" data-path="1-minimal-host-software.html">
+            
+                <a href="1-minimal-host-software.html">
+            
+                    
+                    Minimal host software
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="2-hardware-development.html">
+            
+                <a href="2-hardware-development.html">
+            
+                    
+                    Hardware Development
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="3-optimization.html">
+            
+                <a href="3-optimization.html">
+            
+                    
+                    Optimization
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Minimal host software</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="creating-a-minimal-host-software">Creating a minimal host software</h2>
+<p>To focus on what may be new for software developers &#x2014; i.e. the hardware part &#x2014; we create a minimal program to test our blowfish AFU. It should encrypt and then decrypt some hardcoded example data with a hardcoded key.</p>
+<p>To separate this from the bigger example that you will also find in our GitHub repository, we create the directory <code>hls_blowfish/sw_minimal</code>.</p>
+<h3 id="makefile">Makefile</h3>
+<p>First, we copy a Makefile from one of the examples (e.g. <code>snap/actions/hls_bfs/sw/Makefile</code>) into our <code>hls_blowfish/sw_minimal</code> directory and modify it to build blowfish.</p>
+<pre class="language-"><code class="lang-makefile"><span class="token comment" spellcheck="true"># Finding $SNAP_ROOT</span>
+<span class="token keyword">ifndef</span> SNAP_ROOT
+<span class="token comment" spellcheck="true"># check if we are in sw folder of an action (three directories below snap root)</span>
+<span class="token keyword">ifneq</span> <span class="token punctuation">(</span><span class="token string">&quot;$(wildcard ../../../ActionTypes.md)&quot;</span>,<span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
+SNAP_ROOT<span class="token operator">=</span><span class="token variable">$</span><span class="token punctuation">(</span><span class="token keyword">abspath</span> ../../../<span class="token punctuation">)</span>
+<span class="token keyword">else</span>
+<span class="token variable">$</span><span class="token punctuation">(</span><span class="token keyword">info</span> You are not building your software from the default directory <span class="token punctuation">(</span>/path/to/snap/actions/&lt;action_name&gt;/sw<span class="token punctuation">)</span> or specified a wrong <span class="token variable">$$SNAP_ROOT.</span><span class="token punctuation">)</span>
+<span class="token variable">$</span><span class="token punctuation">(</span><span class="token keyword">error</span> Please source /path/to/snap/hardware/snap_settings.sh or set <span class="token variable">$$SNAP_ROOT</span> manually.<span class="token punctuation">)</span>
+<span class="token keyword">endif</span>
+<span class="token keyword">endif</span>
+
+<span class="token symbol">snap_blowfish_minimal</span><span class="token punctuation">:</span> snap_blowfish_minimal.o
+
+projs <span class="token operator">+=</span> snap_blowfish_minimal
+
+<span class="token keyword">include</span> <span class="token variable">$</span><span class="token punctuation">(</span>SNAP_ROOT<span class="token punctuation">)</span>/actions/software.mk
+</code></pre>
+<p class="figure-caption">Makefile, edited for readability. View the original <a href="https://github.com/ldurdel/hls_blowfish/blob/master/sw_minimal/Makefile" target="_blank">here</a>.
+</p>
+
+<h3 id="host-program">Host program</h3>
+<p>The Makefile builds <code>hls_blowfish/sw_minimal/snap_blowfish_minimal.c</code> which we created by copying and modifing <code>snap/actions/hls_bfs/sw/snap_bfs.c</code>. In the following paragraphs we explain the most important parts. View the complete code <a href="https://github.com/ldurdel/hls_blowfish/blob/master/sw_minimal/snap_blowfish_minimal.c" target="_blank">here</a>.</p>
+<p>The <code>prepare_blowfish</code> method takes a pointer to an empty SNAP job, two empty job structs (one for in and one for out) and the parameters for the job. It then initializes the <code>snap_addr</code> variables that the AFU for the input and output data and fills the input job struct with its parameters. The &apos;out&apos; job struct is not really needed in our use case, but is part of the method signature for combining everything into a SNAP job.</p>
+<pre class="language-"><code class="lang-c"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">snap_prepare_blowfish</span><span class="token punctuation">(</span><span class="token keyword">struct</span> snap_job <span class="token operator">*</span>job<span class="token punctuation">,</span>
+        uint32_t mode_in<span class="token punctuation">,</span>
+        uint32_t data_length_in<span class="token punctuation">,</span>
+        blowfish_job_t <span class="token operator">*</span>bjob_in<span class="token punctuation">,</span>
+        blowfish_job_t <span class="token operator">*</span>bjob_out<span class="token punctuation">,</span>
+        <span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>addr_in<span class="token punctuation">,</span>
+        uint16_t type_in<span class="token punctuation">,</span>
+        <span class="token keyword">void</span> <span class="token operator">*</span>addr_out<span class="token punctuation">,</span>
+        uint16_t type_out<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// Initialize SNAP addresses</span>
+    <span class="token function">snap_addr_set</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>bjob_in<span class="token operator">-&gt;</span>input_data<span class="token punctuation">,</span> addr_in<span class="token punctuation">,</span> data_length_in<span class="token punctuation">,</span>
+          type_in<span class="token punctuation">,</span> SNAP_ADDRFLAG_ADDR <span class="token operator">|</span> SNAP_ADDRFLAG_SRC<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">snap_addr_set</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>bjob_in<span class="token operator">-&gt;</span>output_data<span class="token punctuation">,</span> addr_out<span class="token punctuation">,</span> data_length_in<span class="token punctuation">,</span>
+          type_out<span class="token punctuation">,</span> SNAP_ADDRFLAG_ADDR <span class="token operator">|</span> SNAP_ADDRFLAG_DST <span class="token operator">|</span>
+          SNAP_ADDRFLAG_END <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// Fill job struct</span>
+    bjob_in<span class="token operator">-&gt;</span>mode <span class="token operator">=</span> mode_in<span class="token punctuation">;</span>
+    bjob_in<span class="token operator">-&gt;</span>data_length <span class="token operator">=</span> data_length_in<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// Fill the 108byte MMIO settings input with our input parameters</span>
+    <span class="token function">snap_job_set</span><span class="token punctuation">(</span>job<span class="token punctuation">,</span> bjob_in<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token operator">*</span>bjob_in<span class="token punctuation">)</span><span class="token punctuation">,</span>
+         bjob_out<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token operator">*</span>bjob_out<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p class="figure-caption">Method for preparing a job based on input and output structures that contain SNAP addresses.
+</p>
+
+<p>For how to execute an action, let&apos;s have a look at the method <code>blowfish_cipher</code> that can be used for either en- or decryption &#x2014; depending on the <code>mode</code> supplied. A job is first created and then is executed via <code>snap_action_sync_execute_job(action, &amp;job, timeout);</code>.</p>
+<pre class="language-"><code class="lang-c"><span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">blowfish_cipher</span><span class="token punctuation">(</span><span class="token keyword">struct</span> snap_action <span class="token operator">*</span>action<span class="token punctuation">,</span>
+               <span class="token keyword">int</span> mode<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">long</span> timeout<span class="token punctuation">,</span>
+               <span class="token keyword">const</span> uint8_t <span class="token operator">*</span>ibuf<span class="token punctuation">,</span>
+               <span class="token keyword">unsigned</span> <span class="token keyword">int</span> in_len<span class="token punctuation">,</span>
+               uint8_t <span class="token operator">*</span>obuf<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> snap_job job<span class="token punctuation">;</span>
+    blowfish_job_t bjob_in<span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>in_len <span class="token operator">%</span> <span class="token number">8</span> <span class="token operator">!=</span> <span class="token number">0</span> <span class="token operator">||</span> in_len <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;err: data to en- or decrypt has to be multiple of &quot;</span>
+               <span class="token string">&quot;8 bytes and at least 8 bytes long!\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span>EINVAL<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">snap_prepare_blowfish</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>job<span class="token punctuation">,</span> mode<span class="token punctuation">,</span> in_len<span class="token punctuation">,</span> <span class="token operator">&amp;</span>bjob_in<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span>
+                  <span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token operator">*</span><span class="token punctuation">)</span>ibuf<span class="token punctuation">,</span> SNAP_ADDRTYPE_HOST_DRAM<span class="token punctuation">,</span>
+                  <span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token operator">*</span><span class="token punctuation">)</span>obuf<span class="token punctuation">,</span> SNAP_ADDRTYPE_HOST_DRAM<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">snap_action_sync_execute_job</span><span class="token punctuation">(</span>action<span class="token punctuation">,</span> <span class="token operator">&amp;</span>job<span class="token punctuation">,</span> timeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p class="figure-caption">Method for encryption and decryption with a previously set key.
+</p>
+
+<p>Now we define some example data and create the method <code>blowfish_test</code>, that first sets the key, then encrypts data with said key and decrypts it again.</p>
+<pre class="language-"><code class="lang-c"><span class="token function">blowfish_cipher</span><span class="token punctuation">(</span>action<span class="token punctuation">,</span> MODE_ENCRYPT<span class="token punctuation">,</span> timeout<span class="token punctuation">,</span>
+                 example_plaintext<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>example_plaintext<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                 example_encrypted<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p class="figure-caption">Example on how our test method calls the ciphering method for encryption.
+</p>
+
+<p>Now we can allocate the card in our main method, select the action we want to use (as there can be multiple on the card) and execute our tests. After that we need to de-select the action and free the card to make it usable for others again.</p>
+<pre class="language-"><code class="lang-c"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> card_no <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">long</span> timeout <span class="token operator">=</span> <span class="token number">10000</span><span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> snap_card <span class="token operator">*</span>card <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> snap_action <span class="token operator">*</span>action <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    snap_action_flag_t action_irq <span class="token operator">=</span> <span class="token punctuation">(</span>SNAP_ACTION_DONE_IRQ <span class="token operator">|</span> SNAP_ATTACH_IRQ<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// Hardcoded card number for simplicity</span>
+    card <span class="token operator">=</span> <span class="token function">snap_card_alloc_dev</span><span class="token punctuation">(</span><span class="token string">&quot;/dev/cxl/afu0.0s&quot;</span><span class="token punctuation">,</span> SNAP_VENDOR_ID_IBM<span class="token punctuation">,</span> SNAP_DEVICE_ID_SNAP<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>card <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token constant">stderr</span><span class="token punctuation">,</span> <span class="token string">&quot;err: failed to open card %u: %s\n&quot;</span><span class="token punctuation">,</span>
+            card_no<span class="token punctuation">,</span> <span class="token function">strerror</span><span class="token punctuation">(</span>errno<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    action <span class="token operator">=</span> <span class="token function">snap_attach_action</span><span class="token punctuation">(</span>card<span class="token punctuation">,</span> BLOWFISH_ACTION_TYPE<span class="token punctuation">,</span> action_irq<span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">blowfish_test</span><span class="token punctuation">(</span>action<span class="token punctuation">,</span> timeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">snap_detach_action</span><span class="token punctuation">(</span>action<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">snap_card_free</span><span class="token punctuation">(</span>card<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">exit</span><span class="token punctuation">(</span>EXIT_SUCCESS<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p class="figure-caption">The main method of our minimal blowfish test.
+</p>
+
+<p>Again, for the complete implementation, please refer to the <a href="https://github.com/ldurdel/hls_blowfish/blob/master/sw_minimal/snap_blowfish_minimal.c" target="_blank">code on Github</a>.</p>
+<p>Now we can call <code>make</code> in <code>hls_blowfish/sw_minimal</code> to build our software part and use it like described in <em>Simulating an action</em> or <em>Running on actual hardware</em>. If you use the default directory name (<code>sw</code>), building is done automatically when calling <code>make model</code> on your development machine. Please remember that, when using real hardware, you want to build the software part on the POWER machine to avoid cross compiling.</p>
+<div class="brainbox"><span>
+Due to CAPI reading only full cache lines (128 byte), you have to allocate addresses that you want to share 128 byte aligned. Also, when choosing the size of our test data, only full 64 bytes arrived at the FPGA. When using less data, only zeros arrived.
+</span></div>
+
+<h3 id="further-comments">Further comments</h3>
+<p>Our minimal implementation lacks error handling and is inflexible due to hardcoded information. To bring it to the level of a SNAP example, it would need some more features, including commmand line options, file reading and debug output. You can find the code for the real example in the same repository located in the <code>sw</code> folder: <a href="https://github.com/ldurdel/hls_blowfish/blob/master/sw/snap_blowfish.c" target="_blank">snap_blowfish.c</a>.
+If you clone the whole <a href="https://github.com/ldurdel/hls_blowfish" target="_blank">repository</a>, it can be used like the original examples with both, <code>sw</code> and <code>sw_minimal</code>, containing working host programs. We also &#x2014; like it is done in other examples &#x2014; included a software implementation of the blowfish algorithm in <code>hls_blowfish/sw/action_blowfish.c</code>. Although not necessary for the hardware implementation itself, maintaining such a separate implementation of the AFU is often a good idea. Besides being a reference for testing the hardware implementation correctness, is also serves as a baseline for performance analyses.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Creating a New AFU">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="2-hardware-development.html" class="navigation navigation-next " aria-label="Next page: Hardware Development">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Minimal host software","level":"1.3.1","depth":2,"next":{"title":"Hardware Development","level":"1.3.2","depth":2,"path":"3-creating-a-new-afu/2-hardware-development.md","ref":"3-creating-a-new-afu/2-hardware-development.md","articles":[]},"previous":{"title":"Creating a New AFU","level":"1.3","depth":1,"path":"3-creating-a-new-afu/README.md","ref":"3-creating-a-new-afu/README.md","articles":[{"title":"Minimal host software","level":"1.3.1","depth":2,"path":"3-creating-a-new-afu/1-minimal-host-software.md","ref":"3-creating-a-new-afu/1-minimal-host-software.md","articles":[]},{"title":"Hardware Development","level":"1.3.2","depth":2,"path":"3-creating-a-new-afu/2-hardware-development.md","ref":"3-creating-a-new-afu/2-hardware-development.md","articles":[]},{"title":"Optimization","level":"1.3.3","depth":2,"path":"3-creating-a-new-afu/3-optimization.md","ref":"3-creating-a-new-afu/3-optimization.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["prism","-highlight"],"pluginsConfig":{"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/capi-snap.css","ebook":"styles/capi-snap.css"}},"file":{"path":"3-creating-a-new-afu/1-minimal-host-software.md","mtime":"2017-08-17T16:03:23.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-08-17T16:15:23.543Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

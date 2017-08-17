@@ -1,0 +1,473 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Setup and build preparation · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/capi-snap.css">
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="2-simulating-an-action.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../1-introduction/1-motivation-and-use-cases.html">
+            
+                <a href="../1-introduction/1-motivation-and-use-cases.html">
+            
+                    
+                    Motivation and use cases
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../1-introduction/2-what-is-capi.html">
+            
+                <a href="../1-introduction/2-what-is-capi.html">
+            
+                    
+                    What is CAPI?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="../1-introduction/3-what-is-snap.html">
+            
+                <a href="../1-introduction/3-what-is-snap.html">
+            
+                    
+                    What is SNAP?
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Exploring an Example AFU
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.2.1" data-path="1-setup-and-build-preparation.html">
+            
+                <a href="1-setup-and-build-preparation.html">
+            
+                    
+                    Setup and build preparation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="2-simulating-an-action.html">
+            
+                <a href="2-simulating-an-action.html">
+            
+                    
+                    Simulating an action
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="3-running-on-actual-hardware.html">
+            
+                <a href="3-running-on-actual-hardware.html">
+            
+                    
+                    Running on actual hardware
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../3-creating-a-new-afu/">
+            
+                <a href="../3-creating-a-new-afu/">
+            
+                    
+                    Creating a New AFU
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../3-creating-a-new-afu/1-minimal-host-software.html">
+            
+                <a href="../3-creating-a-new-afu/1-minimal-host-software.html">
+            
+                    
+                    Minimal host software
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../3-creating-a-new-afu/2-hardware-development.html">
+            
+                <a href="../3-creating-a-new-afu/2-hardware-development.html">
+            
+                    
+                    Hardware Development
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../3-creating-a-new-afu/3-optimization.html">
+            
+                <a href="../3-creating-a-new-afu/3-optimization.html">
+            
+                    
+                    Optimization
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Setup and build preparation</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="setup-and-build-preparation">Setup and build preparation</h2>
+<p>In order to work with SNAP and CAPI, the most important requirement is to install Xilinx Vivado. In our setup we used Ubuntu 16.04, but although not officially supported by the needed Vivado version, working with Ubuntu 17.04 should also be possible.</p>
+<h3 id="download-and-installation">Download and installation</h3>
+<p>Let&apos;s first download, install and configure the software and repositories we need on our development machine.</p>
+<h4 id="1-xilinx-vivado">1. Xilinx Vivado</h4>
+<p>Xilinx Vivado is used to synthesize and layout our actions for the FPGA and contains HLS to convert C++ to hardware code as well as xsim (Vivado Simulator) for simulating without an FPGA. Currently version 2016.4 is the latest supported release of Vivado. As the HL WebPACK Edition may not include support for your FPGA-chip we recommend the HL Design Edition. The free 30-day evaluation should work as well (<a href="https://www.xilinx.com/products/design-tools/vivado.html#buy" target="_blank">Comparison of different Vivado Editions</a>). You can find the downloads <a href="https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/2016-4.html" target="_blank">here</a>.</p>
+<ol>
+<li>Download and install Xilinx Vivado</li>
+<li>If not using the evaluation version, obtain a Vivado license-file (.lic)</li>
+<li>Add Vivado to your path by sourcing its settings file:<pre class="language-"><code class="lang-bash">~ $ <span class="token function">source</span> /opt/Xilinx/Vivado/2016.4/settings64.sh
+</code></pre>
+If you do not want to repeat this after every reboot, do it automatically on startup by appending it to your bashrc:<pre class="language-"><code class="lang-bash">~ $ <span class="token keyword">echo</span> <span class="token string">&quot;source /opt/Xilinx/Vivado/2016.4/settings64.sh&quot;</span> <span class="token operator">&gt;&gt;</span> ~/.bashrc
+</code></pre>
+</li>
+</ol>
+<div class="brainbox"><span>
+Because a Vivado license is usually bound to a specific MAC address, Vivado scans your network adapters to verify the license. However, it only looks for interfaces named eth*. As a result, we had to rename our interface to eth0 on Ubuntu to make it work.
+</span></div>
+
+<h4 id="2-psl-checkpoint">2. PSL checkpoint</h4>
+<p>On the FPGA, the Power Service Layer (PSL) manages the communication with the host. This includes translating memory addresses, handling interrupts and virtualizing AFUs if needed. </p>
+<div class="brainbox"><span>
+The PSL will be part of the circuit on the FPGA and is synthesised and layouted for your specific FPGA, provided as a Vivado checkpoint (.dcp) file. This file contains a snapshot at a certain build step and has to be integrated when building your action. Even when you just want to simulate, you still need a checkpoint file (we recommend the one for the FlashGT card).
+</span></div>
+
+<p>Please download the PSL checkpoint for your card <a href="https://www-355.ibm.com/systems/power/openpower/tgcmDocumentRepository.xhtml?aliasId=CAPI" target="_blank">here</a>. </p>
+<h4 id="3-power-service-layer-simulation-engine">3. Power Service Layer Simulation Engine</h4>
+<p>PSLSE is optional and only needed for simulation, but while building for hardware takes a lot of time, building for simulation is comparably fast. Therefore you may want to use simulation even if you have a real chip.
+Because simulation of hardware is computationally intense, only the actions and not the PSL should be simulated. The PSLSE implements the PSL in software and connects to the (locally hosted) simulation server with the desired action. The host application then communicates to the (locally hosted) PSLSE server instead of an FPGA. </p>
+<p>Clone the PSLSE with</p>
+<pre class="language-"><code class="lang-bash">~ $ <span class="token function">git</span> clone https://github.com/ibm-capi/pslse
+</code></pre>
+<h4 id="4-snap">4. SNAP</h4>
+<p>Now you still need to clone SNAP itself:</p>
+<pre class="language-"><code class="lang-bash">~ $ <span class="token function">git</span> clone https://github.com/open-power/snap
+</code></pre>
+<p>The repository is split into three folders. The <code>software</code> and <code>hardware</code> folder contain the structures necessary for building software and hardware, while the <code>actions</code> folder contains various examples that are ready to be built. Each action is either prefixed by <code>hdl_</code> or <code>hls_</code>, indicating whether it is defined in a hardware description language or high level HLS code. Inside each action, the hardware specification lives in <code>hw</code> while the host application is implemented in <code>sw</code>.</p>
+<h3 id="preparing-the-build-environment">Preparing the build environment</h3>
+<p>Before you can use SNAP for building you have to specify where the components you just installed are. Add Vivado to the path by sourcing the Vivado settings script, point environment variables to the components you just downloaded (omitting <code>PSLSE_ROOT</code> if you did not download PSLSE). Then source the hardware settings script in the SNAP repository:</p>
+<pre class="language-"><code class="lang-bash"><span class="token function">source</span> /opt/Xilinx/Vivado/2016.4/settings64.sh
+<span class="token function">export</span> XILINXD_LICENSE_FILE<span class="token operator">=</span><span class="token operator">&lt;</span>pointer to Xilinx license<span class="token operator">&gt;</span>
+<span class="token function">export</span> PSL_DCP<span class="token operator">=</span><span class="token operator">&lt;</span>CAPI PSL Checkpoint <span class="token function">file</span> <span class="token punctuation">(</span>b_route_design.dcp<span class="token punctuation">)</span><span class="token operator">&gt;</span>
+<span class="token function">export</span> PSLSE_ROOT<span class="token operator">=</span><span class="token operator">&lt;</span>path to PSLSE<span class="token operator">&gt;</span>
+<span class="token function">source</span> <span class="token operator">&lt;</span>path to snap<span class="token operator">&gt;</span>/hardware/snap_settings
+</code></pre>
+<p class="figure-caption">Template for a script to setup the SNAP environment.
+</p>
+
+<p>As you have to do this every time you open a new terminal window in which you want to use SNAP, we recommend writing it into a script. You may also call that script in your <code>~/.bashrc</code> which gets executed automatically once you open a new terminal window.</p>
+<p>When executed (or sourced), <code>snap_settings</code> displays the settings for your build:</p>
+<pre class="language-"><code>=======================================================
+== SNAP SETUP                                        ==
+=======================================================
+=====Checking Xilinx Vivado:===========================
+Path to vivado          is set to: /opt/Xilinx/Vivado/2016.4/bin/vivado
+Vivado version          is set to: Vivado v2016.4 (64-bit)
+=====CARD variables====================================
+FPGACARD                is set to: &quot;FGT&quot;
+FPGACHIP                is set to: &quot;xcku060-ffva1156-2-e&quot;
+PSL_DCP                 is set to: &quot;/home/balthasar/cards/FGT/portal_20170413/b_route_design.dcp&quot;
+=====SNAP PATH variables===============================
+SNAP_ROOT               is set to: &quot;/home/balthasar/repos/snap&quot;
+ACTION_ROOT             is set to: &quot;/home/balthasar/repos/snap/actions/hdl_example&quot;
+=====SNAP simulation variables=========================
+SIMULATOR               is set to: &quot;xsim&quot;
+=====SNAP function variables===========================
+NUM_OF_ACTIONS          is set to: &quot;1&quot;
+SDRAM_USED              is set to: &quot;FALSE&quot;
+NVME_USED               is set to: &quot;FALSE&quot;
+ILA_DEBUG               is set to: &quot;FALSE&quot;
+FACTORY_IMAGE           is set to: &quot;FALSE&quot;
+</code></pre><p class="figure-caption">Example output of the snap_settings script.
+</p>
+
+<p>Depending on which card you use you may have to change <code>$FPGACARD</code> and <code>$FPGACHIP</code>:</p>
+<pre class="language-"><code class="lang-bash">~ $ <span class="token function">export</span> FPGACARD<span class="token operator">=</span><span class="token operator">&lt;</span>FGT or KU3<span class="token operator">&gt;</span>
+~ $ <span class="token function">export</span> FPGACARD<span class="token operator">=</span><span class="token operator">&lt;</span>your chip identifier<span class="token operator">&gt;</span>
+</code></pre>
+<p>While <code>xsim</code> is the default Simulator and  <code>SNAP_ROOT</code> is set automatically, <code>ACTION_ROOT</code> and the SNAP function variables (<code>SDRAM_USED</code>, <code>NVME_USED</code>) have to be chosen based on the action you want to build.</p>
+<h3 id="selecting-the-action-to-build">Selecting the action to build</h3>
+<p>As an example, let us built one of the provided actions. In order to tell SNAP that you would like to build the breadth-first search action (called <code>hls_bfs</code> because it&apos;s implemented using the C-like Vivado HLS language), set <code>ACTION_ROOT</code> to the absolute path of the <code>actions/hls_bfs</code> directory inside your local SNAP repository:</p>
+<pre class="language-"><code class="lang-bash">~ $ <span class="token function">export</span> ACTION_ROOT<span class="token operator">=</span><span class="token variable">$SNAP_ROOT</span>/actions/hls_bfs
+</code></pre>
+<p>Because <code>hls_bfs</code> does not use DRAM or NVMe storage (see the <a href="https://github.com/open-power/snap/tree/master/actions/hls_bfs/doc" target="_blank">documentation</a>), we leave <code>SDRAM_USED</code> and <code>NVME_USED</code> to <code>FALSE</code>.</p>
+<p>Now, if you have not done so already, change into the <code>hardware</code> directory of your snap repository (<code>cd $SNAP_ROOT/hardware</code>). If all the settings are correct (you can check that by calling <code>./snap_settings</code>), you can generate the Vivado project files needed to build and simulate the action with:</p>
+<pre class="language-"><code class="lang-bash"><span class="token variable">$SNAP_ROOT</span>/hardware $ <span class="token function">make</span> config
+</code></pre>
+<p>You can follow the same procedure if you want to build other examples or your own actions.
+Whenever you change one of the <code>snap_settings</code> parameters, you will have to execute <code>make clean config</code> to re-generate the project files. Be careful with cleaning, however, as all previously built model and image files will be lost!</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Exploring an Example AFU">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="2-simulating-an-action.html" class="navigation navigation-next " aria-label="Next page: Simulating an action">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Setup and build preparation","level":"1.2.1","depth":2,"next":{"title":"Simulating an action","level":"1.2.2","depth":2,"path":"2-exploring-an-example-afu/2-simulating-an-action.md","ref":"2-exploring-an-example-afu/2-simulating-an-action.md","articles":[]},"previous":{"title":"Exploring an Example AFU","level":"1.2","depth":1,"path":"2-exploring-an-example-afu/README.md","ref":"2-exploring-an-example-afu/README.md","articles":[{"title":"Setup and build preparation","level":"1.2.1","depth":2,"path":"2-exploring-an-example-afu/1-setup-and-build-preparation.md","ref":"2-exploring-an-example-afu/1-setup-and-build-preparation.md","articles":[]},{"title":"Simulating an action","level":"1.2.2","depth":2,"path":"2-exploring-an-example-afu/2-simulating-an-action.md","ref":"2-exploring-an-example-afu/2-simulating-an-action.md","articles":[]},{"title":"Running on actual hardware","level":"1.2.3","depth":2,"path":"2-exploring-an-example-afu/3-running-on-actual-hardware.md","ref":"2-exploring-an-example-afu/3-running-on-actual-hardware.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["prism","-highlight"],"pluginsConfig":{"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/capi-snap.css","ebook":"styles/capi-snap.css"}},"file":{"path":"2-exploring-an-example-afu/1-setup-and-build-preparation.md","mtime":"2017-08-17T15:03:42.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-08-17T16:15:23.543Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,577 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Hardware Development · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/capi-snap.css">
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="3-optimization.html" />
+    
+    
+    <link rel="prev" href="1-minimal-host-software.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../1-introduction/1-motivation-and-use-cases.html">
+            
+                <a href="../1-introduction/1-motivation-and-use-cases.html">
+            
+                    
+                    Motivation and use cases
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../1-introduction/2-what-is-capi.html">
+            
+                <a href="../1-introduction/2-what-is-capi.html">
+            
+                    
+                    What is CAPI?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="../1-introduction/3-what-is-snap.html">
+            
+                <a href="../1-introduction/3-what-is-snap.html">
+            
+                    
+                    What is SNAP?
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../2-exploring-an-example-afu/">
+            
+                <a href="../2-exploring-an-example-afu/">
+            
+                    
+                    Exploring an Example AFU
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../2-exploring-an-example-afu/1-setup-and-build-preparation.html">
+            
+                <a href="../2-exploring-an-example-afu/1-setup-and-build-preparation.html">
+            
+                    
+                    Setup and build preparation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../2-exploring-an-example-afu/2-simulating-an-action.html">
+            
+                <a href="../2-exploring-an-example-afu/2-simulating-an-action.html">
+            
+                    
+                    Simulating an action
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../2-exploring-an-example-afu/3-running-on-actual-hardware.html">
+            
+                <a href="../2-exploring-an-example-afu/3-running-on-actual-hardware.html">
+            
+                    
+                    Running on actual hardware
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Creating a New AFU
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="1-minimal-host-software.html">
+            
+                <a href="1-minimal-host-software.html">
+            
+                    
+                    Minimal host software
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.2" data-path="2-hardware-development.html">
+            
+                <a href="2-hardware-development.html">
+            
+                    
+                    Hardware Development
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="3-optimization.html">
+            
+                <a href="3-optimization.html">
+            
+                    
+                    Optimization
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Hardware Development</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="hardware-development">Hardware Development</h2>
+<p>As mentioned earlier, SNAP supports hardware development with Vivado HLS, that translates C/C++ code to VHDL or Verilog. Subsequently both the translation tool and the C/C++ subset it can translate will be called HLS.</p>
+<p>The HLS translation process tries to group the original sequential statements into groups, that can be executed in parallel. This involves tracing the control and data dependencies between those statements. The groups of parallel statements become states of a state machine and its transitions are determined according to the control structures in the original code. This state machine controls a data path that is capable of executing all required operations defined by the original statements. Consequently, the resulting synchronous hardware design implements the same functionality as the original code. This enables software developers to quickly port existing algorithms to a hardware implementation without in-depth knowledge of traditional hardware development principles.</p>
+<p>For some easily parallelizable algorithms the results of this process might be good enough to achieve substantial speedups, as HLS recognizes the optimization potential and generates parallel hardware. In the general case however, the formulation of an algorithm that is optimized for a sequential execution model is not a favorable candidate for automatic optimization: HLS has hardly the same domain knowledge of a hardware developer, who knows (or guesses) how best to restructure the algorithm to distribute the workload well among the available resources.</p>
+<p>Therefore HLS provides a set of annotations (<code>#pragma HLS ...</code>) that allow a developer to direct the hardware generation process in specific ways to give a more fine grained control over the generated hardware. In some specific cases it might even be necessary to restructure the C code by hand in order to make HLS generate the intended hardware structures.</p>
+<p>A basic SNAP AFU project consists of two files in the hardware (<code>hw</code>) subdirectory of the action repository: One hardware specific header file, and the C implementation. In our case these are <code>action_blowfish.H</code> and <code>hls_blowfish.cpp</code>. Note the capital <code>H</code> in the header file extension. This convention is used to distinguish the hardware specific from the common header file <code>action_blowfish.h</code>. The latter contains the definition of the job structure and is thus included in both the hardware and software implementation.</p>
+<h3 id="porting-the-algorithm-to-hls">Porting the Algorithm to HLS</h3>
+<p>The first step of the AFU development is the implementation of the actual algorithm in HLS. Depending on the style and complexity of an existing software implementation, it might be more or less easy to adapt it to the limitations of HLS&apos; subset of C/C++: Dynamic memory allocation and some pointer operations are not supported and algorithms relying on dynamic data structures need to be reorganized to fit into the more static nature of a hardware implementation.</p>
+<p>Blowfish however operates on blocks of a fixed size and needs only a fixed set of intermediate results, which makes the port to hardware easy. The <a href="https://en.wikipedia.org/wiki/Blowfish_%28cipher%29" target="_blank">Wikipedia article</a> provides a compact pseudocode representation, that needs only minor adaptions to serve as a first step to the AFU implementation:</p>
+<pre class="language-"><code class="lang-cpp"><span class="token keyword">static</span> bf_halfBlock_t <span class="token function">bf_f</span><span class="token punctuation">(</span>bf_halfBlock_t h<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    bf_SiE_t a <span class="token operator">=</span> <span class="token punctuation">(</span>bf_SiE_t<span class="token punctuation">)</span><span class="token punctuation">(</span>h <span class="token operator">&gt;&gt;</span> <span class="token number">24</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+             b <span class="token operator">=</span> <span class="token punctuation">(</span>bf_SiE_t<span class="token punctuation">)</span><span class="token punctuation">(</span>h <span class="token operator">&gt;&gt;</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+             c <span class="token operator">=</span> <span class="token punctuation">(</span>bf_SiE_t<span class="token punctuation">)</span><span class="token punctuation">(</span>h <span class="token operator">&gt;&gt;</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+             d <span class="token operator">=</span> <span class="token punctuation">(</span>bf_SiE_t<span class="token punctuation">)</span> h<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>g_S<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span>a<span class="token punctuation">]</span> <span class="token operator">+</span> g_S<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>b<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">^</span> g_S<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">+</span> g_S<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">[</span>d<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">bf_encrypt</span><span class="token punctuation">(</span>bf_halfBlock_t <span class="token operator">&amp;</span> left<span class="token punctuation">,</span> bf_halfBlock_t <span class="token operator">&amp;</span> right<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>bf_PiE_t i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">16</span><span class="token punctuation">;</span> i <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        left <span class="token operator">^</span><span class="token operator">=</span> g_P<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        right <span class="token operator">^</span><span class="token operator">=</span> <span class="token function">bf_f</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> iCpy<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        right <span class="token operator">^</span><span class="token operator">=</span> g_P<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        left <span class="token operator">^</span><span class="token operator">=</span> <span class="token function">bf_f</span><span class="token punctuation">(</span>right<span class="token punctuation">,</span> iCpy<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    bf_halfBlock_t tmp <span class="token operator">=</span> left <span class="token operator">^</span> g_P<span class="token punctuation">[</span><span class="token number">16</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    left <span class="token operator">=</span> right <span class="token operator">^</span> g_P<span class="token punctuation">[</span><span class="token number">17</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    right <span class="token operator">=</span> tmp<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">bf_decrypt</span><span class="token punctuation">(</span>bf_halfBlock_t <span class="token operator">&amp;</span> left<span class="token punctuation">,</span> bf_halfBlock_t <span class="token operator">&amp;</span> right<span class="token punctuation">,</span> bf_SiC_t iCpy<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>bf_PiE_t i <span class="token operator">=</span> <span class="token number">16</span><span class="token punctuation">;</span> i <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">-</span><span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        left <span class="token operator">^</span><span class="token operator">=</span> g_P<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        right <span class="token operator">^</span><span class="token operator">=</span> <span class="token function">bf_f</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> iCpy<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        right <span class="token operator">^</span><span class="token operator">=</span> g_P<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        left <span class="token operator">^</span><span class="token operator">=</span> <span class="token function">bf_f</span><span class="token punctuation">(</span>right<span class="token punctuation">,</span> iCpy<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    bf_halfBlock_t tmp <span class="token operator">=</span> left <span class="token operator">^</span>g_P<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    left <span class="token operator">=</span> right <span class="token operator">^</span> g_P<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    right <span class="token operator">=</span> tmp<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">bf_keyInit</span><span class="token punctuation">(</span>bf_halfBlock_t key<span class="token punctuation">[</span><span class="token number">18</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>bf_PiE_t i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">18</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        g_P<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> c_initP<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">^</span> key<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>bf_SiA_t n <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> n <span class="token operator">&lt;</span> <span class="token number">4</span><span class="token punctuation">;</span> <span class="token operator">++</span>n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>bf_SiE_t i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">256</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            g_S<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> c_initS<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    bf_halfBlock_t left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> right <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>bf_PiE_t i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">18</span><span class="token punctuation">;</span> i <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">bf_encrypt</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        g_P<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> left<span class="token punctuation">;</span>
+        g_P<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> right<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>bf_SiA_t n <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> n <span class="token operator">&lt;</span> <span class="token number">4</span><span class="token punctuation">;</span> <span class="token operator">++</span>n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>bf_SiE_t i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">256</span><span class="token punctuation">;</span> i <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">bf_encrypt</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            g_S<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> left<span class="token punctuation">;</span>
+            g_S<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> right<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>When porting pseudocode or existing C code to HLS, care should be taken when choosing data types: In software development it does not usually make a difference in terms of performance, if much wider data types than necessary are used, provided they do not exceed the underlying machine&apos;s native register width. When specifying hardware however, a data type&apos;s bit width has a significant impact on the size and performance of a design.
+The generated hardware is exactly large enough to process the specified bit count. During the translation process it is generally impossible to determine the range of values a variable might take at runtime so that the worst case must be assumed. Therefore it is advisable to specify the bit width of a variable as tightly as possible. To enable a finer control, the template types <code>ap_uint</code> and <code>ap_int</code> can be parameterized to represent any integral bit width.</p>
+<p>This can be seen in the code above. Instead of using the usual <code>int</code> for loop counters, specific types such as <code>bf_SiE</code> were selected, that are defined in the hardware specific header.</p>
+<h3 id="test-bench-i">Test Bench I</h3>
+<p>The hardware implementation (<code>hls_blowfish.cpp</code>) can define a <code>main()</code> function, that should be non-synthesizable. It will be the entry point for debugging and should contain a testbench for the HLS code.</p>
+<div class="brainbox"><span>
+When building an AFU there often arises the need for debugging. The classic approach in hardware development is to simulate the design on a testbench that applies predefined signal sequences to the design under test and monitors how it reacts. This procedure is perfectly possible with an HLS design as the C code is translated to VHDL modules that act like any user written hardware design. Nevertheless the translation process produces somewhat cryptic names for states and signals. Furthermore the state machine is not easily comprehensible to a developer used to C code and the mapping between states and C statements is not obvious. Therefore it is desirable to run the HLS code like a regular C program in a software debugger to fix errors on that level, always assuming that the translated hardware modules behave exactly as the original C code.
+</span></div>
+
+<p>In a later stage of the development, the test bench will set up a complete SNAP environment to execute the AFU code in software just as if it was invoked in hardware. For now it is sufficient to write test cases for the algorithm to debug the implementation and ensure its correctness before the SNAP integration can begin. The example below shows how the encrypt function could be tested.</p>
+<pre class="language-"><code class="lang-cpp"><span class="token macro property">#<span class="token directive keyword">ifdef</span> NO_SYNTH</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    bf_halfBlock_t left <span class="token operator">=</span> <span class="token number">0xda7a</span><span class="token punctuation">,</span> right <span class="token operator">=</span> <span class="token number">0xb10c</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;encrypt(0x%08x, 0x%08x) -&gt; &quot;</span><span class="token punctuation">,</span> left<span class="token punctuation">,</span> right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">bf_encrypt</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;0x%08x, 0x%08x\n&quot;</span><span class="token punctuation">,</span> left<span class="token punctuation">,</span> right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token macro property">#<span class="token directive keyword">endif</span></span>
+</code></pre>
+<p>The Vivado HLS IDE is used to run such a test bench. Once installed it should be started from a shell with all SNAP environment variables set up. The project to be opened is the directory in <code>${ACTION_ROOT}/hw</code> that contains an FPGA part number in its name. In this case it would be <code>${SNAP_ROOT}/actions/hls_blowfish/hw/hlsBlowfish_xcku060-ffva1156-2-e</code>.</p>
+<p><img src="../assets/hls_cflags.png" alt="Vivado HLS: Synthesis View and Project Settings Dialog"></p>
+<p class="figure-caption">Vivado HLS: Synthesis View and Project Settings Dialog</p>
+
+<p>Before running the testbench, the hardware source file <code>hls_blowfish.cpp</code> must be added as a simulation source, by right clicking <em>Test Bench</em> in the project explorer and selecting <em>Add Files...</em> . Furthermore some SNAP specific CFLAGS must be set up by opening the <em>Project</em> -&gt; <em>Project Settings</em> dialog and editing the CFLAGS of the <code>hls_blowfish.cpp</code> file in the <em>Simulation</em> Tab. The flags to use are documented in the <a href="https://github.com/open-power/snap/tree/master/actions#xilinx-hls-testbench" target="_blank">SNAP Action Readme</a> on GitHub. At the time of writing the required flags were:</p>
+<pre class="language-"><code>-DNO_SYNTH -I./include -I../../software/include -I./<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>action_directory</span><span class="token punctuation">&gt;</span></span>/include
+</code></pre><p>Afterwards by pressing the <em>Run C Simulation</em> icon in the toolbar the simulation will be started and the Debug view entered, where the usual functionality of a C debugger is available.</p>
+<p><img src="../assets/hls_debugging.png" alt="Vivado HLS: Debug View and Simulation in Progress"></p>
+<p class="figure-caption">Vivado HLS: Debug View and Simulation in Progress</p>
+
+<h3 id="integration-with-the-snap-framework">Integration with the SNAP Framework</h3>
+<p>The next step on the way to a working Blowfish-AFU is to adapt its structure to the SNAP framework. SNAP expects a module named <code>hls_action</code> and instantiates it as the AFU user design when composing the final design on the FPGA.</p>
+<p>HLS translates all functions to separate VHDL modules unless they are inlined. Consequently the AFU code must contain a function named <code>hls_action()</code> that will be the entry point to the AFU logic.</p>
+<p>The arguments of this function represent different parts of the environment that SNAP offers to an AFU: They include pointers to host memory, a pointer to the job structure and if enabled a pointer to the cards local memory. (See <code>USE_DRAM=TRUE</code> with <code>make config</code>). <code>hls_action()</code> is <em>called</em> each time the job interface of the PSL indicates that a job should be started.</p>
+<p>All AFUs must be able to introduce themselves to the host with their action code and hardware revision. There is a list of assigned action codes in the SNAP repository named <code>ActionTypes.md</code>. A new action code is registered by a successful merge request that adds the new assignment to that list. There is however a large range of codes reserved for experimental use which - though with the risk of collisions - should be ideal for the private development of a new AFU. The hardware revision is at the discretion of the developer and should only be increased if significant changes in the host visible AFU interface or behavior have occurred.</p>
+<p>If the host queries this information, <code>hls_action()</code> is entered just as if a regular job was started. To distinguish both cases, a flag in the control register is set to indicate that instead of executing a job the AFU should write the respective entries in a configuration memory space, accessible through a pointer argument to <code>hls_action()</code>.</p>
+<p>The specific code that implements this behavior can be seen below and - as it is not specific to a particular AFU - can be freely reused.</p>
+<pre class="language-"><code class="lang-cpp"><span class="token keyword">void</span> <span class="token function">hls_action</span><span class="token punctuation">(</span>snap_membus_t  <span class="token operator">*</span>din_gmem<span class="token punctuation">,</span> snap_membus_t  <span class="token operator">*</span>dout_gmem<span class="token punctuation">,</span>
+                action_reg <span class="token operator">*</span>action_reg<span class="token punctuation">,</span> action_RO_config_reg <span class="token operator">*</span>Action_Config<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// Host Memory AXI Interface</span>
+<span class="token macro property">#<span class="token directive keyword">pragma</span> HLS INTERFACE m_axi port=din_gmem bundle=host_mem offset=slave depth=512</span>
+<span class="token macro property">#<span class="token directive keyword">pragma</span> HLS INTERFACE m_axi port=dout_gmem bundle=host_mem offset=slave depth=512</span>
+<span class="token macro property">#<span class="token directive keyword">pragma</span> HLS INTERFACE s_axilite port=din_gmem bundle=ctrl_reg offset=0x030</span>
+<span class="token macro property">#<span class="token directive keyword">pragma</span> HLS INTERFACE s_axilite port=dout_gmem bundle=ctrl_reg offset=0x040</span>
+
+    <span class="token comment" spellcheck="true">// Host Memory AXI Lite Master Interface</span>
+<span class="token macro property">#<span class="token directive keyword">pragma</span> HLS DATA_PACK variable=Action_Config</span>
+<span class="token macro property">#<span class="token directive keyword">pragma</span> HLS INTERFACE s_axilite port=Action_Config bundle=ctrl_reg  offset=0x010</span>
+<span class="token macro property">#<span class="token directive keyword">pragma</span> HLS DATA_PACK variable=action_reg</span>
+<span class="token macro property">#<span class="token directive keyword">pragma</span> HLS INTERFACE s_axilite port=action_reg bundle=ctrl_reg offset=0x100</span>
+<span class="token macro property">#<span class="token directive keyword">pragma</span> HLS INTERFACE s_axilite port=return bundle=ctrl_reg</span>
+
+    <span class="token comment" spellcheck="true">/* Required Action Type Detection */</span>
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>action_reg<span class="token operator">-</span><span class="token operator">&gt;</span>Control<span class="token punctuation">.</span>flags<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">case</span> <span class="token number">0</span><span class="token operator">:</span>
+            Action_Config<span class="token operator">-</span><span class="token operator">&gt;</span>action_type <span class="token operator">=</span> <span class="token punctuation">(</span>snapu32_t<span class="token punctuation">)</span>BLOWFISH_ACTION_TYPE<span class="token punctuation">;</span>
+            Action_Config<span class="token operator">-</span><span class="token operator">&gt;</span>release_level <span class="token operator">=</span> <span class="token punctuation">(</span>snapu32_t<span class="token punctuation">)</span>HW_RELEASE_LEVEL<span class="token punctuation">;</span>
+            action_reg<span class="token operator">-</span><span class="token operator">&gt;</span>Control<span class="token punctuation">.</span>Retc <span class="token operator">=</span> <span class="token punctuation">(</span>snapu32_t<span class="token punctuation">)</span><span class="token number">0xe00f</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">default</span><span class="token operator">:</span>
+            action_reg<span class="token operator">-</span><span class="token operator">&gt;</span>Control<span class="token punctuation">.</span>Retc <span class="token operator">=</span> <span class="token function">process_action</span><span class="token punctuation">(</span>din_gmem<span class="token punctuation">,</span> dout_gmem<span class="token punctuation">,</span> action_reg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p class="figure-caption">Excerpt of <a href="https://github.com/ldurdel/hls_blowfish/blob/master/hw/hls_blowfish.cpp" target="_blank">hls_blowfish.cpp</a></p>
+
+<p>To separate this mechanism from the actual logic, the Blowfish AFU calls <code>process_action()</code> if the <code>hls_action()</code> invocation was not a configuration request. This function is the first AFU specific part and the right place to extract all necessary parameters and commands from the job structure. This is accessible via the <code>action_reg * act_reg</code> parameter. It contains the general AFU control registers in <code>act_reg-&gt;Control</code> and the AFU specific job struct in its <code>act_reg-&gt;Data</code> member, which is organized as specified in the common <code>action_blowfish.h</code> header. </p>
+<p>When using members of the type <code>struct snap_addr</code> care should be taken, as they not only include the actual address, but only fields for the length of the specified address range, the type of memory referenced and some flags intended for later use in the SNAP framework.</p>
+<p>The Blowfish example uses only the address part of this struct and thus the job struct decoding looks as follows:</p>
+<pre class="language-"><code class="lang-cpp">    snapu64_t inAddr <span class="token operator">=</span> action_reg<span class="token operator">-</span><span class="token operator">&gt;</span>Data<span class="token punctuation">.</span>input_data<span class="token punctuation">.</span>addr<span class="token punctuation">;</span>
+    snapu64_t outAddr <span class="token operator">=</span> action_reg<span class="token operator">-</span><span class="token operator">&gt;</span>Data<span class="token punctuation">.</span>output_data<span class="token punctuation">.</span>addr<span class="token punctuation">;</span>
+    snapu32_t byteCount <span class="token operator">=</span> action_reg<span class="token operator">-</span><span class="token operator">&gt;</span>Data<span class="token punctuation">.</span>data_length<span class="token punctuation">;</span>
+    snapu32_t mode <span class="token operator">=</span> action_reg<span class="token operator">-</span><span class="token operator">&gt;</span>Data<span class="token punctuation">.</span>mode<span class="token punctuation">;</span>
+</code></pre>
+<p class="figure-caption">Excerpt of <a href="https://github.com/ldurdel/hls_blowfish/blob/master/hw/hls_blowfish.cpp" target="_blank">hls_blowfish.cpp</a> <code>process_action()</code></p>
+
+
+<p>The Blowfish AFU provides three separate operations: Encryption, decryption and key initialization. They are distinguished by specific values of the <code>mode</code> field and use the input and output buffers if applicable. To maintain a clear structure, the operations are implemented in separate functions: <code>action_setkey()</code> performs the key initialization, whereas <code>action_endecrypt()</code> handles both en- and decryption as they are very similar. These functions contain the required memory access logic to execute the Blowfish algorithm consisting of the <code>bf_*()</code> functions efficiently.</p>
+<h3 id="test-bench-ii">Test Bench II</h3>
+<p>With the SNAP action code in place, the testbench should be changed accordingly, to call <code>hls_action()</code> with a correctly set up environment. This includes arrays of the <code>snap_membus_t</code> type for each bus that is connected to the action module, i.e. two buses to host memory and optionally one to the DRAM, as well as the action and config registers (<code>action_reg</code> and <code>act_R0_config_reg</code>). The memory arrays must be initialized to contain the data, on which the action will operate. The action register must contain a correctly initialized job structure. The config register contains the flag to distinguish discovery from normal mode and this flag is the only part that needs to be set for test bench purposes.</p>
+<p>With all these preparations in place <code>hls_action()</code> can be called so that all parts of the action functionality are covered by the test bench. Should that produce incorrect results, breakpoints and variable inspection are effective means to find the bug.</p>
+<pre class="language-"><code class="lang-cpp"><span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> snap_membus_t din_gmem<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">static</span> snap_membus_t dout_gmem<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    action_reg act_reg<span class="token punctuation">;</span>
+    action_RO_config_reg act_config<span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token keyword">const</span> uint8_t ptext<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">/* ... */</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token keyword">const</span> uint8_t key<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">/* ... */</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// Perform Action Discovery</span>
+    act_reg<span class="token punctuation">.</span>Control<span class="token punctuation">.</span>flags <span class="token operator">=</span> <span class="token number">0x0</span><span class="token punctuation">;</span>
+    <span class="token function">hls_action</span><span class="token punctuation">(</span>din_gmem<span class="token punctuation">,</span> dout_gmem<span class="token punctuation">,</span> <span class="token operator">&amp;</span>act_reg<span class="token punctuation">,</span> <span class="token operator">&amp;</span>act_config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// Setup memory</span>
+    <span class="token function">memcpy</span><span class="token punctuation">(</span><span class="token punctuation">(</span>uint8_t <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>din_gmem<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> key<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// key 8B @ 0x0</span>
+    <span class="token function">memcpy</span><span class="token punctuation">(</span><span class="token punctuation">(</span>uint8_t <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>din_gmem<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> ptext<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>ptext<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// plaintext 16B @ 0x80</span>
+
+    <span class="token comment" spellcheck="true">// Test Key Initialization</span>
+    act_reg<span class="token punctuation">.</span>Control<span class="token punctuation">.</span>flags <span class="token operator">=</span> <span class="token number">0x1</span><span class="token punctuation">;</span>
+    act_reg<span class="token punctuation">.</span>Data<span class="token punctuation">.</span>input_data<span class="token punctuation">.</span>addr <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    act_reg<span class="token punctuation">.</span>Data<span class="token punctuation">.</span>data_length <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span>
+    act_reg<span class="token punctuation">.</span>Data<span class="token punctuation">.</span>mode <span class="token operator">=</span> MODE_SET_KEY<span class="token punctuation">;</span>
+    <span class="token function">hls_action</span><span class="token punctuation">(</span>din_gmem<span class="token punctuation">,</span> dout_gmem<span class="token punctuation">,</span> <span class="token operator">&amp;</span>act_reg<span class="token punctuation">,</span> <span class="token operator">&amp;</span>act_config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// Test Encryption</span>
+    act_reg<span class="token punctuation">.</span>Control<span class="token punctuation">.</span>flags <span class="token operator">=</span> <span class="token number">0x1</span><span class="token punctuation">;</span>
+    act_reg<span class="token punctuation">.</span>Data<span class="token punctuation">.</span>input_data<span class="token punctuation">.</span>addr <span class="token operator">=</span> <span class="token number">2</span> <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>snap_membus_t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    act_reg<span class="token punctuation">.</span>Data<span class="token punctuation">.</span>output_data<span class="token punctuation">.</span>addr <span class="token operator">=</span> <span class="token number">4</span> <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>snap_membus_t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    act_reg<span class="token punctuation">.</span>Data<span class="token punctuation">.</span>data_length <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>ptext<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    act_reg<span class="token punctuation">.</span>Data<span class="token punctuation">.</span>mode <span class="token operator">=</span> MODE_ENCRYPT<span class="token punctuation">;</span>
+    <span class="token function">hls_action</span><span class="token punctuation">(</span>din_gmem<span class="token punctuation">,</span> dout_gmem<span class="token punctuation">,</span> <span class="token operator">&amp;</span>act_reg<span class="token punctuation">,</span> <span class="token operator">&amp;</span>act_config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p class="figure-caption">Excerpt of <a href="https://github.com/ldurdel/hls_blowfish/blob/master/hw/hls_blowfish.cpp" target="_blank">hls_blowfish.cpp</a></p>
+
+<h3 id="using-the-snap-environment">Using the SNAP Environment</h3>
+<p>With the memory and register pointers passed to <code>hls_action()</code> SNAP already provides everything to access the resources available to an AFU. By dereferencing and using pointer arithmetic, different memory areas can be read and written. After the job structure pointer, that translates to an interface to a job management module provided by SNAP, the most interesting resource to any AFU will be host memory.</p>
+<p>When interacting with host memory, there arises a slight incongruity: While a regular bus interface can be expected to be bidirectional, SNAP provides two separate interfaces for host memory access, one for read and one for write operations. This is due to the way Vivado HLS translates bus interfaces, which is not quite compatible with SNAPs PSL interface module.</p>
+<pre class="language-"><code class="lang-cpp">snap_membus_t result <span class="token operator">=</span> din_gmem<span class="token punctuation">[</span>address <span class="token operator">&gt;&gt;</span> ADDR_RIGHT_SHIFT<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>
+<p>The statement above performs a single read operation from host memory. The result is a <code>snap_membus_t</code> which represents one word with the native bus width of the underlying PSL interface. The bus width is 512 bit, so only 64 byte aligned accesses to 64 byte blocks of data are possible. The addresses specified by the host software will generally be byte addresses, while the host memory pointer is indexed in multiples of 64 bytes. That necessitates the right shift of the byte address. Care should be taken if the lower bits of the byte address are not 0. In that case the desired part must be extracted from the result according to those lower bits.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="1-minimal-host-software.html" class="navigation navigation-prev " aria-label="Previous page: Minimal host software">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="3-optimization.html" class="navigation navigation-next " aria-label="Next page: Optimization">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Hardware Development","level":"1.3.2","depth":2,"next":{"title":"Optimization","level":"1.3.3","depth":2,"path":"3-creating-a-new-afu/3-optimization.md","ref":"3-creating-a-new-afu/3-optimization.md","articles":[]},"previous":{"title":"Minimal host software","level":"1.3.1","depth":2,"path":"3-creating-a-new-afu/1-minimal-host-software.md","ref":"3-creating-a-new-afu/1-minimal-host-software.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["prism","-highlight"],"pluginsConfig":{"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/capi-snap.css","ebook":"styles/capi-snap.css"}},"file":{"path":"3-creating-a-new-afu/2-hardware-development.md","mtime":"2017-08-17T16:03:23.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-08-17T16:15:23.543Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

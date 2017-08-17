@@ -1,0 +1,448 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Running on actual hardware · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/capi-snap.css">
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../3-creating-a-new-afu/" />
+    
+    
+    <link rel="prev" href="2-simulating-an-action.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../1-introduction/1-motivation-and-use-cases.html">
+            
+                <a href="../1-introduction/1-motivation-and-use-cases.html">
+            
+                    
+                    Motivation and use cases
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../1-introduction/2-what-is-capi.html">
+            
+                <a href="../1-introduction/2-what-is-capi.html">
+            
+                    
+                    What is CAPI?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="../1-introduction/3-what-is-snap.html">
+            
+                <a href="../1-introduction/3-what-is-snap.html">
+            
+                    
+                    What is SNAP?
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Exploring an Example AFU
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="1-setup-and-build-preparation.html">
+            
+                <a href="1-setup-and-build-preparation.html">
+            
+                    
+                    Setup and build preparation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="2-simulating-an-action.html">
+            
+                <a href="2-simulating-an-action.html">
+            
+                    
+                    Simulating an action
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.3" data-path="3-running-on-actual-hardware.html">
+            
+                <a href="3-running-on-actual-hardware.html">
+            
+                    
+                    Running on actual hardware
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../3-creating-a-new-afu/">
+            
+                <a href="../3-creating-a-new-afu/">
+            
+                    
+                    Creating a New AFU
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../3-creating-a-new-afu/1-minimal-host-software.html">
+            
+                <a href="../3-creating-a-new-afu/1-minimal-host-software.html">
+            
+                    
+                    Minimal host software
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../3-creating-a-new-afu/2-hardware-development.html">
+            
+                <a href="../3-creating-a-new-afu/2-hardware-development.html">
+            
+                    
+                    Hardware Development
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../3-creating-a-new-afu/3-optimization.html">
+            
+                <a href="../3-creating-a-new-afu/3-optimization.html">
+            
+                    
+                    Optimization
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Running on actual hardware</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="running-on-actual-hardware">Running on actual hardware</h2>
+<h3 id="creating-a-snap-fpga-image">Creating a SNAP FPGA image</h3>
+<p>Once you have successfully tested your AFU in the simulator, it is time to actually deploy it to the FPGA.</p>
+<p>To do that &#x2014; assuming you&apos;ve executed <code>make config</code> before &#x2014; just run <code>make image</code> inside the hardware directory. Synthesizing the image is a memory intensive process and can take any time from 50 minutes to a couple of hours depending on the complexity of your action.</p>
+<div class="brainbox"><span>
+If you suspect that the model synthesis may fail due to a timing problem (i.e. you have defined complex nested statements in your code), set the <code>TIMING_LABLIMIT</code> environment variable to a large negative value (<a href="https://github.com/open-power/snap/blob/master/hardware/setup/snap_build.tcl#L29" target="_blank">default</a>: -250 ps) before starting the build. This avoids build failures at a late stage in the process, but may produce images that are not suited for production use. However, you might have success trying them out in a lab environment.
+</span></div>
+
+<p>Once the build process has successfully finished, you can find the resulting bitstream files in the <code>build/Image</code> folder under the <code>hardware</code> directory. The version ending in *.bit can be flashed using the JTAG programmer; the *.bin file is meant for the capi-flash-script (see the below sections).</p>
+<h3 id="installing-the-fpga-in-the-power-machine">Installing the FPGA in the POWER machine</h3>
+<p>We are not responsible for damage you do to your own hardware.</p>
+<ol>
+<li>Find a CAPI capable PCIe port which you can use to install the FPGA. For the S824L OpenPOWER machine we used, this information can be obtained in the &apos;Internal I/O subsystem&apos; section of its <a href="http://www.redbooks.ibm.com/redpapers/pdfs/redp5139.pdf" target="_blank">technical overview document</a> (page 59 of the PDF in this case).</li>
+<li>Install the FPGA</li>
+<li>Attach the <a href="https://www.xilinx.com/products/boards-and-kits/hw-usb-ii-g.html" target="_blank">JTAG programmer</a> to the FPGA and connect its USB cable to an Intel-based machine that will be used to initialize the FPGA with Xilinx&apos; hw_server. Its activity LED will only come on after the Xilinx software has successfully established a connection to the card, so don&apos;t worry if it stays off once the systems have booted.</li>
+</ol>
+<h3 id="initializing-the-fpga-using-a-jtag-programmer">Initializing the FPGA using a JTAG Programmer</h3>
+<p>The official documentation on this topic can be found <a href="https://github.com/open-power/snap/blob/master/hardware/doc/Bitstream_flashing.md" target="_blank">here</a>.</p>
+<p>After the FPGA was installed, usually the Linux OS on the POWER machine will not detect it as a CAPI-enabled device. This is because the image that comes pre-installed on the <em>factory</em> partition of the FPGA doesn&apos;t support CAPI; instead a suitable image needs to be flashed onto the <em>user</em> partition by using the external USB programmer.</p>
+<div class="brainbox"><span>
+Once this procedure is completed and the FPGA is listed under <code>/dev/cxl</code>, new images can be flashed directly from the POWER host using the CAPI tooling provided by IBM. This is described in the next section.
+</span></div>
+
+<p>If you would like to set up a headless Vivado installation on the Intel machine connected to the JTAG programmer, you can instead choose to install a lighter weight version of Vivado that includes the hardware server tool <code>hw_server</code>.</p>
+<p>In any case, the process accessing the programmer (either Vivado or <code>hw_server</code>) might need to run with root privileges. Open Vivado&apos;s Hardware Manager and &apos;open&apos; the target device either on the local server or remotely. Once it has successfully connected to the FPGA, the programmer&apos;s activity LED should come on.<br>You will now need a device image (*.bit) that includes at least the PSL component. One way to obtain such an image is to run <code>make image</code> for one of the SNAP examples or your own action. </p>
+<div class="brainbox"><span>
+When reviewing your <code>snap_settings</code>, you might notice the <code>FACTORY_IMAGE</code> switch. Because you don&apos;t want to overwrite the FPGA&apos;s factory partition (but its user partition) you should leave it disabled.
+</span></div>
+
+<p>Because the user partition&apos;s contents will be cleared on each power cycle of the POWER machine if the card was not yet detected as a CAPI device, a certain procedure is required to initialize it: The image needs to be flashed <em>after</em> the system was powered on, but <em>before</em> the OS performs the PCI Express walk.</p>
+<p>Therefore, set up a ping to the host OS and trigger a reboot (a normal OS reboot should suffice, although sometimes an ipmi power cycle is necessary). Once the ping is lost, start the programming process in Vivado. There should be enough time to fully program the card before the host OS has completed booting.</p>
+<h3 id="programming-the-fpga-directly-from-the-power-host">Programming the FPGA directly from the POWER Host</h3>
+<p>Once the FPGA is detected as a CAPI-device it is a lot easier and faster to flash new images onto it. The JTAG programmer and the programming server are no longer needed. You can obtain the necessary tool from GitHub:</p>
+<pre class="language-"><code class="lang-bash">~ $ <span class="token function">git</span> clone https://github.com/ibm-capi/capi-utils
+~/capi-utils $ <span class="token function">cd</span> capi-utils
+~/capi-utils $ <span class="token function">make</span>
+~/capi-utils $ <span class="token function">make</span> <span class="token function">install</span>
+</code></pre>
+<p>Afterwards, start the tool like this and follow the instructions:</p>
+<pre class="language-"><code class="lang-bash">~ $ capi-flash-script my_image.bin
+</code></pre>
+<h3 id="testing-the-breadth-first-search-action-on-hardware">Testing the breadth-first search action on hardware</h3>
+<p>Assuming you have built the bitstream (using <code>make image</code>) and set up the FPGA as described above, the <code>hls_bfs</code> action should by now be programmed onto the card.</p>
+<p>You will now need a version of SNAP on the POWER server:</p>
+<ol>
+<li><p>Because now the &apos;real&apos; version of libcxl is needed (compared to the &apos;mock&apos; version used earlier by the PSL Simulation Engine), install it (e.g. on Ubuntu):</p>
+<pre class="language-"><code class="lang-bash">~ $ apt <span class="token function">install</span> libcxl-dev
+</code></pre>
+</li>
+<li><p>Clone SNAP, build the actions and tooling</p>
+<pre class="language-"><code class="lang-bash">~ $ <span class="token function">git</span> clone https://github.com/open-power/snap
+~/snap/software $ <span class="token function">make</span>
+~/snap/actions $ <span class="token function">make</span>
+</code></pre>
+</li>
+<li><p>Before you can use the action for the first time, it needs to be detected by SNAP. Use the <code>snap_maint</code> tool to trigger this:</p>
+<pre class="language-"><code class="lang-bash">~/snap/software/tools $ ./snap_maint -v
+</code></pre>
+</li>
+<li><p>Now you can execute the breadth-first search on hardware!</p>
+<pre class="language-"><code class="lang-bash">~/snap/actions/hls_bfs/sw $ ./snap_bfs -v
+</code></pre>
+</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="2-simulating-an-action.html" class="navigation navigation-prev " aria-label="Previous page: Simulating an action">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../3-creating-a-new-afu/" class="navigation navigation-next " aria-label="Next page: Creating a New AFU">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Running on actual hardware","level":"1.2.3","depth":2,"next":{"title":"Creating a New AFU","level":"1.3","depth":1,"path":"3-creating-a-new-afu/README.md","ref":"3-creating-a-new-afu/README.md","articles":[{"title":"Minimal host software","level":"1.3.1","depth":2,"path":"3-creating-a-new-afu/1-minimal-host-software.md","ref":"3-creating-a-new-afu/1-minimal-host-software.md","articles":[]},{"title":"Hardware Development","level":"1.3.2","depth":2,"path":"3-creating-a-new-afu/2-hardware-development.md","ref":"3-creating-a-new-afu/2-hardware-development.md","articles":[]},{"title":"Optimization","level":"1.3.3","depth":2,"path":"3-creating-a-new-afu/3-optimization.md","ref":"3-creating-a-new-afu/3-optimization.md","articles":[]}]},"previous":{"title":"Simulating an action","level":"1.2.2","depth":2,"path":"2-exploring-an-example-afu/2-simulating-an-action.md","ref":"2-exploring-an-example-afu/2-simulating-an-action.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["prism","-highlight"],"pluginsConfig":{"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/capi-snap.css","ebook":"styles/capi-snap.css"}},"file":{"path":"2-exploring-an-example-afu/3-running-on-actual-hardware.md","mtime":"2017-08-17T16:03:23.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-08-17T16:15:23.543Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

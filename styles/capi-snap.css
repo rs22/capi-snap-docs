@@ -1,0 +1,22 @@
+div.brainbox {
+  background: #EEF3F4;
+  padding:1em;
+  margin-bottom:.85em;
+}
+div.brainbox::before {
+  content: url('../assets/brain.svg');
+  width:3em;
+  float:left;
+  margin-right:1em;
+}
+div.brainbox > span {
+  overflow:hidden;
+  display: block;
+}
+
+p.figure-caption {
+  margin:-.5em 0em .85em 1em;
+  color: #375659;
+  font-style: italic;
+}
+
