@@ -2,7 +2,7 @@
 
 To focus on what may be new for software developers — i.e. the hardware part — we create a minimal program to test our blowfish AFU. It should encrypt and then decrypt some hardcoded example data with a hardcoded key.
 
-To seperate this from the bigger example that you will also find in our GitHub repository, we create the directory `hls_blowfish/sw_minimal`.
+To separate this from the bigger example that you will also find in our GitHub repository, we create the directory `hls_blowfish/sw_minimal`.
 
 ### Makefile
 
@@ -19,7 +19,6 @@ $(info You are not building your software from the default directory (/path/to/s
 $(error Please source /path/to/snap/hardware/snap_settings.sh or set $$SNAP_ROOT manually.)
 endif
 endif
-
 
 snap_blowfish_minimal: snap_blowfish_minimal.o
 
@@ -47,7 +46,7 @@ static void snap_prepare_blowfish(struct snap_job *job,
         void *addr_out,
         uint16_t type_out)
 {
-    // initialize SNAP addresses
+    // Initialize SNAP addresses
     snap_addr_set(&bjob_in->input_data, addr_in, data_length_in,
 		  type_in, SNAP_ADDRFLAG_ADDR | SNAP_ADDRFLAG_SRC);
 
@@ -55,12 +54,11 @@ static void snap_prepare_blowfish(struct snap_job *job,
 		  type_out, SNAP_ADDRFLAG_ADDR | SNAP_ADDRFLAG_DST |
 		  SNAP_ADDRFLAG_END );
 
-    // fill job struct
+    // Fill job struct
     bjob_in->mode = mode_in;
     bjob_in->data_length = data_length_in;
 
-    // Here sets the 108byte MMIO settings input.
-    // We have input parameters.
+    // Fill the 108byte MMIO settings input with our input parameters
     snap_job_set(job, bjob_in, sizeof(*bjob_in),
 		 bjob_out, sizeof(*bjob_out));
 }
@@ -143,7 +141,7 @@ int main()
 
 Again, for the complete implementation, please refer to the [code on Github](https://github.com/ldurdel/hls_blowfish/blob/master/sw_minimal/snap_blowfish_minimal.c).
 
-Now we can call `make` in `hls_blowfish/sw_minimal` to build our software part and use it like described in _Simulating an action_ or _Running on actual hardware_. If you use the default directory name (`sw`), building is done automatically when calling `make model` on your devolping machine. Please remember that, when using real hardware, you want to build the software part on the POWER machine to avoid cross compiling.
+Now we can call `make` in `hls_blowfish/sw_minimal` to build our software part and use it like described in _Simulating an action_ or _Running on actual hardware_. If you use the default directory name (`sw`), building is done automatically when calling `make model` on your development machine. Please remember that, when using real hardware, you want to build the software part on the POWER machine to avoid cross compiling.
 
 <div class="brainbox"><span>
 Due to CAPI reading only full cache lines (128 byte), you have to allocate addresses that you want to share 128 byte aligned. Also, when choosing the size of our test data, only full 64 bytes arrived at the FPGA. When using less data, only zeros arrived.

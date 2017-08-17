@@ -4,7 +4,7 @@ This chapter will walk you through the complete process of creating an FPGA-base
 
 We chose it, because it is easy to implement and quite fast when encrypting or decrypting. Only the key-preprocessing when changing the key is expensive. Note that this implementation is not intended for real life use with confidential information but rather a demonstration for SNAP. To effectively use the parallelization capabilities of the FPGA, we chose [Electronic Codebook](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Electronic_Codebook_.28ECB.29) as blockmode, because each block can be en- and decrypted individually. In a real-world scenario, we would recommend [CTR](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Counter_.28CTR.29).
 
-As the key pre-processing is quite expensive, we want to be able to handle large data streams with one pre-processing. Therefore we decided to include three operations in our action:
+As the key pre-processing is quite expensive, we want to be able to handle large data streams with one pre-processing pass. Therefore we decided to include three operations in our action:
 
 1. Set the key
 1. Encrypt data with the current key
