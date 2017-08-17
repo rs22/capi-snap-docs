@@ -19,10 +19,10 @@ The authors of this book are
 * Robert Schmid &lt;robert.schmid@student.hpi.de&gt;
 * Lukas Wenzel &lt;lukas.wenzel@student.hpi.de&gt;
 
-who are students at the Hasso-Plattner-Institute in Potsdam and constituted the masters project _"Heterogeneous Computing: acceleration and FPGAs in context of POWER and CAPI"_ . The project was offered at the chair for [Operating Systems and Middleware](https://hpi.de/en/research/research-groups/operating-systems-and-middleware.html) in cooperation with IBM and was supervised by
+who are students at the Hasso-Plattner-Institute in Potsdam and constituted the masters project _'Heterogeneous Computing: acceleration and FPGAs in context of POWER and CAPI'_ . The project was offered at the chair for [Operating Systems and Middleware](https://hpi.de/en/research/research-groups/operating-systems-and-middleware.html) in cooperation with IBM and was supervised by
 
 * Prof. Dr. Andreas Polze &lt;andreas.polze@hpi.de&gt;
 * Felix Eberhardt &lt;felix.eberhardt@hpi.de&gt;
 * Max Plauth &lt;max.plauth@hpi.de&gt;.
 
-We also want to thank everyone at IBM who held close contact and helped us during the project, including but not limited to: Jörg-Stephan Vogt, Sven Boekholt, Frank Haverkamp, Thomas Fuchs, Bruno Mesnet and Bruce Wile
+We also want to thank everyone at IBM who held close contact and helped us during the project, including but not limited to: Frank Haverkamp, Jörg-Stephan Vogt, Sven Boekholt, Thomas Fuchs, Bruno Mesnet and Bruce Wile
