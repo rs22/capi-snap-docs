@@ -36,7 +36,7 @@ In any case, the process accessing the programmer \(either Vivado or `hw_server`
 You will now need a device image \(\*.bit\) that includes at least the PSL component. One way to obtain such an image is to run `make image` for one of the SNAP examples or your own action. 
 
 <div class="brainbox"><span>
-When reviewing your <code>snap_settings</code>, you might notice the <code>FACTORY_IMAGE</code> switch. Because you don't want to overwrite the FPGA's factory partition (but its user partition) you can leave it disabled.
+When reviewing your <code>snap_settings</code>, you might notice the <code>FACTORY_IMAGE</code> switch. Because you don't want to overwrite the FPGA's factory partition (but its user partition) you should leave it disabled.
 </span></div>
 
 Because the user partition's contents will be cleared on each power cycle of the POWER machine if the card was not yet detected as a CAPI device, a certain procedure is required to initialize it: The image needs to be flashed _after_ the system was powered on, but _before_ the OS performs the PCI Express walk.
