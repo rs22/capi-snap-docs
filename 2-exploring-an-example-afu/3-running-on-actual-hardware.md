@@ -91,6 +91,11 @@ You will now need a version of SNAP on the POWER server:
    ```bash
    ~/snap/actions/hls_bfs/sw $ ./snap_bfs -v
    ```
+5. If you want to compare the accelerated implementation's performance against the software version, use the `SNAP_CONFIG` environment variable to enable the software mode of the `snap_bfs` example:
+
+   ```bash
+   ~/snap/actions/hls_bfs/sw $ SNAP_CONFIG=0x1 ./snap_bfs -v
+   ```
 
 
 
